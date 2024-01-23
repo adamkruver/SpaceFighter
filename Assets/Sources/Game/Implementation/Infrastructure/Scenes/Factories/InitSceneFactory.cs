@@ -7,6 +7,6 @@ namespace Sources.Game.Implementation.Infrastructure.Scenes.Factories
 	public class InitSceneFactory : ISceneFactory
 	{
 		public IScene Create(ISceneSwitcher sceneSwitcher) =>
-			throw new NotImplementedException();
+			new InitScene();
 	}
 }

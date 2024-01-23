@@ -7,6 +7,5 @@ public class GameStateMachine : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<IStateMachine<IScene>>().To<StateMachine<IScene>>().AsSingle();
     }
 }
