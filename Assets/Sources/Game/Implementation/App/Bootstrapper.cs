@@ -1,8 +1,12 @@
 using System;
 using Sources.Game.Implementation.Domain;
 using Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views;
+using Sources.Game.Implementation.Infrastructure.StateMachines;
+using Sources.Game.Implementation.Infrastructure.StateMachines.Decorators;
 using Sources.Game.Implementation.Services.Cameras;
 using Sources.Game.Interfaces.Infrastructure.Handlers;
+using Sources.Game.Interfaces.Infrastructure.Scenes;
+using Sources.Game.Interfaces.Infrastructure.StateMachine;
 using Sources.Game.Interfaces.Services.Inputs;
 using UnityEngine;
 using Zenject;
@@ -17,11 +21,13 @@ namespace Sources.Game.Implementation.App
         private IInputService _inputService;
         private SpaceshipViewFactory _spaceshipViewFactory;
         private TargetFollowerService _targetFollowerService;
+        private IStateMachine<IScene> _stateMachineUpdatable;
 
         private void Update()
         {
             _updateHandler.Update(Time.deltaTime);
             _inputService.Update(Time.deltaTime);
+            (_stateMachineUpdatable as IUpdateHandler)?.Update(Time.deltaTime);
         }
 
         private void LateUpdate() =>
@@ -31,8 +37,8 @@ namespace Sources.Game.Implementation.App
         private void Construct(
             IInputService inputService,
             IUpdateHandler updateHandler,
-            SpaceshipViewFactory spaceshipViewFactory
-        )
+            SpaceshipViewFactory spaceshipViewFactory,
+            IStateMachine<IScene> stateMachine)
         {
             _spaceshipViewFactory =
                 spaceshipViewFactory ?? throw new ArgumentNullException(nameof(spaceshipViewFactory));
@@ -42,7 +48,8 @@ namespace Sources.Game.Implementation.App
             var spaceShip = new Spaceship();
 
             var spaceshipView = spaceshipViewFactory.Create(spaceShip);
-
+            
+            _stateMachineUpdatable = new StateMachineUpdatable<IScene>(stateMachine);
             _targetFollowerService = new TargetFollowerService(_cameraRoot);
 
             _targetFollowerService.Follow(spaceShip);
