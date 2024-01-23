@@ -12,9 +12,10 @@ namespace Sources.Game.Implementation.Services.Spaceships
 
         public void AddForce(Spaceship spaceship, float force, float deltaTime)
         {
-            if (Mathf.Abs(force) < 0.01f)
-                spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, 0, deltaTime * spaceship.Acceleration);
-            else
+            // TODO зачем тут условие?
+            // if (Mathf.Abs(force) < 0.01f)
+            //     spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, 0, deltaTime * spaceship.Acceleration);
+            // else
                 spaceship.Speed += force * deltaTime * spaceship.Acceleration;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using Sources.Game.Implementation.Domain;
 using Sources.Game.Implementation.Services.Spaceships;
 using Sources.Game.Interfaces.Controllers;
@@ -45,14 +46,19 @@ namespace Sources.Game.Implementation.Controllers
         {
             UserInput input = _inputService.UserInput;
             
-            _movementService.AddForce(_spaceship, input.MoveDirection.y, deltaTime);
-            
-            _physicsMovementSystem.AddForce(_physicsMovementSystem.Forward* 10 * _spaceship.Speed);
+            // TODO изменил логику расчёта скорости
+            //_movementService.AddForce(_spaceship, input.MoveDirection.y, deltaTime);
+            //_physicsMovementSystem.AddForce(_physicsMovementSystem.Forward * speed);
 
+            // TODO изменил на Time.fixedDeltaTime т.к. скорость изменяется от 28 до 31 единиц. А так скорость держится ровно на 30   
+            float speed = _spaceship.GetSpeed(input.MoveDirection.y, Time.fixedDeltaTime);
+            
+            _physicsMovementSystem.SetVelocity(_physicsMovementSystem.Forward * speed);
+            
             _spaceship.Position = _physicsMovementSystem.Position;
             _spaceship.Forward = _physicsMovementSystem.Forward;
             _spaceship.Upwards = _physicsMovementSystem.Upwards;
-            //
+            
             // _movementService.Move(_spaceship, deltaTime);
             //
             // _spaceshipView.SetPosition(_spaceship.Position);

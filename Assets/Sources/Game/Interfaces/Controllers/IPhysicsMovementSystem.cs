@@ -9,5 +9,7 @@ namespace Sources.Game.Interfaces.Controllers
         Vector3 Upwards { get; }
         
         void AddForce(Vector3 force);
+
+        void SetVelocity(Vector3 velocity);
     }
 }
