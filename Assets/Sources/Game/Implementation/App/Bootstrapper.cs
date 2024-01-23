@@ -1,7 +1,6 @@
 using System;
 using Sources.Game.Implementation.Domain;
 using Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views;
-using Sources.Game.Implementation.Infrastructure.StateMachines;
 using Sources.Game.Implementation.Infrastructure.StateMachines.Decorators;
 using Sources.Game.Implementation.Services.Cameras;
 using Sources.Game.Interfaces.Infrastructure.Handlers;
