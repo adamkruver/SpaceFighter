@@ -3,7 +3,7 @@ using Sources.Game.Implementation.Domain;
 using Sources.Game.Interfaces.Infrastructure.Handlers;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Services.Cameras
+namespace Sources.Game.Implementation.Services.TargetFollowers
 {
     public class TargetFollowerService : ILateUpdateHandler
     {
@@ -23,6 +23,7 @@ namespace Sources.Game.Implementation.Services.Cameras
                 return;
             
             _transform.position = _spaceship.Position;
+            _transform.rotation = Quaternion.LookRotation(_spaceship.Forward, _spaceship.Upwards);
         }
     }
 }

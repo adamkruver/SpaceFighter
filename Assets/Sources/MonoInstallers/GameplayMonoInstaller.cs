@@ -6,14 +6,17 @@ using Sources.Game.Implementation.Services.Spaceships;
 using Sources.Game.Interfaces.Services.Inputs;
 using Zenject;
 
-public class GameplayMonoInstaller : MonoInstaller
+namespace Sources.MonoInstallers
 {
-    public override void InstallBindings()
+    public class GameplayMonoInstaller : MonoInstaller
     {
-        Container.BindInterfacesAndSelfTo<UpdateService>().AsSingle();
-        Container.Bind<IInputService>().To<PcInputService>().AsSingle();
-        Container.Bind<SpaceshipViewFactory>().AsSingle();
-        Container.Bind<SpaceshipPresenterFactory>().AsSingle();
-        Container.Bind<SpaceshipMovementService>().AsSingle();
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<UpdateService>().AsSingle();
+            Container.Bind<IInputService>().To<PcInputService>().AsSingle();
+            Container.Bind<SpaceshipViewFactory>().AsSingle();
+            Container.Bind<SpaceshipPresenterFactory>().AsSingle();
+            Container.Bind<SpaceshipMovementService>().AsSingle();
+        }
     }
 }

@@ -3,6 +3,7 @@ using Sources.Game.Implementation.Controllers;
 using Sources.Game.Implementation.Domain;
 using Sources.Game.Implementation.Presentation.Views;
 using Sources.Game.Implementation.Services.Spaceships;
+using Sources.Game.Interfaces.Controllers;
 using Sources.Game.Interfaces.Services.Inputs;
 using Sources.Game.Interfaces.Services.Lifecycles;
 
@@ -26,7 +27,18 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Controllers
                                         throw new ArgumentNullException(nameof(spaceshipMovementService));
         }
 
-        public SpaceshipPresenter Create(Spaceship spaceship, SpaceshipView spaceshipView) =>
-            new SpaceshipPresenter(spaceship, spaceshipView, _updateService, _inputService, _spaceshipMovementService);
+        public SpaceshipPresenter Create(
+            Spaceship spaceship,
+            SpaceshipView spaceshipView,
+            IPhysicsMovementSystem physicsMovementSystem
+        ) =>
+            new SpaceshipPresenter(
+                spaceship,
+                spaceshipView,
+                physicsMovementSystem,
+                _updateService,
+                _inputService,
+                _spaceshipMovementService
+            );
     }
 }

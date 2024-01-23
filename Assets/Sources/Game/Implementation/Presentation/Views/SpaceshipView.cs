@@ -1,5 +1,6 @@
 ﻿using System;
 using Sources.Game.Implementation.Controllers;
+using Sources.Game.Interfaces.Controllers;
 using Sources.Game.Interfaces.Presentation.Views;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Sources.Game.Implementation.Presentation.Views
 {
     public class SpaceshipView : MonoBehaviour, ISpaceshipView
     {
+        [field: SerializeField] public PhysicsMovementSystem PhysicsMovementSystem { get; private set; }
+        
         private SpaceshipPresenter _presenter;
 
         private void OnEnable() => 
@@ -30,11 +33,5 @@ namespace Sources.Game.Implementation.Presentation.Views
 
         public void Hide() => 
             gameObject.SetActive(false);
-
-        public void SetPosition(Vector3 position) => 
-            transform.position = position;
-
-        public void SetDirection(Vector3 direction) => 
-            transform.rotation = Quaternion.LookRotation(direction);
     }
 }

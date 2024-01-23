@@ -1,6 +1,6 @@
 ﻿using Sources.Game.Implementation.Domain;
 
-namespace Sources.Game.Interfaces.Services.Cameras
+namespace Sources.Game.Interfaces.Services.TargerFollowers
 {
     public interface ITargetFollowerService
     {

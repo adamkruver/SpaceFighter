@@ -11,12 +11,11 @@ namespace Sources.Game.Implementation.Domain
         public float Speed
         {
             get => _speed;
-            set => _speed = Mathf.Clamp(value, -10, 10); // TODO: Remove magic number
+            set => _speed = Mathf.Clamp(value, -100, 100); // TODO: Remove magic number
         }
 
-        public Vector3 Direction { get; set; } = Vector3.forward;
-
-        public void AddSpeedForce(float moveDirectionY) =>
-            Speed += moveDirectionY * 10;
+        public float Acceleration { get; set; } = 100f;
+        public Vector3 Forward { get; set; }
+        public Vector3 Upwards { get; set; }
     }
 }

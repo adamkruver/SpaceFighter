@@ -2,12 +2,15 @@ using Sources.Game.Implementation.App.Core;
 using UnityEngine;
 using Zenject;
 
-public class AppCoreMonoInstaller : MonoInstaller
+namespace Sources.MonoInstallers
 {
-    [SerializeField] private AppCore _appCorePrefab;
-
-    public override void InstallBindings()
+    public class AppCoreMonoInstaller : MonoInstaller
     {
-        Container.InstantiatePrefab(_appCorePrefab);
+        [SerializeField] private AppCore _appCorePrefab;
+
+        public override void InstallBindings()
+        {
+            Container.InstantiatePrefab(_appCorePrefab);
+        }
     }
 }

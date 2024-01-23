@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SkyboxChanger : MonoBehaviour
+namespace SpaceSkies_Free.Demo.Scripts
 {
-    public Material[] Skyboxes;
-    private Dropdown _dropdown;
-
-    public void Awake()
+    public class SkyboxChanger : MonoBehaviour
     {
-        _dropdown = GetComponent<Dropdown>();
-        //var options = Skyboxes.Select(skybox => skybox.name).ToList();
-        //_dropdown.AddOptions(options);
-    }
+        public Material[] Skyboxes;
+        private Dropdown _dropdown;
 
-    public void ChangeSkybox()
-    {
-        RenderSettings.skybox = Skyboxes[_dropdown.value];
+        public void Awake()
+        {
+            _dropdown = GetComponent<Dropdown>();
+            //var options = Skyboxes.Select(skybox => skybox.name).ToList();
+            //_dropdown.AddOptions(options);
+        }
+
+        public void ChangeSkybox()
+        {
+            RenderSettings.skybox = Skyboxes[_dropdown.value];
+        }
     }
 }

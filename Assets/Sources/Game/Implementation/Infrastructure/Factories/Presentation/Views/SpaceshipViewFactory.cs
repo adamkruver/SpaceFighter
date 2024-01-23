@@ -23,7 +23,7 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Presentation.View
             var prefab = Resources.Load<SpaceshipView>("Views/SpaceshipView");
                 
             var view = _diContainer.InstantiatePrefabForComponent<SpaceshipView>(prefab);
-            var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
+            var presenter = _spaceshipPresenterFactory.Create(spaceship, view, view.PhysicsMovementSystem);
             view.Construct(presenter);
 
             return view;
