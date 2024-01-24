@@ -1,6 +1,5 @@
 ﻿using System;
 using Sources.Game.Implementation.Controllers;
-using Sources.Game.Interfaces.Controllers;
 using Sources.Game.Interfaces.Presentation.Views;
 using UnityEngine;
 

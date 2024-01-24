@@ -13,16 +13,19 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Controllers
     {
         private readonly IUpdateService _updateService;
         private readonly IInputService _inputService;
+        private readonly IFixedUpdateService _fixedUpdateService;
         private readonly SpaceshipMovementService _spaceshipMovementService;
 
         public SpaceshipPresenterFactory(
             IUpdateService updateService,
+            IFixedUpdateService fixedUpdateService,
             IInputService inputService,
             SpaceshipMovementService spaceshipMovementService
         )
         {
             _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
+            _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _spaceshipMovementService = spaceshipMovementService ??
                                         throw new ArgumentNullException(nameof(spaceshipMovementService));
         }
@@ -37,6 +40,7 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Controllers
                 spaceshipView,
                 physicsMovementSystem,
                 _updateService,
+                _fixedUpdateService,
                 _inputService,
                 _spaceshipMovementService
             );

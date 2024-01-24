@@ -3,26 +3,22 @@ using UnityEngine;
 
 namespace Sources.Game.Implementation.Controllers
 {
-    public class PhysicsMovementSystem : MonoBehaviour, IPhysicsMovementSystem
-    {
-        [SerializeField] private Rigidbody _rigidbody;
-        private Vector3 _velocity;
+	public class PhysicsMovementSystem : MonoBehaviour, IPhysicsMovementSystem
+	{
+		[SerializeField] private Rigidbody _rigidbody;
 
-        public void AddForce(Vector3 force) => 
-            _rigidbody.AddForce(force, ForceMode.Impulse);
+		private Vector3 _velocity;
 
-        public void SetVelocity(Vector3 velocity) =>
-            _velocity = velocity;
+		public Vector3 Position => _rigidbody.position;
 
-        private void FixedUpdate() =>
-            _rigidbody.velocity = _velocity;
+		public Vector3 Forward => _rigidbody.transform.forward;
 
-        private void Update() =>
-            Debug.Log(_rigidbody.velocity);
+		public Vector3 Upwards => _rigidbody.transform.up;
 
-        public Vector3 Position => _rigidbody.position;
-        
-        public Vector3 Forward => _rigidbody.transform.forward;
-        public Vector3 Upwards => _rigidbody.transform.up;
-    }
+		public void UpdateFixed(float deltaTime) =>
+			_rigidbody.velocity = _velocity;
+
+		public void SetSpeed(float speed) =>
+			_velocity = Forward * speed;
+	}
 }

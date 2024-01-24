@@ -13,6 +13,7 @@ namespace Sources.MonoInstallers
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<UpdateService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<FixedUpdateService>().AsSingle();
             Container.Bind<IInputService>().To<PcInputService>().AsSingle();
             Container.Bind<SpaceshipViewFactory>().AsSingle();
             Container.Bind<SpaceshipPresenterFactory>().AsSingle();
