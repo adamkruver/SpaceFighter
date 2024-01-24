@@ -3,22 +3,21 @@ using UnityEngine;
 
 namespace Sources.Game.Implementation.Services.Spaceships
 {
-	public class SpaceshipMovementService
-	{
-		public float GetSpeed(float direction, float acceleration, float deltaTime) =>
-			direction * acceleration * deltaTime;
+    public class SpaceshipMovementService
+    {
+        public void AddForce(Spaceship spaceship, UserInput input, float deltaTime)
+        {
+            float force = input.MoveDirection.y;
 
-		public void AddForce(Spaceship spaceship, float force, float deltaTime)
-		{
-			if (Mathf.Abs(force) < 0.01f)
-				spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, 0, deltaTime * spaceship.Acceleration);
-			else
-				spaceship.Speed += force * deltaTime * spaceship.Acceleration;
-		}
+            if (Mathf.Abs(force) < 0.01f)
+                spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, 0, deltaTime * spaceship.Acceleration);
+            else
+                spaceship.Speed += force * deltaTime * spaceship.Acceleration;
 
-		public void AddTorque(Spaceship spaceship, float moveDirectionX, float deltaTime)
-		{
-			
-		}
-	}
+            float cursorPositionX = Mathf.Clamp(input.CursorPosition.x, 0, Screen.width);
+
+            spaceship.TorqueForce = 2 * cursorPositionX / Screen.width - 1; // Clamped from -1 to 1
+            spaceship.TorqueForce *= spaceship.Speed / Spaceship.MaxSpeed;
+        }
+    }
 }

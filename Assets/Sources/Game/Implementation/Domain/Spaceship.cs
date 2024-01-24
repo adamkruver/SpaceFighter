@@ -4,14 +4,15 @@ namespace Sources.Game.Implementation.Domain
 {
 	public class Spaceship
 	{
-		private const int MinSpeed = -100;
-		private const int MaxSpeed = 100;
+		public const float MaxSpeed = 100f;
+		
+		private const float MinSpeed = -100;
 
 		private float _speed;
 
 		public Vector3 Position { get; set; }
 
-		public float Acceleration { get; set; } = 10000f;
+		public float Acceleration { get; set; } = 100f;
 
 		public Vector3 Forward { get; set; }
 
@@ -23,5 +24,7 @@ namespace Sources.Game.Implementation.Domain
 
 			set => _speed = Mathf.Clamp(value, MinSpeed, MaxSpeed);
 		}
+		
+		public float TorqueForce { get; set; }
 	}
 }

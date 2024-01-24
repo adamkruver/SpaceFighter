@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 8625710227992696528}
+  _torqueBody: {fileID: 1509053832958964633}
 --- !u!54 &8625710227992696528
 Rigidbody:
   m_ObjectHideFlags: 0
