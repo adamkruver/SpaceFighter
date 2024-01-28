@@ -1,23 +1,27 @@
-using Sources.Game.Implementation.Infrastructure.Factories.Controllers;
-using Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views;
 using Sources.Game.Implementation.Services.Inputs;
 using Sources.Game.Implementation.Services.Lifecycles;
-using Sources.Game.Implementation.Services.Spaceships;
+using Sources.Game.Interfaces.Infrastructure.Handlers;
 using Sources.Game.Interfaces.Services.Inputs;
-using Zenject;
+using Sources.Game.Interfaces.Services.Lifecycles;
+using UniCtor.Installers;
+using UniCtor.Services;
 
 namespace Sources.MonoInstallers
 {
     public class GameplayMonoInstaller : MonoInstaller
     {
-        public override void InstallBindings()
+        public override void OnConfigure(IServiceCollection services)
         {
-            Container.BindInterfacesAndSelfTo<UpdateService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<FixedUpdateService>().AsSingle();
-            Container.Bind<IInputService>().To<PcInputService>().AsSingle();
-            Container.Bind<SpaceshipViewFactory>().AsSingle();
-            Container.Bind<SpaceshipPresenterFactory>().AsSingle();
-            Container.Bind<SpaceshipMovementService>().AsSingle();
+            UpdateService updateService = new UpdateService();
+            FixedUpdateService fixedUpdateService = new FixedUpdateService();
+            
+            services
+                .RegisterAsSingleton<IUpdateService>(updateService)
+                .RegisterAsSingleton<IUpdateHandler>(updateService)
+                .RegisterAsSingleton< IFixedUpdateHandler>(fixedUpdateService)
+                .RegisterAsSingleton<IFixedUpdateService>(fixedUpdateService)
+                .RegisterAsSingleton<IInputService,PcInputService>()
+               ;
         }
     }
 }

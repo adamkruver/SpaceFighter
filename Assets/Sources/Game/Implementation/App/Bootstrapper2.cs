@@ -1,17 +1,12 @@
 using System;
 using Sources.Game.Implementation.Domain;
 using Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views;
-using Sources.Game.Implementation.Infrastructure.StateMachines.Decorators;
 using Sources.Game.Implementation.Services.Lifecycles;
 using Sources.Game.Implementation.Services.TargetFollowers;
 using Sources.Game.Interfaces.Infrastructure.Handlers;
-using Sources.Game.Interfaces.Infrastructure.Scenes;
-using Sources.Game.Interfaces.Infrastructure.StateMachine;
 using Sources.Game.Interfaces.Services.Inputs;
-using Sources.Game.Interfaces.Services.SceneServices;
-using Unity.VisualScripting;
+using UniCtor.Attributes;
 using UnityEngine;
-using Zenject;
 
 namespace Sources.Game.Implementation.App
 {
@@ -37,7 +32,7 @@ namespace Sources.Game.Implementation.App
         private void LateUpdate() =>
             _targetFollowerService.UpdateLate(Time.deltaTime);
 
-        [Inject]
+        [Constructor]
         private void Construct(
             IInputService inputService,
             IUpdateHandler updateHandler,

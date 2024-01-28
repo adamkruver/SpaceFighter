@@ -1,7 +1,8 @@
 ﻿using System;
 using Sources.Game.Interfaces.Services.SceneServices;
+using UniCtor.Attributes;
 using UnityEngine;
-using Zenject;
+
 
 namespace Sources.Game.Implementation.App
 {
@@ -12,7 +13,7 @@ namespace Sources.Game.Implementation.App
 		private void Update() =>
 			_sceneService.Update(Time.deltaTime);
 
-		[Inject]
+		[Constructor]
 		private void Construct(ISceneService sceneService)
 		{
 			_sceneService = sceneService ?? throw new ArgumentNullException(nameof(sceneService));

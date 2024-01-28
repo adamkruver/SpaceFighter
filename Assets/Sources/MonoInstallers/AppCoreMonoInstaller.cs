@@ -1,6 +1,8 @@
+using System.ComponentModel;
 using Sources.Game.Implementation.App.Core;
+using UniCtor.Installers;
+using UniCtor.Services;
 using UnityEngine;
-using Zenject;
 
 namespace Sources.MonoInstallers
 {
@@ -8,9 +10,10 @@ namespace Sources.MonoInstallers
     {
         [SerializeField] private AppCore _appCorePrefab;
 
-        public override void InstallBindings()
+
+        public override void OnConfigure(IServiceCollection services)
         {
-            Container.InstantiatePrefab(_appCorePrefab);
+            Instantiate(_appCorePrefab);
         }
     }
 }
