@@ -79,10 +79,9 @@ namespace UniCtor.Services.Containers
             GetScopedType(typeof(T));
 
         public Type GetScopedType(Type serviceType) =>
-            (_scopedTypes.ContainsKey(serviceType)
+            _scopedTypes.ContainsKey(serviceType)
                 ? _scopedTypes[serviceType]
-                : null)
-            ?? _parentContainer?.GetScopedType(serviceType);
+                : null;
 
         public object GetScoped<T>() =>
             GetScoped(typeof(T));
@@ -92,13 +91,21 @@ namespace UniCtor.Services.Containers
                 ? _scopedObjects[serviceType]
                 : null;
 
+        public Type GetScopedTypeFromParent(Type serviceType) =>
+            _parentContainer?.GetScopedType(serviceType);
+        
+        public Func<IServiceProvider, object> GetScopedFactoryFromParent(Type serviceType) =>
+            _parentContainer?.GetScopedFactory(serviceType);
+        
+        public object GetScopedFromParent(Type serviceType) =>
+            _parentContainer?.GetScoped(serviceType);
+
         public Func<IServiceProvider, object> GetScopedFactory<T>() =>
             GetScopedFactory(typeof(T));
 
         public Func<IServiceProvider, object> GetScopedFactory(Type serviceType) =>
-            (_scopedFactories.ContainsKey(serviceType)
+            _scopedFactories.ContainsKey(serviceType)
                 ? _scopedFactories[serviceType]
-                : null)
-            ?? _parentContainer?.GetScopedFactory(serviceType);
+                : null;
     }
 }

@@ -24,5 +24,9 @@ namespace UniCtor.Services.Containers
 		Func<IServiceProvider, object> GetScopedFactory(Type serviceType);
 
 		void RegisterAsScoped(Type serviceType, object implementation);
+
+		object GetScopedFromParent(Type serviceType);
+		Type GetScopedTypeFromParent(Type serviceType);
+		Func<IServiceProvider, object> GetScopedFactoryFromParent(Type serviceType);
 	}
 }

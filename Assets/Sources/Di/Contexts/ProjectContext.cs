@@ -1,5 +1,6 @@
 ﻿using UniCtor.Builders;
 using UniCtor.Installers;
+using UniCtor.Resolvers;
 using UnityEngine;
 
 namespace UniCtor.Contexts
