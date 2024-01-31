@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.adamkruver.unictor": {
+      "version": "https://github.com/adamkruver/UniCtor.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f21ca86f48e0d0406c92d9ef84245a84e20c18a3"
+    },
     "com.unity.collab-proxy": {
       "version": "2.2.0",
       "depth": 0,
