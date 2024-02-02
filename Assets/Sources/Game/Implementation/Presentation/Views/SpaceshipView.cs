@@ -1,5 +1,6 @@
 ﻿using System;
 using Sources.Game.Implementation.Controllers;
+using Sources.Game.Interfaces.Domain;
 using Sources.Game.Interfaces.Presentation.Views;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ namespace Sources.Game.Implementation.Presentation.Views
 
         private void OnDisable() => 
             _presenter?.Disable();
+
+        public void SetRotation(Quaternion quaternion)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, Time.deltaTime * 2f);
+        }
 
         public void Construct(SpaceshipPresenter presenter)
         {

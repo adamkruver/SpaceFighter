@@ -1,23 +1,32 @@
 ﻿using Sources.Game.Implementation.Domain;
+using Sources.Game.Interfaces.Services.Inputs;
 using UnityEngine;
 
 namespace Sources.Game.Implementation.Services.Spaceships
 {
-    public class SpaceshipMovementService
-    {
-        public void AddForce(Spaceship spaceship, UserInput input, float deltaTime)
-        {
-            float force = input.MoveDirection.y;
+	public class SpaceshipMovementService
+	{
+		private Vector2 _currentRotation = Vector2.zero;
 
-            if (Mathf.Abs(force) < 0.01f)
-                spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, 0, deltaTime * spaceship.Acceleration);
-            else
-                spaceship.Speed += force * deltaTime * spaceship.Acceleration;
+		public void AddForce(Spaceship spaceship, UserInput input, float deltaTime)
+		{
+			float force = input.MoveDirection.y;
 
-            float cursorPositionX = Mathf.Clamp(input.CursorPosition.x, 0, Screen.width);
+			if (force < -0.01f)
+				spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, Spaceship.MinSpeed, deltaTime * spaceship.Deceleration);
+			else if(force > 0.01f)
+				spaceship.Speed = Mathf.MoveTowards(spaceship.Speed, Spaceship.MaxSpeed, deltaTime * spaceship.Acceleration);
+		}
 
-            spaceship.TorqueForce = 2 * cursorPositionX / Screen.width - 1; // Clamped from -1 to 1
-            spaceship.TorqueForce *= spaceship.Speed / Spaceship.MaxSpeed;
-        }
-    }
+		public Vector3 AddTorque(Spaceship spaceship, UserInput userInput)
+		{
+			float mouseX = userInput.CursorPosition.x * spaceship.MouseSensetivity;
+			float mouseY = userInput.CursorPosition.y * spaceship.MouseSensetivity;
+
+			_currentRotation.x += mouseX;
+			_currentRotation.y -= mouseY;
+
+			return new Vector3(_currentRotation.y, _currentRotation.x, 0);
+		}
+	}
 }

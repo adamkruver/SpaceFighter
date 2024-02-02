@@ -1,18 +1,22 @@
-﻿using UnityEngine;
+﻿using Sources.Game.Interfaces.Domain;
+using Sources.Game.Interfaces.Services.TargetFollowers;
+using UnityEngine;
 
 namespace Sources.Game.Implementation.Domain
 {
-	public class Spaceship
+	public class Spaceship : ITarget
 	{
-		public const float MaxSpeed = 100f;
+		public const float MaxSpeed = 50f;
 		
-		private const float MinSpeed = -100;
+		public const float MinSpeed = 0f;
 
 		private float _speed;
 
 		public Vector3 Position { get; set; }
 
-		public float Acceleration { get; set; } = 100f;
+		public float Acceleration { get; set; } = 10f;
+
+		public float Deceleration { get; set; } = 25f;
 
 		public Vector3 Forward { get; set; }
 
@@ -26,5 +30,7 @@ namespace Sources.Game.Implementation.Domain
 		}
 		
 		public float TorqueForce { get; set; }
+
+		public float MouseSensetivity => 2f;
 	}
 }

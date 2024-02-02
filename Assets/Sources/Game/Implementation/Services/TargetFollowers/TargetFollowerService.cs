@@ -1,29 +1,36 @@
 ﻿using System;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Interfaces.Infrastructure.Handlers;
+using Sources.Game.Interfaces.Domain;
+using Sources.Game.Interfaces.Services.TargetFollowers;
 using UnityEngine;
 
 namespace Sources.Game.Implementation.Services.TargetFollowers
 {
-    public class TargetFollowerService : ILateUpdateHandler
+    public class TargetFollowerService : ICameraLateUpdateHandler, ICameraFollower
     {
         private readonly Transform _transform;
         
-        private Spaceship _spaceship;
+        private ITarget _target;
 
         public TargetFollowerService(Transform transform) => 
             _transform = transform ? transform : throw new ArgumentNullException(nameof(transform));
 
-        public void Follow(Spaceship spaceship) => 
-            _spaceship = spaceship ?? throw new ArgumentNullException(nameof(spaceship));
+        public event Action<ITarget> TargetChanged;
+
+        public void Follow(ITarget target)
+        {
+            _target = target;
+            TargetChanged?.Invoke(target);
+        }
 
         public void UpdateLate(float deltaTime)
         {
-            if(_spaceship == null)
+            if(_target == null)
                 return;
             
-            _transform.position = _spaceship.Position;
-            _transform.rotation = Quaternion.LookRotation(_spaceship.Forward, _spaceship.Upwards);
+            _transform.position = _target.Position;
+            _transform.rotation = Quaternion.LookRotation(_target.Forward, _target.Upwards);
         }
     }
+    
+    // событие по смене наблюдаемого
 }

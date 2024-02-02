@@ -42,7 +42,11 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Controllers
                 _updateService,
                 _fixedUpdateService,
                 _inputService,
-                _spaceshipMovementService
+                _spaceshipMovementService,
+                null,
+                null
             );
+        
+        // TODO CameraFollower и SpaceshipService null
     }
 }

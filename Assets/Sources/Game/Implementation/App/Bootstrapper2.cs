@@ -5,6 +5,7 @@ using Sources.Game.Implementation.Services.Lifecycles;
 using Sources.Game.Implementation.Services.TargetFollowers;
 using Sources.Game.Interfaces.Infrastructure.Handlers;
 using Sources.Game.Interfaces.Services.Inputs;
+using Sources.Game.Interfaces.Services.TargetFollowers;
 using UniCtor.Attributes;
 using UnityEngine;
 
@@ -12,12 +13,9 @@ namespace Sources.Game.Implementation.App
 {
     public class Bootstrapper2 : MonoBehaviour
     {
-        [SerializeField] private Transform _cameraRoot;
-
         private IUpdateHandler _updateHandler;
         private IInputService _inputService;
-        private SpaceshipViewFactory _spaceshipViewFactory;
-        private TargetFollowerService _targetFollowerService;
+        private TargetFollowerService _cameraLateUpdateHandler;
         private IFixedUpdateHandler _fixedUpdateHandler;
 
         private void Update()
@@ -30,27 +28,27 @@ namespace Sources.Game.Implementation.App
             _fixedUpdateHandler.UpdateFixed(Time.fixedDeltaTime);
 
         private void LateUpdate() =>
-            _targetFollowerService.UpdateLate(Time.deltaTime);
+            _cameraLateUpdateHandler.UpdateLate(Time.deltaTime);
 
         [Constructor]
         private void Construct(
             IInputService inputService,
             IUpdateHandler updateHandler,
             IFixedUpdateHandler fixedUpdateHandler,
-            SpaceshipViewFactory spaceshipViewFactory)
+            SpaceshipViewFactory spaceshipViewFactory,
+            TargetFollowerService targetFollowerService)
         {
             _fixedUpdateHandler = fixedUpdateHandler ?? throw new ArgumentNullException(nameof(fixedUpdateHandler));
-            _spaceshipViewFactory = spaceshipViewFactory ?? throw new ArgumentNullException(nameof(spaceshipViewFactory));
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
             _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
 
-            var spaceShip = new Spaceship();
+            var spaceship = new Spaceship();
 
-            var spaceshipView = spaceshipViewFactory.Create(spaceShip);
+            var spaceshipView = spaceshipViewFactory.Create(spaceship);
             
-            _targetFollowerService = new TargetFollowerService(_cameraRoot);
+            _cameraLateUpdateHandler = targetFollowerService;
 
-            _targetFollowerService.Follow(spaceShip);
+            targetFollowerService.Follow(spaceship);
         }
     }
 }

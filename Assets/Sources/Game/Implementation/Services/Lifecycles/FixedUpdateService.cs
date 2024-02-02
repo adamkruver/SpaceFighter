@@ -10,9 +10,4 @@ namespace Sources.Game.Implementation.Services.Lifecycles
 		public void UpdateFixed(float deltaTime) =>
 			FixedUpdated.Invoke(deltaTime);
 	}
-
-	public interface IFixedUpdateHandler
-	{
-		public void UpdateFixed(float deltaTime);
-	}
 }
