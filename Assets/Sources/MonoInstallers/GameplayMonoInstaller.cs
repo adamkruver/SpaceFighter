@@ -1,6 +1,8 @@
 using Sources.Extensions.IServiceCollections;
+using Sources.Game.Implementation.Controllers;
 using Sources.Game.Implementation.Services.Inputs;
 using Sources.Game.Implementation.Services.Lifecycles;
+using Sources.Game.Implementation.Services.Spaceships;
 using Sources.Game.Implementation.Services.TargetFollowers;
 using Sources.Game.Interfaces.Infrastructure.Handlers;
 using Sources.Game.Interfaces.Services.Inputs;
@@ -21,10 +23,8 @@ namespace Sources.MonoInstallers
                 .RegisterAsSingleton<IUpdateService, IUpdateHandler, UpdateService>()
                 .RegisterAsSingleton<IFixedUpdateService,IFixedUpdateHandler, FixedUpdateService>()
                 .RegisterAsSingleton<IInputService,PcInputService>()
-                .RegisterAsSingleton<TargetFollowerService>(new TargetFollowerService(_mainCamera))
-                // .RegisterAsSingleton<ICameraFollower>(targetFollowerService)
-                // .RegisterAsSingleton<ICameraLateUpdateHandler>(targetFollowerService)
-                ;
+                .RegisterAsSingleton<ICameraFollower, ICameraLateUpdateHandler, TargetFollowerService>(new TargetFollowerService(_mainCamera))
+                .RegisterAsSingleton<ISpaceshipService, SpaceshipService>();
         }
     }
 }

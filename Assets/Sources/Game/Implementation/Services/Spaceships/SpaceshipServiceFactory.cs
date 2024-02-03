@@ -1,4 +1,6 @@
-﻿namespace Sources.Game.Implementation.Controllers
+﻿using Sources.Game.Implementation.Services.Spaceships;
+
+namespace Sources.Game.Implementation.Controllers
 {
 	public class SpaceshipServiceFactory : ISpaceshipServiceFactory
 	{

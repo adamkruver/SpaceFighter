@@ -1,4 +1,6 @@
-﻿namespace Sources.Game.Implementation.Controllers
+﻿using Sources.Game.Interfaces.SpaceshipStates;
+
+namespace Sources.Game.Implementation.Controllers
 {
 	public interface ISpaceshipService
 	{

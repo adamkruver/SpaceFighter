@@ -16,7 +16,7 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Presentation.View
         private readonly SpaceshipPresenterFactory _spaceshipPresenterFactory;
         private readonly IDependencyResolver _dependencyResolver;
 
-        public SpaceshipViewFactory(SpaceshipPresenterFactory spaceshipPresenterFactory, [NotNull] IDependencyResolver dependencyResolver)
+        public SpaceshipViewFactory(SpaceshipPresenterFactory spaceshipPresenterFactory, IDependencyResolver dependencyResolver)
         {
             _spaceshipPresenterFactory = spaceshipPresenterFactory ?? throw new ArgumentNullException(nameof(spaceshipPresenterFactory));
             _dependencyResolver = dependencyResolver ?? throw new ArgumentNullException(nameof(dependencyResolver));

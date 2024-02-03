@@ -1,17 +1,19 @@
 ﻿using Sources.Game.Interfaces.Infrastructure.States;
+using Sources.Game.Interfaces.SpaceshipStates;
+using UnityEngine;
 
 namespace Sources.Game.Implementation.Controllers.SpaceShipStates
 {
-	public class FreeLookState : IState
+	public class FreeLookState : ISpaceshipState
 	{
 		public void Enter()
 		{
-			throw new System.NotImplementedException();
+			Debug.Log(nameof(FreeLookState) + " enter");
 		}
 
 		public void Exit()
 		{
-			throw new System.NotImplementedException();
+			Debug.Log(nameof(FreeLookState) + " exit");
 		}
 	}
 }

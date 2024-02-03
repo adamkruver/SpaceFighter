@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.Game.Implementation.Controllers.SpaceShipStates;
 using Sources.Game.Implementation.Domain;
 using Sources.Game.Implementation.Services.Spaceships;
 using Sources.Game.Interfaces.Controllers;
@@ -61,16 +62,19 @@ namespace Sources.Game.Implementation.Controllers
 
 		private void OnCameraTargetChanged(ITarget target)
 		{
-			//_spaceshipService.ChangeSpaceshipState<>();
+			if (target is EmptyTarget)
+				_spaceshipService.ChangeSpaceshipState<FreeLookState>();
+			else
+				_spaceshipService.ChangeSpaceshipState<BattleState>();
 		}
 
 		private void OnUpdate(float deltaTime)
 		{
 			_movementService.AddForce(_spaceship, _inputService.UserInput, deltaTime);
-
+			
 			Vector3 torque = _movementService.AddTorque(_spaceship, _inputService.UserInput);
 			_physicsMovementSystem.SetSpeed(_spaceship.Speed);
-			
+
 			_physicsMovementSystem.SetTorqueForce(torque);
 
 			_spaceship.Position = _physicsMovementSystem.Position;
