@@ -4,7 +4,7 @@ namespace Sources.Game.Interfaces.Domain
 {
 	public interface ITarget
 	{
-		Vector3 Upwards { get; }
+		Vector3 Upward { get; }
 
 		Vector3 Forward { get; }
 

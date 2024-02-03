@@ -44,10 +44,9 @@ namespace Sources.Game.Implementation.App
 			_updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
 
 			var spaceship = new Spaceship();
-			var emptyTarget = new EmptyTarget();
+			var emptyTarget = new EmptyTarget(spaceship);
 
 			var spaceshipView = spaceshipViewFactory.Create(spaceship);
-			
 			
 			
 			var spaceshipEmptyTarget = spaceshipEmptyTargetViewFactory.Create(emptyTarget, spaceship, spaceshipView);

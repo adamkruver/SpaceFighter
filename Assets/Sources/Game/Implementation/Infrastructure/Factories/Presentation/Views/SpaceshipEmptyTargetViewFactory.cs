@@ -28,7 +28,7 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Presentation.View
 			EmptyTargetView emptyTargetView = gameObject.AddComponent<EmptyTargetView>();
 			_dependencyResolver.Resolve(emptyTargetView.gameObject);
             
-			SpaceshipCameraPresenter presenter = _spaceshipCameraPresenterFactory.Create(emptyTarget, spaceship);
+			EmptyTargetPresenter presenter = _spaceshipCameraPresenterFactory.Create(emptyTarget);
 			emptyTargetView.Construct(presenter);
 
 			return emptyTargetView;

@@ -5,7 +5,7 @@ namespace Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain
     public interface IPhysicsTorque
     {
         Quaternion Rotation { get; set; }
-        Vector3 Torque { get; set; }
-        float RotationSpeed { get; set; }
+        Vector3 Destination { get; set; }
+        float RotationSpeed { get; }
     }
 }

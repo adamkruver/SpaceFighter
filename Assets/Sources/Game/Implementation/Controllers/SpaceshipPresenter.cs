@@ -23,8 +23,7 @@ namespace Sources.Game.Implementation.Controllers
 		private readonly ICameraFollower _cameraFollower;
 		private readonly ISpaceshipService _spaceshipService;
 
-		public SpaceshipPresenter(
-			Spaceship spaceship,
+		public SpaceshipPresenter(Spaceship spaceship,
 			ISpaceshipView spaceshipView,
 			IUpdateService updateService,
 			IInputService inputService,
@@ -43,22 +42,30 @@ namespace Sources.Game.Implementation.Controllers
 
 		public override void Enable()
 		{
+			_inputService.CameraModeChanged += OnCameraModeChanged;
 			_updateService.Updated += OnUpdate;
 			_cameraFollower.TargetChanged += OnCameraTargetChanged;
 		}
 
 		public override void Disable()
 		{
+			_inputService.CameraModeChanged -= OnCameraModeChanged;
 			_cameraFollower.TargetChanged -= OnCameraTargetChanged;
 			_updateService.Updated -= OnUpdate;
 		}
 
+		private void OnCameraModeChanged(bool alterantiveMode)
+		{
+			if (alterantiveMode == false)
+				_cameraFollower.Follow(_spaceship);
+		}
+
 		private void OnCameraTargetChanged(ITarget target)
 		{
-			if (target is EmptyTarget)
-				_spaceshipService.ChangeSpaceshipState<FreeLookState>();
-			else
-				_spaceshipService.ChangeSpaceshipState<BattleState>();
+			if (target != _spaceship)
+				return;
+
+			_spaceshipService.ChangeState<BattleState>();
 		}
 
 		private void OnUpdate(float deltaTime)

@@ -41,8 +41,8 @@ namespace Sources.Game.Implementation.Infrastructure.Factories.Presentation.View
             var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
             view.Construct(presenter);
 
-            _physicsMovementViewFactory.Create(spaceship, view.PhysicsMovementView);
-            _physicsTorqueViewFactory.Create(spaceship, view.PhysicsTorqueView);
+            _physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
+            _physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
 
             return view;
         }

@@ -12,13 +12,11 @@ namespace Sources.Game.Implementation.Services.Spaceships
             float force = input.MoveDirection.y;
 
             if (force < -0.01f)
-                spaceship.SetSpeed(
-                    Mathf.MoveTowards(spaceship.Speed, Spaceship.MinSpeed, deltaTime * spaceship.Deceleration)
-                );
+                spaceship.Movement.SetSpeed(
+                    Mathf.MoveTowards(spaceship.Movement.Speed, spaceship.Movement.MinSpeed, deltaTime * spaceship.Movement.Deceleration));
             else if (force > 0.01f)
-                spaceship.SetSpeed(
-                    Mathf.MoveTowards(spaceship.Speed, Spaceship.MaxSpeed, deltaTime * spaceship.Acceleration)
-                );
+                spaceship.Movement.SetSpeed(
+                    Mathf.MoveTowards(spaceship.Movement.Speed, spaceship.Movement.MaxSpeed, deltaTime * spaceship.Movement.Acceleration));
         }
 
         public void AddTorque(Spaceship spaceship, UserInput userInput)
@@ -29,7 +27,7 @@ namespace Sources.Game.Implementation.Services.Spaceships
             _currentRotation.x += mouseX;
             _currentRotation.y -= mouseY;
 
-            spaceship.Torque = new Vector3(_currentRotation.y, _currentRotation.x, 0);
+            spaceship.Torque.Destination = new Vector3(_currentRotation.y, _currentRotation.x, 0);
         }
     }
 }

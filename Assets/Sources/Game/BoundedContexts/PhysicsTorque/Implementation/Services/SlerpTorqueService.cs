@@ -9,7 +9,7 @@ namespace Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Services
         public void UpdateTorque(IPhysicsTorque torque, float deltaTime) =>
             torque.Rotation = Quaternion.Slerp(
                 torque.Rotation,
-                Quaternion.Euler(torque.Torque),
+                Quaternion.Euler(torque.Destination),
                 torque.RotationSpeed * deltaTime
             );
     }

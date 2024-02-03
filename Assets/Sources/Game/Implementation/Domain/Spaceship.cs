@@ -6,39 +6,32 @@ using UnityEngine;
 
 namespace Sources.Game.Implementation.Domain
 {
-    public class Spaceship : ITarget, IPhysicsMovement, IPhysicsTorque
+    public class Spaceship : ITarget
     {
-        public const float MaxSpeed = 50f;
-        public const float MinSpeed = 0f;
+        private const float Acceleration = 5f;
+        private const float Deceleration = 2f;
+        private const float MaxSpeed = 50f;
+        private const float MinSpeed = 0f;
 
-        public event Action VelocityChanged;
+        public Spaceship(IPhysicsMovement physicsMovement, IPhysicsTorque physicsTorque)
+        {
+            Movement = physicsMovement ?? throw new ArgumentNullException(nameof(physicsMovement));
+            Torque = physicsTorque ?? throw new ArgumentNullException(nameof(physicsTorque));
+        }
+
+        public Spaceship() : this(new PhysicsMovement(Acceleration, Deceleration, MaxSpeed, MinSpeed), new PhysicsTorque())
+        {}
         
-        public float Acceleration { get; set; } = 10f;
-        public float Deceleration { get; set; } = 25f;
-        public Vector3 Position { get; set; }
-        public Vector3 Forward { get; set; }
-        public Vector3 Upward { get; set; }
-        public Vector3 Velocity { get; private set; }
+        public IPhysicsMovement Movement { get; }
 
-        public Vector3 Upwards { get; set; }
-
-        public float TorqueForce { get; set; }
+        public IPhysicsTorque Torque { get; }
 
         public float MouseSensitivity { get; } = 2f;
-        public float Speed { get; private set; }
 
-        public Quaternion Rotation { get; set; }
+        public Vector3 Upward => Movement.Upward;
 
-        public Vector3 Torque { get; set; }
+        public Vector3 Forward => Movement.Forward;
 
-        public float RotationSpeed { get; set; } = 2f;
-
-        public void SetSpeed(float speed)
-        {
-            Speed = Mathf.Clamp(speed, MinSpeed, MaxSpeed);
-            Velocity = Speed * Forward;
-            
-            VelocityChanged?.Invoke();
-        }
+        public Vector3 Position => Movement.Position;
     }
 }

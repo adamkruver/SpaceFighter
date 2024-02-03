@@ -28,7 +28,7 @@ namespace Sources.Game.Implementation.Services.TargetFollowers
                 return;
             
             _transform.position = _target.Position;
-            _transform.rotation = Quaternion.LookRotation(_target.Forward, _target.Upwards);
+            _transform.rotation = Quaternion.LookRotation(_target.Forward, _target.Upward);
         }
     }
     

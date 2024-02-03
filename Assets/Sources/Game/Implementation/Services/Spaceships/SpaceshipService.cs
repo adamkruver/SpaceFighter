@@ -13,16 +13,16 @@ namespace Sources.Game.Implementation.Services.Spaceships
 
 		private ISpaceshipState _currentState;
 		
-		public SpaceshipService()
+		public SpaceshipService(BattleState battleState, FreeLookState freeLookState)
 		{
 			_spaceshipStates = new()
 			{
-				[typeof(BattleState)] = new BattleState(),
-				[typeof(FreeLookState)] = new FreeLookState(),
+				[battleState.GetType()] = battleState,
+				[freeLookState.GetType()] = freeLookState,
 			};
 		}
 
-		public void ChangeSpaceshipState<TState>() where TState : ISpaceshipState
+		public void ChangeState<TState>() where TState : ISpaceshipState
 		{
 			Type stateType = typeof(TState);
 			

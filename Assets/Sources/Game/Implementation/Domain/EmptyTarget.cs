@@ -1,15 +1,20 @@
-﻿using Sources.Game.Interfaces.Domain;
-using Sources.Game.Interfaces.Services.TargetFollowers;
+﻿using System;
+using Sources.Game.Interfaces.Domain;
 using UnityEngine;
 
 namespace Sources.Game.Implementation.Domain
 {
 	public class EmptyTarget : ITarget
 	{
-		public Vector3 Upwards { get; set; }
+		private readonly ITarget _target;
 
-		public Vector3 Forward { get; set; }
+		public EmptyTarget(ITarget target) =>
+			_target = target ?? throw new ArgumentNullException(nameof(target));
 
-		public Vector3 Position { get; set; }
+		public Vector3 Upward => _target.Upward;
+
+		public Vector3 Forward => _target.Forward;
+
+		public Vector3 Position => _target.Position;
 	}
 }
