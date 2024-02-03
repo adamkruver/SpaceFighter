@@ -1,6 +1,6 @@
-﻿using Sources.Game.Implementation.Services.Spaceships;
+﻿using Sources.Game.Interfaces.Services.Spaceship;
 
-namespace Sources.Game.Implementation.Controllers
+namespace Sources.Game.Implementation.Services.Spaceships
 {
 	public class SpaceshipServiceFactory : ISpaceshipServiceFactory
 	{

@@ -47,6 +47,9 @@ namespace Sources.Game.Implementation.App
 			var emptyTarget = new EmptyTarget();
 
 			var spaceshipView = spaceshipViewFactory.Create(spaceship);
+			
+			
+			
 			var spaceshipEmptyTarget = spaceshipEmptyTargetViewFactory.Create(emptyTarget, spaceship, spaceshipView);
 
 			_cameraLateUpdateHandler = cameraLateUpdateHandler;

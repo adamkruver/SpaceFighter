@@ -1,42 +1,14 @@
-﻿using System;
+﻿using Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Views;
+using Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Views;
 using Sources.Game.Implementation.Controllers;
-using Sources.Game.Interfaces.Domain;
 using Sources.Game.Interfaces.Presentation.Views;
 using UnityEngine;
 
 namespace Sources.Game.Implementation.Presentation.Views
 {
-    public class SpaceshipView : MonoBehaviour, ISpaceshipView
+    public class SpaceshipView : PresentableView<SpaceshipPresenter>, ISpaceshipView
     {
-        [field: SerializeField] public PhysicsMovementSystem PhysicsMovementSystem { get; private set; }
-        
-        private SpaceshipPresenter _presenter;
-
-        private void OnEnable() => 
-            _presenter?.Enable();
-
-        private void OnDisable() => 
-            _presenter?.Disable();
-
-        public void SetRotation(Quaternion quaternion)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, Time.deltaTime * 2f);
-        }
-
-        public void Construct(SpaceshipPresenter presenter)
-        {
-            if (presenter == null) 
-                throw new ArgumentNullException(nameof(presenter));
-            
-            Hide();
-            _presenter = presenter;
-            Show();
-        }
-
-        public void Show() => 
-            gameObject.SetActive(true);
-
-        public void Hide() => 
-            gameObject.SetActive(false);
+        [field: SerializeField] public PhysicsMovementView PhysicsMovementView { get; private set; }
+        [field: SerializeField] public PhysicsTorqueView PhysicsTorqueView { get; private set; }
     }
 }
