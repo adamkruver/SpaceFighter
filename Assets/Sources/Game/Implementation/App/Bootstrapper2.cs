@@ -1,11 +1,10 @@
 using System;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views;
-using Sources.Game.Implementation.Services.Lifecycles;
-using Sources.Game.Implementation.Services.TargetFollowers;
-using Sources.Game.Interfaces.Infrastructure.Handlers;
-using Sources.Game.Interfaces.Services.Inputs;
-using Sources.Game.Interfaces.Services.TargetFollowers;
+using Sources.Implementation.Domain;
+using Sources.Implementation.Infrastructure.Factories.Presentation.Views;
+using Sources.Implementation.Services.Lifecycles;
+using Sources.Interfaces.Infrastructure.Handlers;
+using Sources.Interfaces.Services.Inputs;
+using Sources.Interfaces.Services.TargetFollowers;
 using UniCtor.Attributes;
 using UnityEngine;
 
