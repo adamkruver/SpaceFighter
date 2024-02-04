@@ -6,14 +6,18 @@ using Sources.Interfaces.Services.Lifecycles;
 
 namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Factories
 {
-    public class PhysicsMovementPresenterFactory
-    {
-        private readonly IFixedUpdateService _fixedUpdateService;
+	public class PhysicsMovementPresenterFactory
+	{
+		private readonly ILateUpdateService _lateUpdateService;
+		private readonly IFixedUpdateService _fixedUpdateService;
 
-        public PhysicsMovementPresenterFactory(IFixedUpdateService fixedUpdateService) => 
-            _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
+		public PhysicsMovementPresenterFactory(ILateUpdateService lateUpdateService, IFixedUpdateService fixedUpdateService)
+		{
+			_lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+			_fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
+		}
 
-        public PhysicsMovementPresenter Create(IPhysicsMovement movement, IPhysicsMovementView view) =>
-            new PhysicsMovementPresenter(movement, view, _fixedUpdateService);
-    }
+		public PhysicsMovementPresenter Create(IPhysicsMovement movement, IPhysicsMovementView view) =>
+			new PhysicsMovementPresenter(movement, view, _lateUpdateService, _fixedUpdateService);
+	}
 }

@@ -15,16 +15,17 @@ namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Views
         private Vector3 Forward => _rigidbody.transform.forward;
         private Vector3 Upward => _rigidbody.transform.up;
 
-        public void UpdateFixed(float deltaTime)
-        {
+        public void SetVelocity(Vector3 velocity) =>
+            _velocity = velocity;
+
+        public void UpdateFixed(float fixedDeltaTime) =>
             _rigidbody.velocity = _velocity;
-            
+
+        public void UpdateLate(float deltaTime)
+        {
             Presenter.SetPosition(Position);
             Presenter.SetForward(Forward);
             Presenter.SetUpward(Upward);
         }
-
-        public void SetVelocity(Vector3 velocity) =>
-            _velocity = velocity;
     }
 }

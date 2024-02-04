@@ -2,6 +2,7 @@
 using Sources.BoundedContexts.Common.Implememntation;
 using Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain;
 using Sources.BoundedContexts.PhysicsMovement.Interfaces.Views;
+using Sources.Interfaces.Infrastructure.Handlers;
 using Sources.Interfaces.Services.Lifecycles;
 using UnityEngine;
 
@@ -11,29 +12,34 @@ namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Presenters
     {
         private readonly IPhysicsMovement _model;
         private readonly IPhysicsMovementView _view;
+        private readonly ILateUpdateService _lateUpdateService;
         private readonly IFixedUpdateService _fixedUpdateService;
 
         public PhysicsMovementPresenter(
             IPhysicsMovement movement,
             IPhysicsMovementView view,
+            ILateUpdateService lateUpdateService,
             IFixedUpdateService fixedUpdateService
         )
         {
             _model = movement ?? throw new ArgumentNullException(nameof(movement));
             _view = view ?? throw new ArgumentNullException(nameof(view));
+            _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
             _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
         }
 
         public override void Enable()
         {
-            _fixedUpdateService.FixedUpdated += OnUpdateFixed;
+            _lateUpdateService.LateUpdated += _view.UpdateLate;
             _model.VelocityChanged += OnVelocityChanged;
+            _fixedUpdateService.FixedUpdated += _view.UpdateFixed;
         }
 
         public override void Disable()
         {
-            _fixedUpdateService.FixedUpdated -= OnUpdateFixed;
+            _lateUpdateService.LateUpdated -= _view.UpdateLate;
             _model.VelocityChanged -= OnVelocityChanged;
+            _fixedUpdateService.FixedUpdated -= _view.UpdateFixed;
         }
 
         public void SetPosition(Vector3 position) =>
@@ -47,8 +53,5 @@ namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Presenters
 
         private void OnVelocityChanged() => 
             _view.SetVelocity(_model.Velocity);
-
-        private void OnUpdateFixed(float fixedDeltaTime) => 
-            _view.UpdateFixed(fixedDeltaTime);
     }
 }
