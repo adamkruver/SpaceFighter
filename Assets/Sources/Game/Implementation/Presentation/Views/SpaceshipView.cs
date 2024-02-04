@@ -1,10 +1,10 @@
-﻿using Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Views;
-using Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Views;
-using Sources.Game.Implementation.Controllers;
-using Sources.Game.Interfaces.Presentation.Views;
+﻿using Sources.BoundedContexts.PhysicsMovement.Implementation.Views;
+using Sources.BoundedContexts.PhysicsTorque.Implementation.Views;
+using Sources.Implementation.Controllers;
+using Sources.Interfaces.Presentation.Views;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Presentation.Views
+namespace Sources.Implementation.Presentation.Views
 {
     public class SpaceshipView : PresentableView<SpaceshipPresenter>, ISpaceshipView
     {

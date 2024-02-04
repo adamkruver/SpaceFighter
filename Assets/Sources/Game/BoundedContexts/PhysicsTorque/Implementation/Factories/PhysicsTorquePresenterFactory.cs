@@ -1,11 +1,11 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Presenters;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Services;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Views;
-using Sources.Game.Interfaces.Services.Lifecycles;
+using Sources.BoundedContexts.PhysicsTorque.Implementation.Presenters;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Services;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Views;
+using Sources.Interfaces.Services.Lifecycles;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Factories
+namespace Sources.BoundedContexts.PhysicsTorque.Implementation.Factories
 {
     public class PhysicsTorquePresenterFactory
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Interfaces.Infrastructure.Handlers;
+using Sources.Implementation.Domain;
+using Sources.Interfaces.Infrastructure.Handlers;
 
-namespace Sources.Game.Interfaces.Services.Inputs
+namespace Sources.Interfaces.Services.Inputs
 {
     public interface IInputService : IUpdateHandler
     {

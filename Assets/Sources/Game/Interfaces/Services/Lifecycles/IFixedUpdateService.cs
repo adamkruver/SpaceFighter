@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Sources.Game.Interfaces.Services.Lifecycles
+namespace Sources.Interfaces.Services.Lifecycles
 {
-	public interface IFixedUpdateService
-	{
-		public event Action<float> FixedUpdated;
-	}
+    public interface IFixedUpdateService
+    {
+        event Action<float> FixedUpdated;
+    }
 }

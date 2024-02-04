@@ -1,6 +1,6 @@
-﻿using Sources.Game.Interfaces.Infrastructure.States;
+﻿using Sources.Interfaces.Infrastructure.States;
 
-namespace Sources.Game.Interfaces.Infrastructure.Scenes
+namespace Sources.Interfaces.Infrastructure.Scenes
 {
 	public interface IScene : IState
 	{

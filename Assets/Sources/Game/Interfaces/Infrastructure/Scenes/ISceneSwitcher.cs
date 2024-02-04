@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.Interfaces.Infrastructure.Scenes
+﻿namespace Sources.Interfaces.Infrastructure.Scenes
 {
 	public interface ISceneSwitcher
 	{

@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.Implementation.Services.Lifecycles
+﻿namespace Sources.Implementation.Services.Lifecycles
 {
 	public interface IFixedUpdateHandler
 	{

@@ -1,30 +1,23 @@
 ﻿using System;
-using Sources.Game.Interfaces.Infrastructure.Handlers;
-using Sources.Game.Interfaces.Infrastructure.StateMachine;
-using UnityEngine;
-using IState = Sources.Game.Interfaces.Infrastructure.States.IState;
+using Sources.Interfaces.Infrastructure.Handlers;
+using Sources.Interfaces.Infrastructure.StateMachine;
+using Sources.Interfaces.Infrastructure.States;
 
-namespace Sources.Game.Implementation.Infrastructure.StateMachines.Decorators
+namespace Sources.Implementation.Infrastructure.StateMachines.Decorators
 {
-	public class StateMachineUpdatable<T> : IStateMachine<T>, IUpdateHandler where T : class, IState 
-	{
-		private readonly IStateMachine<T> _stateMachine;
+    public class StateMachineUpdatable<T> : IStateMachine<T>, IUpdateHandler where T : class, IState
+    {
+        private readonly IStateMachine<T> _stateMachine;
 
-		public StateMachineUpdatable(IStateMachine<T> stateMachine) =>
-			_stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
+        public StateMachineUpdatable(IStateMachine<T> stateMachine) =>
+            _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
 
-		public T CurrentState { get; private set; }
+        public T CurrentState => _stateMachine.CurrentState;
 
-		public void Change(T state)
-		{
-			_stateMachine.Change(state);
-			CurrentState = _stateMachine.CurrentState;
-		}
+        public void Change(T state) =>
+            _stateMachine.Change(state);
 
-		public void Update(float deltaTime)
-		{
-			(CurrentState as IUpdateHandler)?.Update(deltaTime);
-			Debug.Log("сеня красауик");
-		}
-	}
+        public void Update(float deltaTime) =>
+            (CurrentState as IUpdateHandler)?.Update(deltaTime);
+    }
 }

@@ -1,9 +1,10 @@
-﻿using Sources.Game.Interfaces.Infrastructure.StateMachine.Factories;
+﻿using Sources.Interfaces.Infrastructure.StateMachine.Factories;
+using UniCtor.Contexts;
 
-namespace Sources.Game.Interfaces.Infrastructure.Scenes
+namespace Sources.Interfaces.Infrastructure.Scenes
 {
 	public interface ISceneFactoryProvider
 	{
-		ISceneFactory GetFactory(string sceneName);
+		ISceneFactory GetFactory(string sceneName, ISceneContext sceneContext);
 	}
 }

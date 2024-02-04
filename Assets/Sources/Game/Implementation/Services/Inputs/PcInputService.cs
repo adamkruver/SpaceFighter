@@ -1,10 +1,9 @@
 ﻿using System;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Interfaces.Services.Inputs;
+using Sources.Implementation.Domain;
+using Sources.Interfaces.Services.Inputs;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Sources.Game.Implementation.Services.Inputs
+namespace Sources.Implementation.Services.Inputs
 {
 	public class PcInputService : IInputService
 	{

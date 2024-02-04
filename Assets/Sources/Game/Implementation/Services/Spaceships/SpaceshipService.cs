@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sources.Game.Implementation.Controllers;
-using Sources.Game.Implementation.Controllers.SpaceShipStates;
-using Sources.Game.Interfaces.Services.Spaceship;
-using Sources.Game.Interfaces.SpaceshipStates;
+using Sources.Implementation.Controllers.SpaceShipStates;
+using Sources.Interfaces.Services.Spaceship;
+using Sources.Interfaces.SpaceshipStates;
 
-namespace Sources.Game.Implementation.Services.Spaceships
+namespace Sources.Implementation.Services.Spaceships
 {
 	public class SpaceshipService : ISpaceshipService
 	{

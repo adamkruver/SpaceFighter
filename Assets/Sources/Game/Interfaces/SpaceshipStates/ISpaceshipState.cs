@@ -1,6 +1,6 @@
-﻿using Sources.Game.Interfaces.Infrastructure.States;
+﻿using Sources.Interfaces.Infrastructure.States;
 
-namespace Sources.Game.Interfaces.SpaceshipStates
+namespace Sources.Interfaces.SpaceshipStates
 {
 	public interface ISpaceshipState : IState
 	{

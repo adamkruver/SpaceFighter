@@ -1,16 +1,16 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Views;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Factories;
-using Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Views;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Factories;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Implementation.Infrastructure.Factories.Controllers;
-using Sources.Game.Implementation.Presentation.Views;
+using Sources.BoundedContexts.PhysicsMovement.Implementation.Views;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Factories;
+using Sources.BoundedContexts.PhysicsTorque.Implementation.Views;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Factories;
+using Sources.Implementation.Domain;
+using Sources.Implementation.Infrastructure.Factories.Controllers;
+using Sources.Implementation.Presentation.Views;
 using UniCtor.Builders;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views
+namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 {
     public class SpaceshipViewFactory
     {

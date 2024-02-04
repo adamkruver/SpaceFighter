@@ -1,12 +1,12 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.Common.Implememntation;
-using Sources.Game.Implementation.Controllers.SpaceShipStates;
-using Sources.Game.Interfaces.Domain;
-using Sources.Game.Interfaces.Services.Inputs;
-using Sources.Game.Interfaces.Services.Spaceship;
-using Sources.Game.Interfaces.Services.TargetFollowers;
+using Sources.BoundedContexts.Common.Implememntation;
+using Sources.Implementation.Controllers.SpaceShipStates;
+using Sources.Interfaces.Domain;
+using Sources.Interfaces.Services.Inputs;
+using Sources.Interfaces.Services.Spaceship;
+using Sources.Interfaces.Services.TargetFollowers;
 
-namespace Sources.Game.Implementation.Controllers
+namespace Sources.Implementation.Controllers
 {
 	public class EmptyTargetPresenter : PresenterBase
 	{

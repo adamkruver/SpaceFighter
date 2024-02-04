@@ -1,6 +1,6 @@
-﻿using Sources.Game.Interfaces.Infrastructure.Handlers;
+﻿using Sources.Interfaces.Infrastructure.Handlers;
 
-namespace Sources.Game.Interfaces.Services.TargetFollowers
+namespace Sources.Interfaces.Services.TargetFollowers
 {
 	public interface ICameraLateUpdateHandler : ILateUpdateHandler
 	{

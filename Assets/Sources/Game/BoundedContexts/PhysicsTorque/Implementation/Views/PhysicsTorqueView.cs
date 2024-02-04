@@ -1,9 +1,9 @@
-﻿using Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Presenters;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Views;
-using Sources.Game.Implementation.Presentation.Views;
+﻿using Sources.BoundedContexts.PhysicsTorque.Implementation.Presenters;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Views;
+using Sources.Implementation.Presentation.Views;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Views
+namespace Sources.BoundedContexts.PhysicsTorque.Implementation.Views
 {
     public class PhysicsTorqueView : PresentableView<PhysicsTorquePresenter>, IPhysicsTorqueView
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain
+namespace Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain
 {
     public interface IPhysicsTorque
     {

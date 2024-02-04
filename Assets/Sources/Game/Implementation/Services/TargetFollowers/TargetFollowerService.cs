@@ -1,9 +1,9 @@
 ﻿using System;
-using Sources.Game.Interfaces.Domain;
-using Sources.Game.Interfaces.Services.TargetFollowers;
+using Sources.Interfaces.Domain;
+using Sources.Interfaces.Services.TargetFollowers;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Services.TargetFollowers
+namespace Sources.Implementation.Services.TargetFollowers
 {
     public class TargetFollowerService : ICameraLateUpdateHandler, ICameraFollower
     {

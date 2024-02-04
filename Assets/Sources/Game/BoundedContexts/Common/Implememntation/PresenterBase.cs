@@ -1,6 +1,6 @@
-﻿using Sources.Game.BoundedContexts.Common.Interfaces;
+﻿using Sources.BoundedContexts.Common.Interfaces;
 
-namespace Sources.Game.BoundedContexts.Common.Implememntation
+namespace Sources.BoundedContexts.Common.Implememntation
 {
     public abstract class PresenterBase : IPresenter
     {

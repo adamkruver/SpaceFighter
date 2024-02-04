@@ -1,7 +1,7 @@
 ﻿using System;
-using Sources.Game.Interfaces.Services.Lifecycles;
+using Sources.Interfaces.Services.Lifecycles;
 
-namespace Sources.Game.Implementation.Services.Lifecycles
+namespace Sources.Implementation.Services.Lifecycles
 {
 	public class FixedUpdateService : IFixedUpdateService, IFixedUpdateHandler
 	{

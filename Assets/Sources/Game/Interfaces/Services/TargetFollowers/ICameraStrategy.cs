@@ -1,7 +1,7 @@
 ﻿using System;
-using Sources.Game.Interfaces.Domain;
+using Sources.Interfaces.Domain;
 
-namespace Sources.Game.Interfaces.Services.TargetFollowers
+namespace Sources.Interfaces.Services.TargetFollowers
 {
     public interface ICameraFollower
     {

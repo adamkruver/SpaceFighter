@@ -1,9 +1,9 @@
 ﻿using System;
-using Sources.Game.Interfaces.Services.Lifecycles;
-using Sources.Game.Interfaces.SpaceshipStates;
+using Sources.Interfaces.Services.Lifecycles;
+using Sources.Interfaces.SpaceshipStates;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Controllers.SpaceShipStates
+namespace Sources.Implementation.Controllers.SpaceShipStates
 {
 	public class BattleState : ISpaceshipState
 	{

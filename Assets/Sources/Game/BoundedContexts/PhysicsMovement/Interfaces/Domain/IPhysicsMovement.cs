@@ -1,8 +1,7 @@
 ﻿using System;
-using Sources.Game.Interfaces.Domain;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Domain
+namespace Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain
 {
 	public interface IPhysicsMovement
 	{

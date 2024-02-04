@@ -1,7 +1,7 @@
-﻿using Sources.Game.Interfaces.Infrastructure.StateMachine;
-using Sources.Game.Interfaces.Infrastructure.States;
+﻿using Sources.Interfaces.Infrastructure.StateMachine;
+using Sources.Interfaces.Infrastructure.States;
 
-namespace Sources.Game.Implementation.Infrastructure.StateMachines
+namespace Sources.Implementation.Infrastructure.StateMachines
 {
 	public sealed class StateMachine<T> : IStateMachine<T> where T : class, IState
 	{

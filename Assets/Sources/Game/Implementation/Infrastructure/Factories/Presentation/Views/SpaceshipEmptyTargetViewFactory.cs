@@ -1,13 +1,12 @@
 ﻿using System;
-using Sources.Game.Implementation.Controllers;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Implementation.Infrastructure.Factories.Controllers;
-using Sources.Game.Implementation.Presentation.Views;
+using Sources.Implementation.Controllers;
+using Sources.Implementation.Domain;
+using Sources.Implementation.Infrastructure.Factories.Controllers;
+using Sources.Implementation.Presentation.Views;
 using UniCtor.Builders;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-namespace Sources.Game.Implementation.Infrastructure.Factories.Presentation.Views
+namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 {
 	public class SpaceshipEmptyTargetViewFactory
 	{

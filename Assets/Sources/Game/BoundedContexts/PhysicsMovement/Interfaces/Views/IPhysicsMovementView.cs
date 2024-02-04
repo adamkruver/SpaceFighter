@@ -1,7 +1,7 @@
-﻿using Sources.Game.Implementation.Services.Lifecycles;
+﻿using Sources.Implementation.Services.Lifecycles;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Views
+namespace Sources.BoundedContexts.PhysicsMovement.Interfaces.Views
 {
     public interface IPhysicsMovementView : IFixedUpdateHandler
     {

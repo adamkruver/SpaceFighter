@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Views
+namespace Sources.BoundedContexts.PhysicsTorque.Interfaces.Views
 {
     public interface IPhysicsTorqueView
     {

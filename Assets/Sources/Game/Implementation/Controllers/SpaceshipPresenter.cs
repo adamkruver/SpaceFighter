@@ -1,17 +1,16 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.Common.Implememntation;
-using Sources.Game.Implementation.Controllers.SpaceShipStates;
-using Sources.Game.Implementation.Domain;
-using Sources.Game.Implementation.Services.Spaceships;
-using Sources.Game.Interfaces.Domain;
-using Sources.Game.Interfaces.Presentation.Views;
-using Sources.Game.Interfaces.Services.Inputs;
-using Sources.Game.Interfaces.Services.Lifecycles;
-using Sources.Game.Interfaces.Services.Spaceship;
-using Sources.Game.Interfaces.Services.TargetFollowers;
-using UnityEngine;
+using Sources.BoundedContexts.Common.Implememntation;
+using Sources.Implementation.Controllers.SpaceShipStates;
+using Sources.Implementation.Domain;
+using Sources.Implementation.Services.Spaceships;
+using Sources.Interfaces.Domain;
+using Sources.Interfaces.Presentation.Views;
+using Sources.Interfaces.Services.Inputs;
+using Sources.Interfaces.Services.Lifecycles;
+using Sources.Interfaces.Services.Spaceship;
+using Sources.Interfaces.Services.TargetFollowers;
 
-namespace Sources.Game.Implementation.Controllers
+namespace Sources.Implementation.Controllers
 {
 	public class SpaceshipPresenter : PresenterBase
 	{

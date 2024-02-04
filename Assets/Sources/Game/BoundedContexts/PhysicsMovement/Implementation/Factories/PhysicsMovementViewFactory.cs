@@ -1,11 +1,11 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Presenters;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Domain;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Factories;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Views;
-using Sources.Game.Interfaces.Presentation.Views;
+using Sources.BoundedContexts.PhysicsMovement.Implementation.Presenters;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Factories;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Views;
+using Sources.Interfaces.Presentation.Views;
 
-namespace Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Factories
+namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Factories
 {
     public class PhysicsMovementViewFactory<T> : IPhysicsMovementViewFactory<T>
         where T : IPhysicsMovementView, IPresentableView<PhysicsMovementPresenter>

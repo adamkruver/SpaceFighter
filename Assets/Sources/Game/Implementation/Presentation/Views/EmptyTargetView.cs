@@ -1,6 +1,6 @@
-﻿using Sources.Game.Implementation.Controllers;
+﻿using Sources.Implementation.Controllers;
 
-namespace Sources.Game.Implementation.Presentation.Views
+namespace Sources.Implementation.Presentation.Views
 {
 	public class EmptyTargetView : PresentableView<EmptyTargetPresenter>
 	{

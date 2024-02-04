@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sources.Game.Interfaces.Services.Lifecycles
+namespace Sources.Interfaces.Services.Lifecycles
 {
     public interface IUpdateService
     {

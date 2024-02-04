@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sources.Game.Interfaces.Domain
+namespace Sources.Interfaces.Domain
 {
 	public interface ITarget
 	{

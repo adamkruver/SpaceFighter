@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.Interfaces.Services.Spaceship
+﻿namespace Sources.Interfaces.Services.Spaceship
 {
 	public interface ISpaceshipServiceFactory
 	{

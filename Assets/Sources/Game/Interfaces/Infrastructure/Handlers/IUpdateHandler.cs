@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.Interfaces.Infrastructure.Handlers
+﻿namespace Sources.Interfaces.Infrastructure.Handlers
 {
     public interface IUpdateHandler
     {

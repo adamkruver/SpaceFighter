@@ -1,8 +1,8 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.Common.Interfaces;
-using Sources.Game.Interfaces.Presentation.Views;
+using Sources.BoundedContexts.Common.Interfaces;
+using Sources.Interfaces.Presentation.Views;
 
-namespace Sources.Game.Implementation.Presentation.Views
+namespace Sources.Implementation.Presentation.Views
 {
     public abstract class PresentableView<T> : View, IPresentableView<T> where T : class, IPresenter
     {

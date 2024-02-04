@@ -1,6 +1,6 @@
-﻿using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+﻿using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Services
+namespace Sources.BoundedContexts.PhysicsTorque.Interfaces.Services
 {
     public interface ITorqueService
     {

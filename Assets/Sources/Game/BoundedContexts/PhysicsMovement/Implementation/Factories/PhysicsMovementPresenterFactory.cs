@@ -1,10 +1,10 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Presenters;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Domain;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Views;
-using Sources.Game.Interfaces.Services.Lifecycles;
+using Sources.BoundedContexts.PhysicsMovement.Implementation.Presenters;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Views;
+using Sources.Interfaces.Services.Lifecycles;
 
-namespace Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Factories
+namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Factories
 {
     public class PhysicsMovementPresenterFactory
     {

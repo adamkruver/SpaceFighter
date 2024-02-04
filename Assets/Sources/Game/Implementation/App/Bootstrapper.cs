@@ -1,22 +1,31 @@
 ﻿using System;
-using Sources.Game.Interfaces.Services.SceneServices;
+using Sources.Implementation.App.Core;
+using Sources.Interfaces.Services.Scenes;
 using UniCtor.Attributes;
+using UniCtor.Contexts;
 using UnityEngine;
 
-
-namespace Sources.Game.Implementation.App
+namespace Sources.Implementation.App
 {
-	public class Bootstrapper : MonoBehaviour
-	{
-		private ISceneService _sceneService;
+    [DefaultExecutionOrder(-1)]
+    public class Bootstrapper : MonoBehaviour
+    {
+        private ISceneContext _sceneContext;
 
-		private void Update() =>
-			_sceneService.Update(Time.deltaTime);
+        private void Awake()
+        {
+            var appCore = FindObjectOfType<AppCore>() ?? new AppCoreFactory().Create(_sceneContext);
+        }
 
-		[Constructor]
-		private void Construct(ISceneService sceneService)
-		{
-			_sceneService = sceneService ?? throw new ArgumentNullException(nameof(sceneService));
-		}
-	}
+        [Constructor]
+        private void Construct(ISceneContext sceneContext, ISceneConstructor sceneConstructor)
+        {
+            _sceneContext = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
+
+            if (sceneConstructor == null)
+                throw new ArgumentNullException(nameof(sceneConstructor));
+
+            sceneConstructor.ConstructScene(sceneContext);
+        }
+    }
 }

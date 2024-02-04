@@ -1,12 +1,12 @@
 ﻿using System;
-using Sources.Game.Implementation.Controllers;
-using Sources.Game.Interfaces.Domain;
-using Sources.Game.Interfaces.Services.Inputs;
-using Sources.Game.Interfaces.Services.Lifecycles;
-using Sources.Game.Interfaces.Services.Spaceship;
-using Sources.Game.Interfaces.Services.TargetFollowers;
+using Sources.Implementation.Controllers;
+using Sources.Interfaces.Domain;
+using Sources.Interfaces.Services.Inputs;
+using Sources.Interfaces.Services.Lifecycles;
+using Sources.Interfaces.Services.Spaceship;
+using Sources.Interfaces.Services.TargetFollowers;
 
-namespace Sources.Game.Implementation.Infrastructure.Factories.Controllers
+namespace Sources.Implementation.Infrastructure.Factories.Controllers
 {
 	public class SpaceshipCameraPresenterFactory
 	{

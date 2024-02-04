@@ -1,6 +1,6 @@
-﻿using Sources.Game.Interfaces.SpaceshipStates;
+﻿using Sources.Interfaces.SpaceshipStates;
 
-namespace Sources.Game.Interfaces.Services.Spaceship
+namespace Sources.Interfaces.Services.Spaceship
 {
 	public interface ISpaceshipService
 	{

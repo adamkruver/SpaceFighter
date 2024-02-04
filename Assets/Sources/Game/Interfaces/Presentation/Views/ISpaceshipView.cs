@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.Interfaces.Presentation.Views
+﻿namespace Sources.Interfaces.Presentation.Views
 {
     public interface ISpaceshipView
     {

@@ -1,8 +1,7 @@
-﻿using Sources.Game.Interfaces.Infrastructure.States;
-using Sources.Game.Interfaces.SpaceshipStates;
+﻿using Sources.Interfaces.SpaceshipStates;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Controllers.SpaceShipStates
+namespace Sources.Implementation.Controllers.SpaceShipStates
 {
 	public class FreeLookState : ISpaceshipState
 	{

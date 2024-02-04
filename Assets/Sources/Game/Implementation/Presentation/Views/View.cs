@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sources.Game.Implementation.Presentation.Views
+namespace Sources.Implementation.Presentation.Views
 {
     public abstract class View : MonoBehaviour
     {

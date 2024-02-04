@@ -1,9 +1,9 @@
-﻿using Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Presenters;
-using Sources.Game.BoundedContexts.PhysicsMovement.Interfaces.Views;
-using Sources.Game.Implementation.Presentation.Views;
+﻿using Sources.BoundedContexts.PhysicsMovement.Implementation.Presenters;
+using Sources.BoundedContexts.PhysicsMovement.Interfaces.Views;
+using Sources.Implementation.Presentation.Views;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsMovement.Implementation.Views
+namespace Sources.BoundedContexts.PhysicsMovement.Implementation.Views
 {
     public class PhysicsMovementView : PresentableView<PhysicsMovementPresenter>, IPhysicsMovementView
     {

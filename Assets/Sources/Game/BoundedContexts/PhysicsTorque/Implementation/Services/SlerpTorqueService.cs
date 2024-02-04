@@ -1,8 +1,8 @@
-﻿using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Services;
+﻿using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Services;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Services
+namespace Sources.BoundedContexts.PhysicsTorque.Implementation.Services
 {
     public class SlerpTorqueService : ITorqueService
     {

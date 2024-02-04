@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.BoundedContexts.Common.Interfaces
+﻿namespace Sources.BoundedContexts.Common.Interfaces
 {
     public interface IPresenter
     {

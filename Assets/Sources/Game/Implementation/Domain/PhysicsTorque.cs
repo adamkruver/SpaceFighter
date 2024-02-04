@@ -1,7 +1,7 @@
-﻿using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+﻿using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Domain
+namespace Sources.Implementation.Domain
 {
 	public class PhysicsTorque : IPhysicsTorque
 	{

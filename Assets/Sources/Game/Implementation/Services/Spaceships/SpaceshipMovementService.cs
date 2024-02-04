@@ -1,7 +1,7 @@
-﻿using Sources.Game.Implementation.Domain;
+﻿using Sources.Implementation.Domain;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Services.Spaceships
+namespace Sources.Implementation.Services.Spaceships
 {
     public class SpaceshipMovementService
     {

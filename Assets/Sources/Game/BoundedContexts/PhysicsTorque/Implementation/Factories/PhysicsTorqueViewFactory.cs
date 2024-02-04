@@ -1,11 +1,11 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Presenters;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Domain;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Factories;
-using Sources.Game.BoundedContexts.PhysicsTorque.Interfaces.Views;
-using Sources.Game.Interfaces.Presentation.Views;
+using Sources.BoundedContexts.PhysicsTorque.Implementation.Presenters;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Factories;
+using Sources.BoundedContexts.PhysicsTorque.Interfaces.Views;
+using Sources.Interfaces.Presentation.Views;
 
-namespace Sources.Game.BoundedContexts.PhysicsTorque.Implementation.Factories
+namespace Sources.BoundedContexts.PhysicsTorque.Implementation.Factories
 {
     public class PhysicsTorqueViewFactory<T> : IPhysicsTorqueViewFactory<T>
         where T : IPhysicsTorqueView, IPresentableView<PhysicsTorquePresenter>

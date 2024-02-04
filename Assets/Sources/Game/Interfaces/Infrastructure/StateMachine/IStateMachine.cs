@@ -1,6 +1,6 @@
-﻿using Sources.Game.Interfaces.Infrastructure.States;
+﻿using Sources.Interfaces.Infrastructure.States;
 
-namespace Sources.Game.Interfaces.Infrastructure.StateMachine
+namespace Sources.Interfaces.Infrastructure.StateMachine
 {
 	public interface IStateMachine<T> where T : class, IState
 	{

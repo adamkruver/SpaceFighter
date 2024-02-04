@@ -1,7 +1,7 @@
-﻿using Sources.Game.Interfaces.Infrastructure.Scenes;
+﻿using Sources.Interfaces.Infrastructure.Scenes;
 using UnityEngine;
 
-namespace Sources.Game.Implementation.Infrastructure.Scenes
+namespace Sources.Implementation.Controllers.Scenes
 {
 	public class InitScene : IScene
 	{

@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Sources.Game.Implementation.Domain
+namespace Sources.Implementation.Domain
 {
     public struct UserInput
     {
