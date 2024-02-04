@@ -4,16 +4,16 @@ namespace Sources.Implementation.Domain
 {
     public struct UserInput
     {
-        public UserInput(Vector2 moveDirection, Vector2 cursorPosition, bool isAlterativeCameraMode)
+        public UserInput(Vector2 moveDirection, Vector2 cursorPosition, bool isAlternativeCameraMode)
         {
             MoveDirection = moveDirection;
             CursorPosition = cursorPosition;
-            IsAlterativeCameraMode = isAlterativeCameraMode;
+            IsAlternativeCameraMode = isAlternativeCameraMode;
         }
         
         public Vector2 MoveDirection { get; }
         public Vector2 CursorPosition { get; }
 
-        public bool IsAlterativeCameraMode { get; }
+        public bool IsAlternativeCameraMode { get; }
     }
 }
