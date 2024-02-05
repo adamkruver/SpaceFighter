@@ -6,6 +6,7 @@ using Sources.BoundedContexts.PhysicsTorque.Implementation.Services;
 using Sources.BoundedContexts.PhysicsTorque.Implementation.Views;
 using Sources.BoundedContexts.PhysicsTorque.Interfaces.Factories;
 using Sources.BoundedContexts.PhysicsTorque.Interfaces.Services;
+using Sources.BoundedContexts.Weapons.Implementation.Factories;
 using Sources.Extensions.IServiceCollections;
 using Sources.Implementation.Services.Inputs;
 using Sources.Implementation.Services.Lifecycles;
@@ -41,8 +42,9 @@ namespace Sources.MonoInstallers
                 .RegisterAsScoped<IPhysicsMovementViewFactory<PhysicsMovementView>,
                     PhysicsMovementViewFactory<PhysicsMovementView>>()
                 .RegisterAsScoped<IPhysicsTorqueViewFactory<PhysicsTorqueView>,
-                    PhysicsTorqueViewFactory<PhysicsTorqueView>>();
-
+                    PhysicsTorqueViewFactory<PhysicsTorqueView>>()
+                .RegisterAsScoped<IWeaponViewFactory,WeaponViewFactory>()
+                ;
         }
     }
 }

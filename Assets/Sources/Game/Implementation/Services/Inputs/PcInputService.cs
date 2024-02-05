@@ -16,8 +16,9 @@ namespace Sources.Implementation.Services.Inputs
 			UserInput input = new UserInput(
 				new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
 				new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")),
-				Input.GetMouseButton(0)
-			);
+				Input.GetMouseButton(1),
+				Input.GetKeyUp(KeyCode.Space)
+				);
 
 			if (input.IsAlternativeCameraMode != UserInput.IsAlternativeCameraMode)
 				CameraModeChanged?.Invoke(input.IsAlternativeCameraMode);
