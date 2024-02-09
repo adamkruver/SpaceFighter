@@ -7,6 +7,6 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 	public class ProjectilesFactory
 	{
 		public IProjectile Create(Vector3 position, Quaternion rotation) =>
-			Object.Instantiate(Resources.Load<ProjectileView>("Views/Projectiles/BlueBall"), position, rotation);
+			Object.Instantiate(Resources.Load<ProjectileView>("Views/Projectiles/PhotonTorpedo"), position, rotation);
 	}
 }

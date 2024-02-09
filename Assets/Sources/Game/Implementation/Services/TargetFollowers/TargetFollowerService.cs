@@ -28,9 +28,9 @@ namespace Sources.Implementation.Services.TargetFollowers
                 return;
             
             _transform.position = _target.Position;
-            _transform.rotation = Quaternion.LookRotation(_target.Forward, _target.Upward);
+
+            Quaternion toRotation = Quaternion.LookRotation(_target.Forward, _target.Upward);
+            _transform.rotation = Quaternion.Lerp( _transform.rotation, toRotation, 3 * Time.deltaTime );
         }
     }
-    
-    // событие по смене наблюдаемого
 }

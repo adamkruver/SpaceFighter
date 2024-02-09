@@ -4817,8 +4817,10 @@ GameObject:
   - component: {fileID: 400008}
   - component: {fileID: 4039856666896655661}
   - component: {fileID: 7681211808403808882}
+  - component: {fileID: 5118866698141666665}
+  - component: {fileID: -5977474471056523588}
   m_Layer: 0
-  m_Name: LaserFire2
+  m_Name: PhotonTorpedo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9638,6 +9640,46 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5118866698141666665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69682c57cf8c4e319c0be1dbb9ff6531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: -5977474471056523588}
+--- !u!54 &-5977474471056523588
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &6880316418072128155
 GameObject:
   m_ObjectHideFlags: 0
@@ -10911,7 +10953,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.9411765, g: 0.8235294, b: 0.16078432, a: 0.30588236}
+        key1: {r: 1, g: 0.09755004, b: 0, a: 0.30588236}
         key2: {r: 0.007843138, g: 0.61960787, b: 0.8666667, a: 1}
         key3: {r: 0.007843138, g: 0.61960787, b: 0.8666667, a: 0}
         key4: {r: 1, g: 1, b: 1, a: 0}
