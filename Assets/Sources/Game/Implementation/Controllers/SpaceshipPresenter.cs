@@ -41,14 +41,14 @@ namespace Sources.Implementation.Controllers
 
 		public override void Enable()
 		{
-			_inputService.CameraModeChanged += OnCameraModeChanged;
+			//_inputService.CameraModeChanged += OnCameraModeChanged;
 			_updateService.Updated += OnUpdate;
 			_cameraFollower.TargetChanged += OnCameraTargetChanged;
 		}
 
 		public override void Disable()
 		{
-			_inputService.CameraModeChanged -= OnCameraModeChanged;
+			//_inputService.CameraModeChanged -= OnCameraModeChanged;
 			_cameraFollower.TargetChanged -= OnCameraTargetChanged;
 			_updateService.Updated -= OnUpdate;
 		}
@@ -69,8 +69,8 @@ namespace Sources.Implementation.Controllers
 
 		private void OnUpdate(float deltaTime)
 		{
-			_movementService.AddForce(_spaceship, _inputService.UserInput, deltaTime);
-			_movementService.AddTorque(_spaceship, _inputService.UserInput);
+			_movementService.AddForce(_spaceship.Movement, _inputService.InputData.MoveDirection.y, deltaTime);
+			_movementService.AddTorque(_spaceship.Torque, _inputService.InputData);
 		}
 	}
 }

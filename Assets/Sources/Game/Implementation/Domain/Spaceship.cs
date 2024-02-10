@@ -1,6 +1,8 @@
 ﻿using System;
-using Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain;
-using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
+using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.Interfaces.Domain;
 using UnityEngine;
 

@@ -1,9 +1,14 @@
 ﻿using Sources.BoundedContexts.Weapons.Implementation.Controllers;
+using UnityEngine;
 
 namespace Sources.BoundedContexts.Weapons.Interfaces.Weapons
 {
 	public interface IWeaponView
 	{
-		void Construct(WeaponPresenter presenter);
+		Vector3 GetPosition();
+
+		Quaternion GetRotation();
+
+		Vector3 GetForward();
 	}
 }

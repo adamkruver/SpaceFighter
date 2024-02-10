@@ -1,12 +1,13 @@
-using Sources.BoundedContexts.PhysicsMovement.Implementation.Factories;
-using Sources.BoundedContexts.PhysicsMovement.Implementation.Views;
-using Sources.BoundedContexts.PhysicsMovement.Interfaces.Factories;
-using Sources.BoundedContexts.PhysicsTorque.Implementation.Factories;
-using Sources.BoundedContexts.PhysicsTorque.Implementation.Services;
-using Sources.BoundedContexts.PhysicsTorque.Implementation.Views;
-using Sources.BoundedContexts.PhysicsTorque.Interfaces.Factories;
-using Sources.BoundedContexts.PhysicsTorque.Interfaces.Services;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Factories;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Factories;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Services;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Factories;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Services;
 using Sources.BoundedContexts.Weapons.Implementation.Factories;
+using Sources.BoundedContexts.Weapons.Interfaces.Factories;
 using Sources.Extensions.IServiceCollections;
 using Sources.Implementation.Services.Inputs;
 using Sources.Implementation.Services.Lifecycles;
@@ -44,6 +45,7 @@ namespace Sources.MonoInstallers
                 .RegisterAsScoped<IPhysicsTorqueViewFactory<PhysicsTorqueView>,
                     PhysicsTorqueViewFactory<PhysicsTorqueView>>()
                 .RegisterAsScoped<IWeaponViewFactory,WeaponViewFactory>()
+                .RegisterAsScoped<IWeaponShootService, WeaponShootService>()
                 ;
         }
     }

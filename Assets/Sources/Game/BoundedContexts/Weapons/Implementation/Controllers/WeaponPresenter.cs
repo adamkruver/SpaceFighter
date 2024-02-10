@@ -1,63 +1,64 @@
 ﻿using System;
+using Sources.BoundedContexts.Bullets.Implementation.Factories;
+using Sources.BoundedContexts.Bullets.Interfaces.Domain;
+using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
 using Sources.BoundedContexts.Common.Implememntation;
-using Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain;
-using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
-using Sources.BoundedContexts.Weapons.Implementation.Factories;
-using Sources.BoundedContexts.Weapons.Interfaces.Projectiles;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
 using Sources.Interfaces.Services.Inputs;
 using Sources.Interfaces.Services.Lifecycles;
+using Sources.Interfaces.Services.Spaceship;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
 {
 	public class WeaponPresenter : PresenterBase
 	{
-		private readonly IPhysicsMovement _physicsMovement;
-		private readonly IPhysicsTorque _physicsTorque;
+		private readonly IBullet _bullet;
+		private readonly IWeaponView _weaponView;
 		private readonly IInputService _inputService;
 		private readonly IUpdateService _service;
-		private ProjectilesFactory _projectilesFactory;
+		private readonly IWeaponShootService _weaponShootService;
+		private readonly IBulletViewFactory _bulletViewFactory;
 
-		public WeaponPresenter(IPhysicsMovement physicsMovement,
-			IPhysicsTorque physicsTorque,
+		public WeaponPresenter(
+			IBullet bullet,
+			IWeaponView weaponView,
 			IInputService inputService,
-			IUpdateService service)
+			IUpdateService service,
+			IWeaponShootService weaponShootService,
+			IBulletViewFactory bulletViewFactory)
 		{
-			_physicsMovement = physicsMovement ?? throw new ArgumentNullException(nameof(physicsMovement));
-			_physicsTorque = physicsTorque ?? throw new ArgumentNullException(nameof(physicsTorque));
+			_bullet = bullet ?? throw new ArgumentNullException(nameof(bullet));
+			_weaponView = weaponView ?? throw new ArgumentNullException(nameof(weaponView));
 			_inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
 			_service = service ?? throw new ArgumentNullException(nameof(service));
-			_projectilesFactory = new ProjectilesFactory();
+			_weaponShootService = weaponShootService ?? throw new ArgumentNullException(nameof(weaponShootService));
+			_bulletViewFactory = bulletViewFactory ?? throw new ArgumentNullException(nameof(bulletViewFactory));
 		}
 
-		public override void Enable()
-		{
+		public override void Enable() =>
 			_service.Updated += OnUpdated;
-		}
 
-		public override void Disable()
-		{
+		public override void Disable() =>
 			_service.Updated -= OnUpdated;
-		}
 
 		private void OnUpdated(float delta)
 		{
-			if (_inputService.UserInput.IsFire)
-				Fire(delta);
+			if (_inputService.InputData.IsFire)
+				Shoot(delta);
 		}
 
-		public void SetPosition(Vector3 position) =>
-			_physicsMovement.Position = position;
-
-		public void SetRotation(Quaternion rotation) =>
-			_physicsTorque.Destination = rotation.eulerAngles;
-
-		private void Fire(float delta)
+		private void Shoot(float delta)
 		{
-			Mathf.MoveTowards(_physicsMovement.Speed, _physicsMovement.MinSpeed, delta * _physicsMovement.Deceleration);			
-			IProjectile projectiles = _projectilesFactory.Create(_physicsMovement.Position, Quaternion.Euler(_physicsTorque.Destination));
-			projectiles.SetVelocity(_physicsMovement.Velocity);
+			_bullet.PhysicsMovement.Position = _weaponView.GetPosition();
+			_bullet.PhysicsMovement.Forward = _weaponView.GetForward();
+			_bullet.PhysicsTorque.Rotation = _weaponView.GetRotation();
+			
+			_weaponShootService.SetSpeed(_bullet.PhysicsMovement, delta);
+
+			IBulletView bullets = _bulletViewFactory.Create(_bullet.PhysicsMovement.Position, _bullet.PhysicsTorque.Rotation);
+			bullets.SetVelocity(_bullet.PhysicsMovement.Velocity);
+			Debug.Log(_bullet.PhysicsMovement.Velocity);
 		}
 	}
 }

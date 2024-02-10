@@ -1,10 +1,11 @@
 ﻿using System;
-using Sources.BoundedContexts.PhysicsMovement.Implementation.Views;
-using Sources.BoundedContexts.PhysicsMovement.Interfaces.Factories;
-using Sources.BoundedContexts.PhysicsTorque.Implementation.Views;
-using Sources.BoundedContexts.PhysicsTorque.Interfaces.Factories;
-using Sources.BoundedContexts.Weapons.Implementation.Factories;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Factories;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Factories;
 using Sources.BoundedContexts.Weapons.Implementation.Presentation.Weapons;
+using Sources.BoundedContexts.Weapons.Interfaces.Factories;
+using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
 using Sources.Implementation.Domain;
 using Sources.Implementation.Infrastructure.Factories.Controllers;
 using Sources.Implementation.Presentation.Views;
@@ -48,7 +49,7 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 
             _physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
             _physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
-            var s = _weaponViewFactory.Create(spaceship.Movement, spaceship.Torque, view.gameObject.GetComponentInChildren<WeaponView>());
+            _weaponViewFactory.Create(view.WeaponView);
             
             return view;
         }

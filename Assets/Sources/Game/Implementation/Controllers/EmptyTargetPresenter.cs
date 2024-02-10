@@ -26,12 +26,12 @@ namespace Sources.Implementation.Controllers
 		public override void Enable()
 		{
 			_cameraFollower.TargetChanged += OnTargetChanged;
-			_inputService.CameraModeChanged += OnCameraModeChanged;
+			//_inputService.CameraModeChanged += OnCameraModeChanged;
 		}
 
 		public override void Disable()
 		{
-			_inputService.CameraModeChanged -= OnCameraModeChanged;
+			//_inputService.CameraModeChanged -= OnCameraModeChanged;
 			_cameraFollower.TargetChanged -= OnTargetChanged;
 		}
 

@@ -1,10 +1,12 @@
 ﻿using System;
-using Sources.BoundedContexts.PhysicsMovement.Interfaces.Domain;
-using Sources.BoundedContexts.PhysicsTorque.Interfaces.Domain;
+using Sources.BoundedContexts.Bullets.Implementation.Domain;
+using Sources.BoundedContexts.Bullets.Implementation.Factories;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.Weapons.Implementation.Controllers;
+using Sources.BoundedContexts.Weapons.Interfaces.Factories;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
-using Sources.Interfaces.Services.Inputs;
-using Sources.Interfaces.Services.Lifecycles;
+using Sources.Interfaces.Presentation.Views;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 {
@@ -15,34 +17,12 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 		public WeaponViewFactory(WeaponPresenterFactory weaponPresenterFactory) =>
 			_weaponPresenterFactory = weaponPresenterFactory ?? throw new ArgumentNullException(nameof(weaponPresenterFactory));
 
-		public IWeaponView Create(IPhysicsMovement physicsMovement, IPhysicsTorque spaceshipTorque, IWeaponView weaponView)
+		public IWeaponView Create<T>(T view) where T : IPresentableView<WeaponPresenter>, IWeaponView
 		{
-			var presenter = _weaponPresenterFactory.Create(physicsMovement, spaceshipTorque);
-			weaponView.Construct(presenter);
-			return weaponView;
+			Bullet bullet = new Bullet(new PhysicsMovement(10f,1f, 50f, 0f), new PhysicsTorque());
+			WeaponPresenter presenter = _weaponPresenterFactory.Create(bullet,  view , new BulletViewFactory()); // TODO BulletViewFactory куда убрать? 
+			view.Construct(presenter);
+			return view;
 		}
-	}
-
-	public class WeaponPresenterFactory
-	{
-		private readonly IInputService _inputService;
-		private readonly IUpdateService _updateService;
-
-		public WeaponPresenterFactory( IInputService inputService, IUpdateService updateService)
-		{
-			_inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
-			_updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
-		}
-		
-		public WeaponPresenter Create(IPhysicsMovement physicsMovement, IPhysicsTorque spaceshipTorque) =>
-			new WeaponPresenter(physicsMovement,
-				spaceshipTorque,
-				_inputService,
-				_updateService);
-	}
-
-	public interface IWeaponViewFactory
-	{
-		IWeaponView  Create(IPhysicsMovement spaceshipMovement, IPhysicsTorque spaceshipTorque, IWeaponView weaponView);
 	}
 }

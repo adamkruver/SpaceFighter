@@ -7,6 +7,7 @@ namespace Sources.Implementation.Services.TargetFollowers
 {
     public class TargetFollowerService : ICameraLateUpdateHandler, ICameraFollower
     {
+        private const float CameraRotateSpeed = 3f;
         private readonly Transform _transform;
         
         private ITarget _target;
@@ -30,7 +31,7 @@ namespace Sources.Implementation.Services.TargetFollowers
             _transform.position = _target.Position;
 
             Quaternion toRotation = Quaternion.LookRotation(_target.Forward, _target.Upward);
-            _transform.rotation = Quaternion.Lerp( _transform.rotation, toRotation, 3 * Time.deltaTime );
+            _transform.rotation = Quaternion.Lerp( _transform.rotation, toRotation, CameraRotateSpeed * Time.deltaTime );
         }
     }
 }

@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PhysicsMovementView>k__BackingField: {fileID: 1634121973060747417}
   <PhysicsTorqueView>k__BackingField: {fileID: 6920724332254948398}
+  <WeaponView>k__BackingField: {fileID: 1547645928882092915}
 --- !u!114 &1634121973060747417
 MonoBehaviour:
   m_ObjectHideFlags: 0

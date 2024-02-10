@@ -9,21 +9,21 @@ namespace Sources.Implementation.Services.Inputs
 	{
 		public event Action<bool> CameraModeChanged;
 		
-		public UserInput UserInput { get; private set; }
+		public InputData InputData { get; private set; }
 
 		public void Update(float deltaTime)
 		{
-			UserInput input = new UserInput(
+			InputData inputData = new InputData(
 				new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
 				new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")),
 				Input.GetMouseButton(1),
 				Input.GetKeyUp(KeyCode.Space)
 				);
 
-			if (input.IsAlternativeCameraMode != UserInput.IsAlternativeCameraMode)
-				CameraModeChanged?.Invoke(input.IsAlternativeCameraMode);
+			if (inputData.IsAlternativeCameraMode != InputData.IsAlternativeCameraMode)
+				CameraModeChanged?.Invoke(inputData.IsAlternativeCameraMode);
 			
-			UserInput = input;
+			InputData = inputData;
 		}
 	}
 }
