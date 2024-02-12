@@ -4,6 +4,7 @@ using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Services;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Views;
 using Sources.Interfaces.Services.Lifecycles;
+using UnityEngine;
 
 namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters
 {
@@ -35,8 +36,17 @@ namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters
 
         private void OnUpdate(float deltaTime)
         {
+            if (ZaglushkaSinglton.CanUse == false)
+                return;
+            
             _torqueService.UpdateTorque(_torque, deltaTime);
             _view.SetRotation(_torque.Rotation);
+            Debug.Log("Senya");
         }
+    }
+
+    public static class ZaglushkaSinglton
+    {
+        public static bool CanUse { get; set; }
     }
 }

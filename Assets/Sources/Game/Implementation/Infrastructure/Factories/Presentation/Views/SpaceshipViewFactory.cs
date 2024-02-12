@@ -46,7 +46,7 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
             SpaceshipView view = _dependencyResolver.InstantiateComponentFromPrefab(prefab);
             var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
             view.Construct(presenter);
-
+            
             _physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
             _physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
             _weaponViewFactory.Create(view.WeaponView);

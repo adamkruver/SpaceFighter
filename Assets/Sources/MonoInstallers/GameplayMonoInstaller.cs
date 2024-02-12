@@ -1,5 +1,7 @@
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Factories;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Factories;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Services;
@@ -38,6 +40,7 @@ namespace Sources.MonoInstallers
                 .RegisterAsSingleton<ICameraFollower, ICameraLateUpdateHandler, TargetFollowerService>(
                     new TargetFollowerService(_mainCamera)
                 )
+                //.RegisterAsSingleton<IPhysicsMovement, PhysicsMovement>()
                 .RegisterAsSingleton<ISpaceshipService, SpaceshipService>()
                 .RegisterAsScoped<ITorqueService, SlerpTorqueService>()
                 .RegisterAsScoped<IPhysicsMovementViewFactory<PhysicsMovementView>,

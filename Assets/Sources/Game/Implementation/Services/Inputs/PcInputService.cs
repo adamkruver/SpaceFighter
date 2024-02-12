@@ -7,8 +7,6 @@ namespace Sources.Implementation.Services.Inputs
 {
 	public class PcInputService : IInputService
 	{
-		public event Action<bool> CameraModeChanged;
-		
 		public InputData InputData { get; private set; }
 
 		public void Update(float deltaTime)
@@ -20,9 +18,6 @@ namespace Sources.Implementation.Services.Inputs
 				Input.GetKeyUp(KeyCode.Space)
 				);
 
-			if (inputData.IsAlternativeCameraMode != InputData.IsAlternativeCameraMode)
-				CameraModeChanged?.Invoke(inputData.IsAlternativeCameraMode);
-			
 			InputData = inputData;
 		}
 	}

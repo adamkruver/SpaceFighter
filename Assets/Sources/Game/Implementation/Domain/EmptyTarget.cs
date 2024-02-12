@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.Interfaces.Domain;
 using UnityEngine;
 
@@ -6,15 +7,14 @@ namespace Sources.Implementation.Domain
 {
 	public class EmptyTarget : ITarget
 	{
-		private readonly ITarget _target;
+		public EmptyTarget(IPhysicsTorque physicsTorque) =>
+			PhysicsTorque = physicsTorque;
 
-		public EmptyTarget(ITarget target) =>
-			_target = target ?? throw new ArgumentNullException(nameof(target));
+		public IPhysicsTorque PhysicsTorque { get; }
+		public Vector3 Upward { get; set; }
 
-		public Vector3 Upward => _target.Upward;
+		public Vector3 Forward { get; set;}
 
-		public Vector3 Forward => _target.Forward;
-
-		public Vector3 Position => _target.Position;
+		public Vector3 Position { get; set;}
 	}
 }

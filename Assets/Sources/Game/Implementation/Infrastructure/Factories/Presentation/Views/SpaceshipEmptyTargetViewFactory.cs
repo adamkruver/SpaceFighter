@@ -10,24 +10,26 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 {
 	public class SpaceshipEmptyTargetViewFactory
 	{
-		private readonly SpaceshipCameraPresenterFactory _spaceshipCameraPresenterFactory;
+		private readonly EmptyTargetPresenterFactory _emptyTargetPresenterFactory;
 		private readonly IDependencyResolver _dependencyResolver;
 
-		public SpaceshipEmptyTargetViewFactory(SpaceshipCameraPresenterFactory spaceshipCameraPresenterFactory, IDependencyResolver dependencyResolver)
+		public SpaceshipEmptyTargetViewFactory(EmptyTargetPresenterFactory emptyTargetPresenterFactory, IDependencyResolver dependencyResolver)
 		{
-			_spaceshipCameraPresenterFactory = spaceshipCameraPresenterFactory ?? throw new ArgumentNullException(nameof(spaceshipCameraPresenterFactory));
+			_emptyTargetPresenterFactory = emptyTargetPresenterFactory ?? throw new ArgumentNullException(nameof(emptyTargetPresenterFactory));
 			_dependencyResolver = dependencyResolver ?? throw new ArgumentNullException(nameof(dependencyResolver));
 		}
 
-		public EmptyTargetView Create(EmptyTarget emptyTarget, Spaceship spaceship, SpaceshipView spaceshipView)
+		public EmptyTargetView Create(EmptyTarget emptyTarget, SpaceshipView spaceshipView)
 		{
 			GameObject gameObject = new GameObject();
+			GameObject senya = new GameObject("senyatipo");
 			gameObject.transform.SetParent(spaceshipView.transform);
+			senya.transform.SetParent(spaceshipView.transform);
 			
 			EmptyTargetView emptyTargetView = gameObject.AddComponent<EmptyTargetView>();
 			_dependencyResolver.Resolve(emptyTargetView.gameObject);
             
-			EmptyTargetPresenter presenter = _spaceshipCameraPresenterFactory.Create(emptyTarget);
+			EmptyTargetPresenter presenter = _emptyTargetPresenterFactory.Create(emptyTarget, emptyTargetView);
 			emptyTargetView.Construct(presenter);
 
 			return emptyTargetView;

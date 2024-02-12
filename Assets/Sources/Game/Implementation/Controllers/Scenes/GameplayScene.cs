@@ -55,9 +55,9 @@ namespace Sources.Implementation.Controllers.Scenes
         public void Enter()
         {
             var spaceship = new Spaceship();
-            var emptyTarget = new EmptyTarget(spaceship);
+            var emptyTarget = new EmptyTarget(spaceship.Torque);
             var spaceshipView = _spaceshipViewFactory.Create(spaceship);
-            var spaceshipEmptyTarget = _spaceshipEmptyTargetViewFactory.Create(emptyTarget, spaceship, spaceshipView);
+            var spaceshipEmptyTarget = _spaceshipEmptyTargetViewFactory.Create(emptyTarget, spaceshipView);
 
             _cameraFollower.Follow(spaceship);
 
