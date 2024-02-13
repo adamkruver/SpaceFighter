@@ -1,5 +1,8 @@
-﻿using Sources.BoundedContexts.Bullets.Implementation.Factories;
+﻿using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Sources.BoundedContexts.Bullets.Implementation.Factories;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
+using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
 using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
@@ -24,6 +27,13 @@ namespace Sources.BoundedContexts.ObjectPools
 		}
 
 		private BulletView Create() =>
-			(BulletView)_bulletViewFactory.Create(this);
+			CreateAsync().GetAwaiter().GetResult();
+		//return UniTask.Run(() => ).GetAwaiter().GetResult();
+
+		private async UniTask<BulletView> CreateAsync()
+		{
+			IBulletView bulletView = await _bulletViewFactory.Create(this);
+			return (BulletView)bulletView;
+		}
 	}
 }

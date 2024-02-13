@@ -52,11 +52,11 @@ namespace Sources.Implementation.Controllers.Scenes
                                        throw new ArgumentNullException(nameof(cameraLateUpdateHandler));
         }
 
-        public void Enter()
+        public async void Enter()
         {
             var spaceship = new Spaceship();
             var emptyTarget = new EmptyTarget(spaceship.Torque);
-            var spaceshipView = _spaceshipViewFactory.Create(spaceship);
+            var spaceshipView = await _spaceshipViewFactory.Create(spaceship);
             var spaceshipEmptyTarget = _spaceshipEmptyTargetViewFactory.Create(emptyTarget, spaceshipView);
 
             _cameraFollower.Follow(spaceship);

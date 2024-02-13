@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Factories;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Views;
@@ -12,6 +13,8 @@ using Sources.Implementation.Presentation.Views;
 using UniCtor.Builders;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 {
@@ -40,10 +43,11 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
             _weaponViewFactory = weaponViewFactory ?? throw new ArgumentNullException(nameof(weaponViewFactory));
         }
 
-        public SpaceshipView Create(Spaceship spaceship)
+        public async Task<SpaceshipView> Create(Spaceship spaceship)
         {
-            SpaceshipView prefab = Resources.Load<SpaceshipView>("Views/SpaceshipView");
-            SpaceshipView view = _dependencyResolver.InstantiateComponentFromPrefab(prefab);
+            GameObject prefab = await LoadSpaceshipView();
+            SpaceshipView view = UnityEngine.Object.Instantiate(prefab.GetComponent<SpaceshipView>()); 
+                //_dependencyResolver.InstantiateComponentFromPrefab(prefab);
             var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
             view.Construct(presenter);
             
@@ -52,6 +56,13 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
             _weaponViewFactory.Create(view.WeaponView);
             
             return view;
+        }
+
+        private async Task<GameObject> LoadSpaceshipView()
+        {
+            AsyncOperationHandle<GameObject> handle =  Addressables.LoadAssetAsync<GameObject>("SpaceshipView");
+            await handle.Task;
+            return handle.Result;
         }
     }
 }

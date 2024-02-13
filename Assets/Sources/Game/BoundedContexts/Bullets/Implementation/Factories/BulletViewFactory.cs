@@ -1,33 +1,38 @@
-﻿using Sources.BoundedContexts.Bullets.Implementation.Controllers;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using Sources.BoundedContexts.Bullets.Implementation.Controllers;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
 using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
 using Sources.BoundedContexts.ObjectPools;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {
 	public class BulletViewFactory : IBulletViewFactory
 	{
-		public IBulletView Create(Vector3 position, Quaternion rotation)
+		public async UniTask<IBulletView> Create(BulletObjectPool bulletObjectPool)
 		{
-			return Object.Instantiate(Resources.Load<BulletView>("Views/Projectiles/PhotonTorpedo"), position, rotation);
-		}
-
-		public IBulletView Create(BulletObjectPool bulletObjectPool)
-		{
-			BulletView view = Object.Instantiate(Resources.Load<BulletView>("Views/Projectiles/PhotonTorpedo"));
-			BulletPresenter bulletPresenter = new BulletPresenter(bulletObjectPool, view);
-
-			view.Construct(bulletPresenter);
+			AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync("PhotonTorpedo");
 			
-			return view;
+			await handle.Task;
+			
+			GameObject gameObject = handle.Result;
+
+			if (gameObject.TryGetComponent(out BulletView bulletView) == false)
+				throw new InvalidOperationException(nameof(gameObject));
+			
+			BulletPresenter bulletPresenter = new BulletPresenter(bulletObjectPool, bulletView);
+
+			bulletView.Construct(bulletPresenter);
+
+			return bulletView;
 		}
 	}
 
 	public interface IBulletViewFactory
 	{
-		IBulletView Create(Vector3 position, Quaternion rotation);
-
-		IBulletView Create(BulletObjectPool bulletObjectPool);
+		UniTask<IBulletView> Create(BulletObjectPool bulletObjectPool);
 	}
 }
