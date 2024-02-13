@@ -39,7 +39,7 @@ namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters
             if (ZaglushkaSinglton.CanUse == false)
                 return;
             
-            _torqueService.UpdateTorque(_torque, deltaTime);
+            _torqueService.UpdateTorqueWithSlerp(_torque, deltaTime);
             _view.SetRotation(_torque.Rotation);
             Debug.Log("Senya");
         }

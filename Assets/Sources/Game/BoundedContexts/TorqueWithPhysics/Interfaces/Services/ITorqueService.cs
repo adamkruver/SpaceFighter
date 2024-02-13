@@ -4,6 +4,6 @@ namespace Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Services
 {
     public interface ITorqueService
     {
-        void UpdateTorque(IPhysicsTorque torque, float deltaTime);
+        void UpdateTorqueWithSlerp(IPhysicsTorque torque, float deltaTime);
     }
 }

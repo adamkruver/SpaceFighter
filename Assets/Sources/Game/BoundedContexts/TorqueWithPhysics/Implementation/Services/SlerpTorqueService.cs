@@ -6,7 +6,7 @@ namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Services
 {
 	public class SlerpTorqueService : ITorqueService
 	{
-		public void UpdateTorque(IPhysicsTorque torque, float deltaTime)
+		public void UpdateTorqueWithSlerp(IPhysicsTorque torque, float deltaTime)
 		{
 			torque.Rotation = Quaternion.Slerp(torque.Rotation,
 				Quaternion.Euler(torque.Destination),

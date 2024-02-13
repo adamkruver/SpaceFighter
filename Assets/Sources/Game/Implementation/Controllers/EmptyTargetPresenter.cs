@@ -75,7 +75,7 @@ namespace Sources.Implementation.Controllers
 				_emptyTarget.Upward = _emptyTargetView.GetUpward();
 				
 				_spaceshipMovementService.AddTorque(_emptyTarget.PhysicsTorque, _inputService.InputData);
-				_torqueService.UpdateTorque(_emptyTarget.PhysicsTorque, deltaTime);
+				_torqueService.UpdateTorqueWithSlerp(_emptyTarget.PhysicsTorque, deltaTime);
 
 				_emptyTargetView.Rotate(_emptyTarget.PhysicsTorque.Rotation);
 				
