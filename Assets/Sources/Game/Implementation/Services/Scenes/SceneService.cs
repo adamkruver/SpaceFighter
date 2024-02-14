@@ -25,9 +25,9 @@ namespace Sources.Implementation.Services.Scenes
                 sceneFactoryProvider ?? throw new ArgumentNullException(nameof(sceneFactoryProvider));
             _stateMachine = new StateMachine<IScene>();
 
-            _updateHandler = new StateMachineUpdatable<IScene>(_stateMachine);
-            _fixedUpdateHandler = new StateMachineFixedUpdatable<IScene>(_stateMachine);
-            _lateUpdateHandler = new StateMachineLateUpdatable<IScene>(_stateMachine);
+            _updateHandler = new UpdatableStateMachine<IScene>(_stateMachine);
+            _fixedUpdateHandler = new FixedUpdatableStateMachine<IScene>(_stateMachine);
+            _lateUpdateHandler = new LateUpdatableStateMachine<IScene>(_stateMachine);
         }
 
         public void Update(float deltaTime) =>

@@ -5,11 +5,11 @@ using Sources.Interfaces.Infrastructure.States;
 
 namespace Sources.Implementation.Infrastructure.StateMachines.Decorators
 {
-    public class StateMachineFixedUpdatable<T> : IStateMachine<T>, IFixedUpdateHandler where T : class, IState
+    public class FixedUpdatableStateMachine<T> : IStateMachine<T>, IFixedUpdateHandler where T : class, IState
     {
         private readonly IStateMachine<T> _stateMachine;
 
-        public StateMachineFixedUpdatable(IStateMachine<T> stateMachine) =>
+        public FixedUpdatableStateMachine(IStateMachine<T> stateMachine) =>
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
 
         public T CurrentState => _stateMachine.CurrentState;

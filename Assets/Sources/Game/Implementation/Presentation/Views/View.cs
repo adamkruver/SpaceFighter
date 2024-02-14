@@ -9,5 +9,8 @@ namespace Sources.Implementation.Presentation.Views
 
         public void Hide() =>
             gameObject.SetActive(false);
+
+        public void Destroy() =>
+            Destroy(gameObject);
     }
 }

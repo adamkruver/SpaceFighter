@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 42b6153deae6aae42b9653f39864e523
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: e16ef38aa341c8b4d908e6589cde39b6
+    m_Address: PhotonTorpedo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9e5228377e47fcd48af8bd713eaf2fd7, type: 2}
   m_SchemaSet:

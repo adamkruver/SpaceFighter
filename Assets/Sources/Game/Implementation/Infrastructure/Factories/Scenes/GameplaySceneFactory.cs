@@ -1,4 +1,6 @@
 ﻿using System;
+using Sources.Assets.Implementation;
+using Sources.Assets.Interfaces;
 using Sources.Implementation.Controllers.Scenes;
 using Sources.Implementation.Infrastructure.Factories.Presentation.Views;
 using Sources.Implementation.Services.Lifecycles;
@@ -8,6 +10,7 @@ using Sources.Interfaces.Infrastructure.StateMachine.Factories;
 using Sources.Interfaces.Services.Inputs;
 using Sources.Interfaces.Services.Lifecycles;
 using Sources.Interfaces.Services.TargetFollowers;
+using UnityEngine;
 
 namespace Sources.Implementation.Infrastructure.Factories.Scenes
 {
@@ -20,9 +23,10 @@ namespace Sources.Implementation.Infrastructure.Factories.Scenes
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
         private readonly SpaceshipViewFactory _spaceshipViewFactory;
-        private readonly SpaceshipEmptyTargetViewFactory _spaceshipEmptyTargetViewFactory;
+        //private readonly SpaceshipEmptyTargetViewFactory _spaceshipEmptyTargetViewFactory;
         private readonly ICameraFollower _cameraFollower;
         private readonly ICameraLateUpdateHandler _cameraLateUpdateHandler;
+        private readonly IAssetService _assetService;
 
         public GameplaySceneFactory(
             IInputService inputService,
@@ -32,10 +36,12 @@ namespace Sources.Implementation.Infrastructure.Factories.Scenes
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
             SpaceshipViewFactory spaceshipViewFactory,
-            SpaceshipEmptyTargetViewFactory spaceshipEmptyTargetViewFactory,
+            //SpaceshipEmptyTargetViewFactory spaceshipEmptyTargetViewFactory,
             ICameraFollower cameraFollower,
-            ICameraLateUpdateHandler cameraLateUpdateHandler
-        )
+            ICameraLateUpdateHandler cameraLateUpdateHandler,
+            IAssetService assetService,
+            AssetService<PlayerAssetProvider> service,
+            PlayerAssetProvider playerAssetProvider)
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
             _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
@@ -45,11 +51,15 @@ namespace Sources.Implementation.Infrastructure.Factories.Scenes
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
             _spaceshipViewFactory =
                 spaceshipViewFactory ?? throw new ArgumentNullException(nameof(spaceshipViewFactory));
-            _spaceshipEmptyTargetViewFactory = spaceshipEmptyTargetViewFactory ??
-                                               throw new ArgumentNullException(nameof(spaceshipEmptyTargetViewFactory));
+            // _spaceshipEmptyTargetViewFactory = spaceshipEmptyTargetViewFactory ??
+            //                                    throw new ArgumentNullException(nameof(spaceshipEmptyTargetViewFactory));
             _cameraFollower = cameraFollower ?? throw new ArgumentNullException(nameof(cameraFollower));
             _cameraLateUpdateHandler = cameraLateUpdateHandler ??
                                        throw new ArgumentNullException(nameof(cameraLateUpdateHandler));
+            _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
+            
+            Debug.Log("service.Provider.GetHashCode() = " + service.Provider.GetHashCode());
+            Debug.Log("playerAssetProvider.GetHashCode() = " + playerAssetProvider.GetHashCode());
         }
 
         public IScene Create(ISceneSwitcher sceneSwitcher) =>
@@ -61,9 +71,10 @@ namespace Sources.Implementation.Infrastructure.Factories.Scenes
                 _lateUpdateHandler,
                 _lateUpdateService,
                 _spaceshipViewFactory,
-                _spaceshipEmptyTargetViewFactory,
+                //_spaceshipEmptyTargetViewFactory,
                 _cameraFollower,
-                _cameraLateUpdateHandler
+                _cameraLateUpdateHandler,
+                _assetService
             );
     }
 }

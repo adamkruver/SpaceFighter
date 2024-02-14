@@ -1,3 +1,5 @@
+using Sources.Assets.Implementation;
+using Sources.Assets.Interfaces;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
@@ -26,30 +28,42 @@ using UnityEngine;
 
 namespace Sources.MonoInstallers
 {
-    public class GameplayMonoInstaller : MonoInstaller
-    {
-        [SerializeField] private Transform _mainCamera;
+	public class GameplayMonoInstaller : MonoInstaller
+	{
+		[SerializeField] private Transform _mainCamera;
 
-        public override void OnConfigure(IServiceCollection services)
-        {
-            services
-                .RegisterAsSingleton<IUpdateService, IUpdateHandler, UpdateService>()
-                .RegisterAsSingleton<IFixedUpdateService, IFixedUpdateHandler, FixedUpdateService>()
-                .RegisterAsSingleton<ILateUpdateService, ILateUpdateHandler, LateUpdateService>()
-                .RegisterAsSingleton<IInputService, PcInputService>()
-                .RegisterAsSingleton<ICameraFollower, ICameraLateUpdateHandler, TargetFollowerService>(
-                    new TargetFollowerService(_mainCamera)
-                )
-                //.RegisterAsSingleton<IPhysicsMovement, PhysicsMovement>()
-                .RegisterAsSingleton<ISpaceshipService, SpaceshipService>()
-                .RegisterAsScoped<ITorqueService, SlerpTorqueService>()
-                .RegisterAsScoped<IPhysicsMovementViewFactory<PhysicsMovementView>,
-                    PhysicsMovementViewFactory<PhysicsMovementView>>()
-                .RegisterAsScoped<IPhysicsTorqueViewFactory<PhysicsTorqueView>,
-                    PhysicsTorqueViewFactory<PhysicsTorqueView>>()
-                .RegisterAsScoped<IWeaponViewFactory,WeaponViewFactory>()
-                .RegisterAsScoped<IWeaponShootService, WeaponShootService>()
-                ;
-        }
-    }
+		public override void OnConfigure(IServiceCollection services)
+		{
+			services
+				.RegisterAsSingleton<IUpdateService, IUpdateHandler, UpdateService>()
+				.RegisterAsSingleton<IFixedUpdateService, IFixedUpdateHandler, FixedUpdateService>()
+				.RegisterAsSingleton<ILateUpdateService, ILateUpdateHandler, LateUpdateService>()
+				.RegisterAsSingleton<IInputService, PcInputService>()
+				.RegisterAsSingleton<ICameraFollower, ICameraLateUpdateHandler, TargetFollowerService>(new TargetFollowerService(_mainCamera))
+				.RegisterAsScoped<ITorqueService, SlerpTorqueService>()
+				.RegisterAsScoped<IPhysicsMovementViewFactory<PhysicsMovementView>,
+					PhysicsMovementViewFactory<PhysicsMovementView>>()
+				.RegisterAsScoped<IPhysicsTorqueViewFactory<PhysicsTorqueView>,
+					SpaceshipPhysicsTorqueViewFactory<PhysicsTorqueView>>()
+				.RegisterAsScoped<IWeaponViewFactory, WeaponViewFactory>()
+				.RegisterAsScoped<IWeaponShootService, WeaponShootService>()
+				
+				.RegisterAsSingleton<IAssetService>
+					(
+						serviceProvider =>
+							new CompositeAssetService(serviceProvider.GetService<AssetService<PlayerAssetProvider>>()
+							)
+					)
+
+				.RegisterAsSingleton<AssetService<PlayerAssetProvider>>()
+				
+				.RegisterAsSingleton<PlayerAssetProvider>(serviceProvider =>
+				{
+					return serviceProvider.GetService<AssetService<PlayerAssetProvider>>().Provider;
+				});
+		}
+	}
 }
+//TODO зОчем?
+//.RegisterAsSingleton<IPhysicsMovement, PhysicsMovement>()
+//.RegisterAsSingleton<ISpaceshipService, SpaceshipService>()

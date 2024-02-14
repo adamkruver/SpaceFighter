@@ -1,4 +1,9 @@
 ﻿using System;
+using Sources.Assets.Implementation;
+using Sources.Assets.Interfaces;
+using Sources.BoundedContexts.Players.Domain;
+using Sources.BoundedContexts.Players.Factories;
+using Sources.BoundedContexts.Players.Presentation;
 using Sources.Implementation.Domain;
 using Sources.Implementation.Infrastructure.Factories.Presentation.Views;
 using Sources.Implementation.Services.Lifecycles;
@@ -20,9 +25,11 @@ namespace Sources.Implementation.Controllers.Scenes
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
         private readonly SpaceshipViewFactory _spaceshipViewFactory;
-        private readonly SpaceshipEmptyTargetViewFactory _spaceshipEmptyTargetViewFactory;
+        //private readonly SpaceshipEmptyTargetViewFactory _spaceshipEmptyTargetViewFactory;
         private readonly ICameraFollower _cameraFollower;
         private readonly ICameraLateUpdateHandler _cameraLateUpdateHandler;
+        private readonly IAssetService _assetService;
+        private readonly PlayerViewFactory _playerViewFactory;
 
         public GameplayScene(
             IInputService inputService,
@@ -32,9 +39,10 @@ namespace Sources.Implementation.Controllers.Scenes
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
             SpaceshipViewFactory spaceshipViewFactory,
-            SpaceshipEmptyTargetViewFactory spaceshipEmptyTargetViewFactory,
+            //SpaceshipEmptyTargetViewFactory spaceshipEmptyTargetViewFactory,
             ICameraFollower cameraFollower,
-            ICameraLateUpdateHandler cameraLateUpdateHandler
+            ICameraLateUpdateHandler cameraLateUpdateHandler,
+            IAssetService assetService
         )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
@@ -45,21 +53,23 @@ namespace Sources.Implementation.Controllers.Scenes
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
             _spaceshipViewFactory =
                 spaceshipViewFactory ?? throw new ArgumentNullException(nameof(spaceshipViewFactory));
-            _spaceshipEmptyTargetViewFactory = spaceshipEmptyTargetViewFactory ??
-                                               throw new ArgumentNullException(nameof(spaceshipEmptyTargetViewFactory));
+            // _spaceshipEmptyTargetViewFactory = spaceshipEmptyTargetViewFactory ??
+            //                                    throw new ArgumentNullException(nameof(spaceshipEmptyTargetViewFactory));
             _cameraFollower = cameraFollower ?? throw new ArgumentNullException(nameof(cameraFollower));
             _cameraLateUpdateHandler = cameraLateUpdateHandler ??
                                        throw new ArgumentNullException(nameof(cameraLateUpdateHandler));
+            _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
+            _playerViewFactory = new PlayerViewFactory();
+            
         }
 
         public async void Enter()
         {
-            var spaceship = new Spaceship();
-            var emptyTarget = new EmptyTarget(spaceship.Torque);
-            var spaceshipView = await _spaceshipViewFactory.Create(spaceship);
-            var spaceshipEmptyTarget = _spaceshipEmptyTargetViewFactory.Create(emptyTarget, spaceshipView);
+            await _assetService.LoadAsync();
+            var player = new Player();
+            var playerView = _playerViewFactory.Create(player, _spaceshipViewFactory);
 
-            _cameraFollower.Follow(spaceship);
+            _cameraFollower.Follow(player.Spaceship);
 
             AddListeners();
         }
@@ -67,6 +77,7 @@ namespace Sources.Implementation.Controllers.Scenes
         public void Exit()
         {
             RemoveListeners();
+            _assetService.Release();
         }
 
         public void Update(float deltaTime) => 

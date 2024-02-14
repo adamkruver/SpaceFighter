@@ -5,11 +5,11 @@ using Sources.Interfaces.Infrastructure.States;
 
 namespace Sources.Implementation.Infrastructure.StateMachines.Decorators
 {
-    public class StateMachineLateUpdatable<T> : IStateMachine<T>, ILateUpdateHandler where T : class, IState
+    public class LateUpdatableStateMachine<T> : IStateMachine<T>, ILateUpdateHandler where T : class, IState
     {
         private readonly IStateMachine<T> _stateMachine;
 
-        public StateMachineLateUpdatable(IStateMachine<T> stateMachine) =>
+        public LateUpdatableStateMachine(IStateMachine<T> stateMachine) =>
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
 
         public T CurrentState => _stateMachine.CurrentState;

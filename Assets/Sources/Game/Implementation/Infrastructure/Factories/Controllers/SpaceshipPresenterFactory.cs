@@ -16,14 +16,14 @@ namespace Sources.Implementation.Infrastructure.Factories.Controllers
         private readonly IInputService _inputService;
         private readonly SpaceshipMovementService _spaceshipMovementService;
         private readonly ICameraFollower _cameraFollower;
-        private readonly ISpaceshipService _spaceshipService;
+        //private readonly ISpaceshipService _spaceshipService;
 
         public SpaceshipPresenterFactory(
             IUpdateService updateService,
             IInputService inputService,
             SpaceshipMovementService spaceshipMovementService,
-            ICameraFollower cameraFollower,
-            ISpaceshipService spaceshipService
+            ICameraFollower cameraFollower
+            //ISpaceshipService spaceshipService
         )
         {
             _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
@@ -31,7 +31,7 @@ namespace Sources.Implementation.Infrastructure.Factories.Controllers
             _spaceshipMovementService = spaceshipMovementService ??
                                         throw new ArgumentNullException(nameof(spaceshipMovementService));
             _cameraFollower = cameraFollower ?? throw new ArgumentNullException(nameof(cameraFollower));
-            _spaceshipService = spaceshipService ?? throw new ArgumentNullException(nameof(spaceshipService));
+            //_spaceshipService = spaceshipService ?? throw new ArgumentNullException(nameof(spaceshipService));
         }
 
         public SpaceshipPresenter Create(
@@ -44,8 +44,8 @@ namespace Sources.Implementation.Infrastructure.Factories.Controllers
                 _updateService,
                 _inputService,
                 _spaceshipMovementService,
-                _cameraFollower,
-                _spaceshipService
+                _cameraFollower
+                //_spaceshipService
             );
     }
 }

@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Sources.Implementation.Controllers.SpaceShipStates
 {
-	public class BattleState : ISpaceshipState
-	{
-		
-		public void Enter()
-		{
-			Debug.Log(nameof(BattleState) + " enter");
-		}
-
-		public void Exit()
-		{
-			Debug.Log(nameof(BattleState) + " exit");
-		}
-	}
+	// public class BattleState : ISpaceshipState
+	// {
+	// 	
+	// 	public void Enter()
+	// 	{
+	// 		Debug.Log(nameof(BattleState) + " enter");
+	// 	}
+	//
+	// 	public void Exit()
+	// 	{
+	// 		Debug.Log(nameof(BattleState) + " exit");
+	// 	}
+	// }
 }

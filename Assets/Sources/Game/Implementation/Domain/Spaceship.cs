@@ -1,39 +1,49 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.Interfaces.Domain;
+using Sources.Interfaces.SpaceshipStates;
 using UnityEngine;
 
 namespace Sources.Implementation.Domain
 {
-    public class Spaceship : ITarget
-    {
-        private const float Acceleration = 5f;
-        private const float Deceleration = 2f;
-        private const float MaxSpeed = 50f;
-        private const float MinSpeed = 0f;
+	public class Spaceship : ObservableModel, ITarget
+	{
+		private const float Acceleration = 5f;
+		private const float Deceleration = 2f;
+		private const float MaxSpeed = 50f;
+		private const float MinSpeed = 0f;
 
-        public Spaceship(IPhysicsMovement physicsMovement, IPhysicsTorque physicsTorque)
-        {
-            Movement = physicsMovement ?? throw new ArgumentNullException(nameof(physicsMovement));
-            Torque = physicsTorque ?? throw new ArgumentNullException(nameof(physicsTorque));
-        }
+		private ISpaceshipState _state;
 
-        public Spaceship() : this(new PhysicsMovement(Acceleration, Deceleration, MaxSpeed, MinSpeed), new PhysicsTorque())
-        {}
-        
-        public IPhysicsMovement Movement { get; }
+		public Spaceship()
+		{
+			Torque = new ObservablePhysicsTorque(this, new PhysicsTorque());
+			Movement = new PhysicsMovement(Acceleration, Deceleration, MaxSpeed, MinSpeed);
+		}
 
-        public IPhysicsTorque Torque { get; }
+		public ISpaceshipState CurrentState
+		{
+			get => _state;
 
-        public float MouseSensitivity { get; } = 2f;
+			set => TrySetField(ref _state, value);
+		}
 
-        public Vector3 Upward => Movement.Upward;
+		public IPhysicsMovement Movement { get; }
 
-        public Vector3 Forward => Movement.Forward;
+		public ObservablePhysicsTorque Torque { get; }
 
-        public Vector3 Position => Movement.Position;
-    }
+		public float MouseSensitivity { get; } = 2f;
+
+		public Vector3 Upward => Movement.Upward;
+
+		public Vector3 Forward => Movement.Forward;
+
+		public Vector3 Position => Movement.Position;
+	}
 }

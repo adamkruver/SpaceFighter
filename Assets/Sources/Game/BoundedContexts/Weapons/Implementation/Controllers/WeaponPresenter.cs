@@ -1,9 +1,9 @@
 ﻿using System;
+using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
 using Sources.BoundedContexts.Bullets.Interfaces.Domain;
 using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
 using Sources.BoundedContexts.Common.Implememntation;
-using Sources.BoundedContexts.ObjectPools;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
 using Sources.Interfaces.Services.Inputs;
 using Sources.Interfaces.Services.Lifecycles;
@@ -16,7 +16,7 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
 	{
 		private readonly IBullet _bullet;
 		private readonly IWeaponView _weaponView;
-		private readonly BulletObjectPool _bulletObjectPool;
+		private readonly ViewObjectPool<BulletView> _viewObjectPool;
 		private readonly IInputService _inputService;
 		private readonly IUpdateService _service;
 		private readonly IWeaponShootService _weaponShootService;
@@ -24,14 +24,14 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
 		public WeaponPresenter(
 			IBullet bullet,
 			IWeaponView weaponView,
-			BulletObjectPool bulletObjectPool,
+			ViewObjectPool<BulletView> viewObjectPool,
 			IInputService inputService,
 			IUpdateService service,
 			IWeaponShootService weaponShootService)
 		{
 			_bullet = bullet ?? throw new ArgumentNullException(nameof(bullet));
 			_weaponView = weaponView ?? throw new ArgumentNullException(nameof(weaponView));
-			_bulletObjectPool = bulletObjectPool ?? throw new ArgumentNullException(nameof(bulletObjectPool));
+			_viewObjectPool = viewObjectPool ?? throw new ArgumentNullException(nameof(viewObjectPool));
 			_inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
 			_service = service ?? throw new ArgumentNullException(nameof(service));
 			_weaponShootService = weaponShootService ?? throw new ArgumentNullException(nameof(weaponShootService));
@@ -60,12 +60,12 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
 			IBulletView bulletView = CreateBullet();
 
 			bulletView.SetVelocity(_bullet.PhysicsMovement.Velocity);
-			Debug.Log(_bullet.PhysicsMovement.Velocity);
 		}
 
 		private IBulletView CreateBullet()
 		{
-			IBulletView bulletView = _bulletObjectPool.ObjectPool.Get();
+			BulletView bulletView = _viewObjectPool.ObjectPool.Get() as BulletView; // TODO проверка на as BulletView 
+
 			bulletView.SetPosition(_weaponView.GetPosition());
 			bulletView.SetRotation(_weaponView.GetRotation());
 			bulletView.SetForward(_weaponView.GetForward());
