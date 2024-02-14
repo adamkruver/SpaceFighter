@@ -20,7 +20,8 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 		private readonly IPhysicsMovementViewFactory<PhysicsMovementView> _physicsMovementViewFactory;
 		private readonly IPhysicsTorqueViewFactory<PhysicsTorqueView> _physicsTorqueViewFactory;
 		private readonly IWeaponViewFactory _weaponViewFactory;
-		private readonly PlayerAssetProvider _playerAssetProvider;
+		private readonly AssetService<PlayerAssetProvider> _service;
+		//private readonly PlayerAssetProvider _playerAssetProvider;
 		private SpaceshipView _spaceshipViewPrefab;
 
 		public SpaceshipViewFactory(SpaceshipPresenterFactory spaceshipPresenterFactory,
@@ -38,12 +39,13 @@ namespace Sources.Implementation.Infrastructure.Factories.Presentation.Views
 			                              throw new ArgumentNullException(nameof(physicsMovementViewFactory));
 			_physicsTorqueViewFactory = physicsTorqueViewFactory ?? throw new ArgumentNullException(nameof(physicsTorqueViewFactory));
 			_weaponViewFactory = weaponViewFactory ?? throw new ArgumentNullException(nameof(weaponViewFactory));
-			_playerAssetProvider = service?.Provider ?? throw new ArgumentNullException(nameof(service));
+			_service = service ?? throw new ArgumentNullException(nameof(service));
+			//_playerAssetProvider = service?.Provider ?? throw new ArgumentNullException(nameof(service));
 		}
 		
 		public SpaceshipView Create(Spaceship spaceship)
 		{
-			SpaceshipView view = _dependencyResolver.InstantiateComponentFromPrefab(_playerAssetProvider.SpaceshipView);
+			SpaceshipView view = _dependencyResolver.InstantiateComponentFromPrefab(_service.Provider.SpaceshipView);
 			var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
 			view.Construct(presenter);
 
