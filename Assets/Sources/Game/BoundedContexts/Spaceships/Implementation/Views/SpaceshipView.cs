@@ -1,4 +1,5 @@
 ﻿using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.Radars.Implementation.Presentation;
 using Sources.BoundedContexts.Spaceships.Implementation.Presenters;
 using Sources.BoundedContexts.Spaceships.Interfaces.Views;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Views;
@@ -13,5 +14,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Views
         [field: SerializeField] public PhysicsMovementView PhysicsMovementView { get; private set; }
         [field: SerializeField] public PhysicsTorqueView PhysicsTorqueView { get; private set; }
         [field: SerializeField] public WeaponView WeaponView { get; private set; }
+        
+        [field: SerializeField] public RadarView RadarView { get; private set; }
     }
 }

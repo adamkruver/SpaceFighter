@@ -1,7 +1,7 @@
 ﻿using System;
 using Sources.Interfaces.Domain;
 
-namespace Sources.Interfaces.Services.TargetFollowers
+namespace Sources.Interfaces.Services
 {
     public interface ICameraFollower
     {

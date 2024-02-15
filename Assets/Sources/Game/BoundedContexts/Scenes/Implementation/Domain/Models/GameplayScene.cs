@@ -5,7 +5,7 @@ using Sources.BoundedContexts.Players.Implementation.Factories;
 using Sources.BoundedContexts.Scenes.Interfaces;
 using Sources.Common.StateMachines.Interfaces.Handlers;
 using Sources.Common.StateMachines.Interfaces.Services;
-using Sources.Interfaces.Services.TargetFollowers;
+using Sources.Interfaces.Services;
 
 namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
 {
