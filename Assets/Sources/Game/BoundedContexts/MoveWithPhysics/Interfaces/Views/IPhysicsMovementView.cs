@@ -1,5 +1,4 @@
-﻿using Sources.Implementation.Services.Lifecycles;
-using Sources.Interfaces.Infrastructure.Handlers;
+﻿using Sources.Common.StateMachines.Interfaces.Handlers;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.MoveWithPhysics.Interfaces.Views

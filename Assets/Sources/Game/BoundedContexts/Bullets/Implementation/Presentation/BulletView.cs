@@ -1,7 +1,7 @@
 ﻿using System;
 using Sources.BoundedContexts.Bullets.Implementation.Controllers;
 using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
-using Sources.Implementation.Presentation.Views;
+using Sources.Common.Mvp.Implememntation.Views;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Presentation

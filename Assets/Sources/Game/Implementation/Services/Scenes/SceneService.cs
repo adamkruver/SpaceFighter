@@ -1,8 +1,7 @@
 ﻿using System;
-using Sources.Implementation.Infrastructure.StateMachines;
-using Sources.Implementation.Infrastructure.StateMachines.Decorators;
-using Sources.Implementation.Services.Lifecycles;
-using Sources.Interfaces.Infrastructure.Handlers;
+using Sources.Common.StateMachines.Implementation;
+using Sources.Common.StateMachines.Implementation.Decorators;
+using Sources.Common.StateMachines.Interfaces.Handlers;
 using Sources.Interfaces.Infrastructure.Scenes;
 using Sources.Interfaces.Infrastructure.StateMachine.Factories;
 using Sources.Interfaces.Services.Scenes;

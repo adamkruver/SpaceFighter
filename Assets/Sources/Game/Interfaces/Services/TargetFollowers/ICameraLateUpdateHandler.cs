@@ -1,4 +1,4 @@
-﻿using Sources.Interfaces.Infrastructure.Handlers;
+﻿using Sources.Common.StateMachines.Interfaces.Handlers;
 
 namespace Sources.Interfaces.Services.TargetFollowers
 {

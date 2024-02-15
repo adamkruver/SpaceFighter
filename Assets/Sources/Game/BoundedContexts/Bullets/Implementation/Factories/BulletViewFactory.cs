@@ -4,7 +4,7 @@ using Sources.BoundedContexts.Bullets.Implementation.Controllers;
 using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
 using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
-using Sources.Implementation.Presentation.Views;
+using Sources.Common.Mvp.Implememntation.Views;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 

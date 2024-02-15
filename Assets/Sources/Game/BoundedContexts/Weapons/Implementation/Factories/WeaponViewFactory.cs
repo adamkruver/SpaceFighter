@@ -4,11 +4,13 @@ using Sources.BoundedContexts.Bullets.Implementation.Factories;
 using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.Weapons.Implementation.Controllers;
 using Sources.BoundedContexts.Weapons.Interfaces.Factories;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
-using Sources.Interfaces.Presentation.Views;
+using Sources.Common.Mvp.Interfaces.Views;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 {

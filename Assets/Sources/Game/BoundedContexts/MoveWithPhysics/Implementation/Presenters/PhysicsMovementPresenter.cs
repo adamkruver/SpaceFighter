@@ -1,8 +1,8 @@
 ﻿using System;
-using Sources.BoundedContexts.Common.Implememntation;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Views;
-using Sources.Interfaces.Services.Lifecycles;
+using Sources.Common.Mvp.Implememntation.Presenters;
+using Sources.Common.StateMachines.Interfaces.Services;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.MoveWithPhysics.Implementation.Presenters

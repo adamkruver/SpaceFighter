@@ -2,7 +2,7 @@
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Presenters;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Views;
-using Sources.Interfaces.Services.Lifecycles;
+using Sources.Common.StateMachines.Interfaces.Services;
 
 namespace Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories
 {

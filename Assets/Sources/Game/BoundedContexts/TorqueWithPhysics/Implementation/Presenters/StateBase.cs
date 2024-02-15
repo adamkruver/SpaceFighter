@@ -1,4 +1,4 @@
-﻿using Sources.Interfaces.Infrastructure.States;
+﻿using Sources.Common.StateMachines.Interfaces.States;
 
 namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters
 {

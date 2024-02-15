@@ -1,66 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using Sources.BoundedContexts.Common.Implememntation;
-using Sources.Implementation.Domain;
-using Sources.Implementation.Infrastructure.StateMachines.Decorators;
-using Sources.Interfaces.Infrastructure.Handlers;
-using Sources.Interfaces.Infrastructure.StateMachine;
-using Sources.Interfaces.Services.Lifecycles;
-using Sources.Interfaces.SpaceshipStates;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Services;
+using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Views;
+using Sources.Common.Mvp.Implememntation.Presenters;
+using Sources.Common.StateMachines.Interfaces.Services;
 
 namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters
 {
-	/// <summary>
-	/// Это типо state machine
-	/// </summary>
-	public class SpaceshipPhysicsTorquePresenter : PresenterBase
-	{
-		private readonly INotifyPropertyChanged _notifier;
-		private readonly Dictionary<Type, ITorqueState> _torqueStates;
-		private readonly IStateMachine<ITorqueState> _stateMachine;
-		private readonly IUpdateService _updateService;
-		private readonly IUpdateHandler _updateHandler;
+    public class SpaceshipPhysicsTorquePresenter : PresenterBase
+    {
+        private readonly IPhysicsTorque _model;
+        private readonly IPhysicsTorqueView _view;
+        private readonly IUpdateService _updateService;
+        private readonly ITorqueService _torqueService;
 
-		public SpaceshipPhysicsTorquePresenter(INotifyPropertyChanged notifier,
-			Dictionary<Type, ITorqueState> torqueStates,
-			IStateMachine<ITorqueState> stateMachine,
-			IUpdateService updateService)
-		{
-			_notifier = notifier ?? throw new ArgumentNullException(nameof(notifier));
-			_torqueStates = torqueStates ?? throw new ArgumentNullException(nameof(torqueStates));
-			_stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
-			_updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
-			_updateHandler = new UpdatableStateMachine<ITorqueState>(stateMachine);
-		}
+        public SpaceshipPhysicsTorquePresenter(
+            IPhysicsTorque model,
+            IPhysicsTorqueView view,
+            IUpdateService updateService,
+            ITorqueService torqueService
+        )
+        {
+            _model = model ?? throw new ArgumentNullException(nameof(model));
+            _view = view ?? throw new ArgumentNullException(nameof(view));
+            _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
+            _torqueService = torqueService ?? throw new ArgumentNullException(nameof(torqueService));
+        }
 
-		public override void Enable()
-		{
-			_updateService.Updated += _updateHandler.Update;
-			_notifier.PropertyChanged += NotifierPropertyChanged;
-		}
+        public override void Enable()
+        {
+            _updateService.Updated += OnUpdate;
+            _model.PropertyChanged += OnModelPropertyChanged;
+        }
 
-		public override void Disable()
-		{
-			_updateService.Updated -= _updateHandler.Update;
-			_notifier.PropertyChanged -= NotifierPropertyChanged;
-		}
+        public override void Disable()
+        {
+            _model.PropertyChanged -= OnModelPropertyChanged;
+            _updateService.Updated -= OnUpdate;
+        }
 
-		private void NotifierPropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-			if (sender is not Spaceship spaceship)
-				return;
+        private void OnUpdate(float deltaTime) =>
+            _torqueService.UpdateTorqueWithSlerp(_model, deltaTime);
 
-			if (e.PropertyName == nameof(Spaceship.CurrentState))
-				OnSpaceshipStateChange(spaceship.CurrentState);
-		}
+        private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (sender is not IPhysicsTorque torque)
+                return;
 
-		private void OnSpaceshipStateChange(ISpaceshipState spaceshipState)
-		{
-			if (_torqueStates.TryGetValue(spaceshipState.GetType(), out ITorqueState torqueState) == false)
-				return;
+            Action action = e.PropertyName switch
+            {
+                nameof(IPhysicsTorque.Rotation) => OnRotationChanged,
+                _ => null
+            };
 
-			_stateMachine.Change(torqueState);
-		}
-	}
+            action?.Invoke();
+        }
+
+        private void OnRotationChanged() =>
+            _view.SetRotation(_model.Rotation);
+    }
 }

@@ -2,7 +2,7 @@
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Services;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Views;
-using Sources.Interfaces.Infrastructure.Handlers;
+using Sources.Common.StateMachines.Interfaces.Handlers;
 
 namespace Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters
 {

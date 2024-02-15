@@ -1,6 +1,4 @@
 ﻿using System;
-using Sources.BoundedContexts.Common.Interfaces;
-using Sources.Interfaces.Presentation.Views;
 using UniCtor.Attributes;
 
 namespace Sources.Implementation.Presentation.Views

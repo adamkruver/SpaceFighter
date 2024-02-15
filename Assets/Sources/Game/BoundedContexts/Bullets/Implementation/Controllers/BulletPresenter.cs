@@ -1,7 +1,7 @@
 ﻿using System;
 using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
-using Sources.BoundedContexts.Common.Implememntation;
+using Sources.Common.Mvp.Implememntation.Presenters;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Controllers

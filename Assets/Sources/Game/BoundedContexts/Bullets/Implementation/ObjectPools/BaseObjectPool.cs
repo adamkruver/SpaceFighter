@@ -1,6 +1,6 @@
 ﻿using System;
 using Sources.BoundedContexts.Bullets.Implementation.Factories;
-using Sources.Implementation.Presentation.Views;
+using Sources.Common.Mvp.Implememntation.Views;
 using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 

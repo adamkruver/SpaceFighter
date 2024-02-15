@@ -1,6 +1,6 @@
 ﻿using Sources.BoundedContexts.Weapons.Implementation.Controllers;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
-using Sources.Implementation.Presentation.Views;
+using Sources.Common.Mvp.Implememntation.Views;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Presentation.Weapons

@@ -3,11 +3,12 @@ using Sources.BoundedContexts.Bullets.Implementation.Factories;
 using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
 using Sources.BoundedContexts.Bullets.Interfaces.Domain;
+using Sources.BoundedContexts.Inputs.Interfaces.Services;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.Weapons.Implementation.Controllers;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
+using Sources.Common.StateMachines.Interfaces.Services;
 using Sources.Interfaces.Services.Inputs;
-using Sources.Interfaces.Services.Lifecycles;
 using Sources.Interfaces.Services.Spaceship;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Factories

@@ -1,6 +1,7 @@
-﻿using Sources.Implementation.Infrastructure.StateMachines;
+﻿using Sources.Common.StateMachines.Implementation;
+using Sources.Common.StateMachines.Interfaces;
+using Sources.Common.StateMachines.Interfaces.States;
 using Sources.Interfaces.Infrastructure.StateMachine;
-using Sources.Interfaces.Infrastructure.States;
 
 namespace Sources.Implementation.Infrastructure.Factories
 {

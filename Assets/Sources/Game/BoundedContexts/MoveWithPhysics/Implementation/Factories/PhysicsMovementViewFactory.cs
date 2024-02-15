@@ -3,7 +3,7 @@ using Sources.BoundedContexts.MoveWithPhysics.Implementation.Presenters;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Factories;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Views;
-using Sources.Interfaces.Presentation.Views;
+using Sources.Common.Mvp.Interfaces.Views;
 
 namespace Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories
 {

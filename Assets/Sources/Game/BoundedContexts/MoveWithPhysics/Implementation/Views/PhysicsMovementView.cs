@@ -1,6 +1,6 @@
 ﻿using Sources.BoundedContexts.MoveWithPhysics.Implementation.Presenters;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Views;
-using Sources.Implementation.Presentation.Views;
+using Sources.Common.Mvp.Implememntation.Views;
 using Unity.VisualScripting;
 using UnityEngine;
 
