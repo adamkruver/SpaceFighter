@@ -49,22 +49,28 @@ namespace Sources.MonoInstallers
 				.RegisterAsScoped<IWeaponViewFactory, WeaponViewFactory>()
 				.RegisterAsScoped<IWeaponShootService, WeaponShootService>()
 				
+				
 				.RegisterAsSingleton<IAssetService>
 					(
 						serviceProvider =>
-							new CompositeAssetService(serviceProvider.GetService<AssetService<PlayerAssetProvider>>()
+							new CompositeAssetService
+							(
+								serviceProvider.GetService<AssetService<PlayerAssetProvider>>(),
+								serviceProvider.GetService<AssetService<BulletAssetProvider>>()
 							)
 					)
 
 				.RegisterAsSingleton<AssetService<PlayerAssetProvider>>()
+				.RegisterAsSingleton<AssetService<BulletAssetProvider>>()
 				
 				.RegisterAsSingleton<PlayerAssetProvider>(serviceProvider =>
 				{
 					return serviceProvider.GetService<AssetService<PlayerAssetProvider>>().Provider;
+				})
+				.RegisterAsSingleton<BulletAssetProvider>(serviceProvider =>
+				{
+					return serviceProvider.GetService<AssetService<BulletAssetProvider>>().Provider;
 				});
 		}
 	}
 }
-//TODO зОчем?
-//.RegisterAsSingleton<IPhysicsMovement, PhysicsMovement>()
-//.RegisterAsSingleton<ISpaceshipService, SpaceshipService>()

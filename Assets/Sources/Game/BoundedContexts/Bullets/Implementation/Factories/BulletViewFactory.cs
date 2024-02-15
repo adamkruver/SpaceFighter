@@ -1,41 +1,34 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
+using Sources.BoundedContexts.Assets.Implementation;
 using Sources.BoundedContexts.Bullets.Implementation.Controllers;
 using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
-using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
 using Sources.Common.Mvp.Implememntation.Views;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
+using Object = UnityEngine.Object;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {
-	public class BulletViewFactory : IBulletViewFactory<BulletView>
+	public class BulletViewFactory : IViewFactory<BulletView>
 	{
-		public async UniTask<IBulletView> Create(ViewObjectPool<BulletView> viewObjectPool)
+		private readonly BulletAssetProvider _bulletAssetProvider;
+		private readonly ViewObjectPool<BulletView> _viewObjectPool;
+
+		public BulletViewFactory(BulletAssetProvider bulletAssetProvider, ViewObjectPool<BulletView> viewObjectPool)
 		{
-			//  m_Handle = Addressables.LoadAssetAsync<GameObject>("addressKey");
-			GameObject gameObject = await Addressables.InstantiateAsync("PhotonTorpedo").Task;
+			_bulletAssetProvider = bulletAssetProvider ?? throw new ArgumentNullException(nameof(bulletAssetProvider));
+			_viewObjectPool = viewObjectPool ?? throw new ArgumentNullException(nameof(viewObjectPool));
+		}
 
-			if (gameObject.TryGetComponent(out BulletView bulletView) == false)
-				throw new InvalidOperationException(nameof(gameObject));
+		public BulletView Create()
+		{
+			BulletView bulletView = Object.Instantiate(_bulletAssetProvider.View);
 
-			BulletPresenter bulletPresenter = new BulletPresenter(viewObjectPool, bulletView);
+			BulletPresenter bulletPresenter = new BulletPresenter(_viewObjectPool, bulletView);
 
 			bulletView.Construct(bulletPresenter);
 
 			return bulletView;
 		}
-
-		public BulletView Create()
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	public interface IBulletViewFactory<T> : IViewFactory<T> where T : View
-	{
-		UniTask<IBulletView> Create(ViewObjectPool<BulletView> viewObjectPool);
 	}
 
 	public interface IViewFactory<T> where T : View
