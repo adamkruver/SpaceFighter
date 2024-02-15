@@ -8,6 +8,7 @@ using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.Weapons.Implementation.Controllers;
 using Sources.BoundedContexts.Weapons.Implementation.Domain;
+using Sources.BoundedContexts.Weapons.Implementation.Domain.Models;
 using Sources.BoundedContexts.Weapons.Interfaces.Factories;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
 using Sources.Common.Mvp.Interfaces.Views;
@@ -35,8 +36,8 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 			ViewObjectPool<BulletView> viewObjectPool = new ViewObjectPool<BulletView>(CreateBulletView);
 			_bulletViewFactory = new BulletViewFactory(_bulletAssetProvider, viewObjectPool);
 
-			//WeaponPresenter presenter = _weaponPresenterFactory.Create(bullet, view, viewObjectPool);
-			WeaponPresenter presenter = _weaponPresenterFactory.Create(weapon, view, viewObjectPool);
+			WeaponPresenter presenter = _weaponPresenterFactory.Create(bullet, view, viewObjectPool);
+			//WeaponPresenter presenter = _weaponPresenterFactory.Create(weapon, view, viewObjectPool);
 			view.Construct(presenter);
 			return view;
 		}

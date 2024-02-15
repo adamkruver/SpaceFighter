@@ -1,8 +1,12 @@
+using Sources.BoundedContexts.Scenes.Implementation;
+using Sources.BoundedContexts.Scenes.Implementation.Domain.Services;
+using Sources.BoundedContexts.Scenes.Implementation.Factories.Collections;
+using Sources.BoundedContexts.Scenes.Interfaces;
+using Sources.BoundedContexts.Scenes.Interfaces.Factories;
+using Sources.BoundedContexts.Scenes.Interfaces.Services;
+using Sources.Common.StateMachines.Implementation.Services;
+using Sources.Common.StateMachines.Interfaces.Services;
 using Sources.Extensions.IServiceCollections;
-using Sources.Implementation.Services.Scenes;
-using Sources.Interfaces.Infrastructure.Scenes;
-using Sources.Interfaces.Services.Scenes;
-using Sources.Scenes.Factories.Collections;
 using UniCtor.Installers;
 using UniCtor.Services;
 

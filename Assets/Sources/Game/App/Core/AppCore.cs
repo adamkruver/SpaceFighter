@@ -1,5 +1,7 @@
 ﻿using System;
-using Sources.Interfaces.Services.Scenes;
+using Sources.BoundedContexts.Scenes.Interfaces;
+using Sources.BoundedContexts.Scenes.Interfaces.Services;
+using Sources.Common.StateMachines.Interfaces.Services;
 using UniCtor.Attributes;
 using UnityEngine;
 

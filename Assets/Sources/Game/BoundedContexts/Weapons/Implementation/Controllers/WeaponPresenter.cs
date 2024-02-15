@@ -5,11 +5,11 @@ using Sources.BoundedContexts.Bullets.Interfaces.Domain;
 using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
 using Sources.BoundedContexts.Inputs.Interfaces.Services;
 using Sources.BoundedContexts.Weapons.Implementation.Domain;
+using Sources.BoundedContexts.Weapons.Implementation.Domain.Models;
+using Sources.BoundedContexts.Weapons.Interfaces.Services;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
 using Sources.Common.Mvp.Implememntation.Presenters;
 using Sources.Common.StateMachines.Interfaces.Services;
-using Sources.Interfaces.Services.Inputs;
-using Sources.Interfaces.Services.Spaceship;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
@@ -40,23 +40,22 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
 			_weaponShootService = weaponShootService ?? throw new ArgumentNullException(nameof(weaponShootService));
 		}
 
-		public WeaponPresenter(
-			Weapon weapon,
-			IWeaponView weaponView,
-			ViewObjectPool<BulletView> viewObjectPool,
-			IInputService inputService,
-			IUpdateService service,
-			IWeaponShootService weaponShootService)
-		{
-			_weapon = weapon ?? throw new ArgumentNullException(nameof(weapon));
-			_weaponView = weaponView ?? throw new ArgumentNullException(nameof(weaponView));
-			_viewObjectPool = viewObjectPool ?? throw new ArgumentNullException(nameof(viewObjectPool));
-			_inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
-			_service = service ?? throw new ArgumentNullException(nameof(service));
-			_weaponShootService = weaponShootService ?? throw new ArgumentNullException(nameof(weaponShootService));
-		}
-
-		
+		// public WeaponPresenter(
+		// 	Weapon weapon,
+		// 	IWeaponView weaponView,
+		// 	ViewObjectPool<BulletView> viewObjectPool,
+		// 	IInputService inputService,
+		// 	IUpdateService service,
+		// 	IWeaponShootService weaponShootService)
+		// {
+		// 	_weapon = weapon ?? throw new ArgumentNullException(nameof(weapon));
+		// 	_weaponView = weaponView ?? throw new ArgumentNullException(nameof(weaponView));
+		// 	_viewObjectPool = viewObjectPool ?? throw new ArgumentNullException(nameof(viewObjectPool));
+		// 	_inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
+		// 	_service = service ?? throw new ArgumentNullException(nameof(service));
+		// 	_weaponShootService = weaponShootService ?? throw new ArgumentNullException(nameof(weaponShootService));
+		// }
+		//
 		public override void Enable() =>
 			_service.Updated += OnUpdated;
 

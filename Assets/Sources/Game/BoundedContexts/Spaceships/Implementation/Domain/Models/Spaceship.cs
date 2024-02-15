@@ -1,13 +1,13 @@
 ﻿using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
+using Sources.BoundedContexts.Spaceships.Interfaces.States;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Models.Decorators;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.Common.Mvp.Implememntation.Models;
 using Sources.Interfaces.Domain;
-using Sources.Interfaces.SpaceshipStates;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Spaceships.Implementation.Domain.Models

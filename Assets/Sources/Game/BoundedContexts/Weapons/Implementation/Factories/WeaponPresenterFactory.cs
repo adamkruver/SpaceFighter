@@ -7,11 +7,11 @@ using Sources.BoundedContexts.Inputs.Interfaces.Services;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.Weapons.Implementation.Controllers;
 using Sources.BoundedContexts.Weapons.Implementation.Domain;
+using Sources.BoundedContexts.Weapons.Implementation.Domain.Models;
+using Sources.BoundedContexts.Weapons.Interfaces.Services;
 using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
 using Sources.Common.Mvp.Interfaces.Views;
 using Sources.Common.StateMachines.Interfaces.Services;
-using Sources.Interfaces.Services.Inputs;
-using Sources.Interfaces.Services.Spaceship;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 {
@@ -36,15 +36,15 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 				_updateService,
 				_weaponShootService);
 
-		public WeaponPresenter Create<T>(Weapon weapon,
-			T weaponView,
-			ViewObjectPool<BulletView> viewObjectPool)
-			where T : IPresentableView<WeaponPresenter>, IWeaponView =>
-			new WeaponPresenter(weapon,
-				weaponView,
-				viewObjectPool,
-				_inputService,
-				_updateService,
-				_weaponShootService);
+		// public WeaponPresenter Create<T>(Weapon weapon,
+		// 	T weaponView,
+		// 	ViewObjectPool<BulletView> viewObjectPool)
+		// 	where T : IPresentableView<WeaponPresenter>, IWeaponView =>
+		// 	new WeaponPresenter(weapon,
+		// 		weaponView,
+		// 		viewObjectPool,
+		// 		_inputService,
+		// 		_updateService,
+		// 		_weaponShootService);
 	}
 }

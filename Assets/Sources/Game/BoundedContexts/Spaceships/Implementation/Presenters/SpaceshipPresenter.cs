@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using Sources.BoundedContexts.Spaceships.Implementation.Domain.Models;
+using Sources.BoundedContexts.Spaceships.Interfaces.States;
 using Sources.BoundedContexts.Spaceships.Interfaces.Views;
 using Sources.Common.Mvp.Implememntation.Presenters;
-using Sources.Interfaces.SpaceshipStates;
 
 namespace Sources.BoundedContexts.Spaceships.Implementation.Presenters
 {

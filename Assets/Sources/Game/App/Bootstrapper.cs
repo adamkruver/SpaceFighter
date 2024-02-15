@@ -1,6 +1,7 @@
 ﻿using System;
 using Sources.App.Core;
-using Sources.Interfaces.Services.Scenes;
+using Sources.BoundedContexts.Scenes.Interfaces;
+using Sources.Common.StateMachines.Interfaces.Services;
 using UniCtor.Attributes;
 using UniCtor.Contexts;
 using UnityEngine;
