@@ -22,12 +22,12 @@ namespace Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Services
         }
 
         private void MoveTowards(IPhysicsMovement physicsMovement, float destination, float deltaTime) =>
-            physicsMovement.SetSpeed(
+            physicsMovement.Speed =
                 Mathf.MoveTowards(
                     physicsMovement.Speed,
                     destination,
                     deltaTime * physicsMovement.Acceleration
                 )
-            );
+            ;
     }
 }

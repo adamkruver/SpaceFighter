@@ -3,11 +3,9 @@ using Sources.BoundedContexts.Inputs.Implementation.Models;
 using Sources.BoundedContexts.Inputs.Interfaces.Services;
 using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Services;
 using Sources.BoundedContexts.Players.Implementation.Models;
-using Sources.BoundedContexts.Spaceships.Implementation.Domain.Services;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Services;
 using Sources.Common.StateMachines.Implementation.Contexts.States;
 using Sources.Common.StateMachines.Interfaces.Handlers;
-using UnityEngine;
 
 namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 {

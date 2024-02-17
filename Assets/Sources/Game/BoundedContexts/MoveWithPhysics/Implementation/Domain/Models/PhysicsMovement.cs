@@ -1,11 +1,14 @@
 ﻿using System;
 using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
+using Sources.Common.Mvp.Implememntation.Models;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Models
 {
-	public class PhysicsMovement : IPhysicsMovement
+	public class PhysicsMovement : ObservableModel,IPhysicsMovement
 	{
+		private float _speed;
+		
 		public PhysicsMovement(float acceleration, float deceleration, float maxSpeed, float minSpeed)
 		{
 			Acceleration = acceleration;
@@ -27,19 +30,11 @@ namespace Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Models
 		public Vector3 Forward { get; set; }
 
 		public Vector3 Upward { get; set; }
-
-		public event Action VelocityChanged;
 		
-		public float Speed { get; private set; }
-
-		public Vector3 Velocity { get; private set; }
-		
-		public void SetSpeed(float speed)
+		public float Speed
 		{
-			Speed = Mathf.Clamp(speed, MinSpeed, MaxSpeed);
-			Velocity = Speed * Forward;
-
-			VelocityChanged?.Invoke();
+			get=> _speed;
+			 set=> TrySetField(ref _speed,Mathf.Clamp(value, MinSpeed, MaxSpeed));
 		}
 	}
 }

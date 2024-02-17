@@ -6,6 +6,6 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Domain.Services
 	public class WeaponShootService : IWeaponShootService 
 	{
 		public void SetSpeed(IPhysicsMovement physicsMovement, float delta) =>
-			physicsMovement.SetSpeed(physicsMovement.MaxSpeed);
+			physicsMovement.Speed = physicsMovement.MaxSpeed;
 	}
 }

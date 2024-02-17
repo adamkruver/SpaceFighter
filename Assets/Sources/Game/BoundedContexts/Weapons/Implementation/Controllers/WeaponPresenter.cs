@@ -78,7 +78,7 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Controllers
 
 			IBulletView bulletView = CreateBullet();
 
-			bulletView.SetVelocity(_bullet.PhysicsMovement.Velocity);
+			//bulletView.SetVelocity(_bullet.PhysicsMovement.Velocity);
 		}
 
 		private IBulletView CreateBullet()
