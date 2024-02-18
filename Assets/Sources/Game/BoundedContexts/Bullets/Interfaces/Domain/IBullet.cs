@@ -1,12 +1,13 @@
-﻿using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
+﻿using System.ComponentModel;
+using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 
 namespace Sources.BoundedContexts.Bullets.Interfaces.Domain
 {
-	public interface IBullet
+	public interface IBullet : INotifyPropertyChanged
 	{
-		IPhysicsMovement PhysicsMovement { get; }
+		IPhysicsMovement Movement { get; }
 
-		IPhysicsTorque PhysicsTorque { get; }
+		IPhysicsTorque Torque { get; }
 	}
 }

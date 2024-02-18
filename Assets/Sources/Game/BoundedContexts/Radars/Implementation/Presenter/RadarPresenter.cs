@@ -1,5 +1,4 @@
 ﻿using System;
-using Sources.BoundedContexts.Overlaps.Interfaces;
 using Sources.BoundedContexts.Overlaps.Interfaces.Services;
 using Sources.BoundedContexts.Radars.Implementation.Domain.Models;
 using Sources.BoundedContexts.Radars.Interfaces;

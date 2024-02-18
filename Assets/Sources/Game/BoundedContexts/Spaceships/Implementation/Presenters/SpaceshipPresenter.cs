@@ -7,7 +7,6 @@ using Sources.BoundedContexts.Spaceships.Interfaces.States;
 using Sources.BoundedContexts.Spaceships.Interfaces.Views;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
 using Sources.Common.Mvp.Implememntation.Presenters;
-using UnityEngine;
 
 namespace Sources.BoundedContexts.Spaceships.Implementation.Presenters
 {

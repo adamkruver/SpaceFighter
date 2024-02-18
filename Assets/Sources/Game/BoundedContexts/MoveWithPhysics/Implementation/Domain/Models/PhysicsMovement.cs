@@ -1,5 +1,4 @@
-﻿using System;
-using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
+﻿using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.Common.Mvp.Implememntation.Models;
 using UnityEngine;
 

@@ -1,38 +1,42 @@
 ﻿using System;
-using Sources.BoundedContexts.Assets.Implementation;
 using Sources.BoundedContexts.Bullets.Implementation.Controllers;
-using Sources.BoundedContexts.Bullets.Implementation.ObjectPools;
+using Sources.BoundedContexts.Bullets.Implementation.Domain;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories;
+using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
+using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Factories;
 using Sources.Common.Mvp.Implememntation.Views;
-using Object = UnityEngine.Object;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {
-	public class BulletViewFactory : IViewFactory<BulletView>
-	{
-		private readonly BulletAssetProvider _bulletAssetProvider;
-		private readonly ViewObjectPool<BulletView> _viewObjectPool;
+    public class BulletViewFactory
+    {
+        private readonly PhysicsTorqueViewFactory _torqueViewFactory;
+        private readonly PhysicsMovementViewFactory<PhysicsMovementView> _movementViewFactory;
 
-		public BulletViewFactory(BulletAssetProvider bulletAssetProvider, ViewObjectPool<BulletView> viewObjectPool)
-		{
-			_bulletAssetProvider = bulletAssetProvider ?? throw new ArgumentNullException(nameof(bulletAssetProvider));
-			_viewObjectPool = viewObjectPool ?? throw new ArgumentNullException(nameof(viewObjectPool));
-		}
+        public BulletViewFactory(
+            PhysicsTorqueViewFactory torqueViewFactory,
+            PhysicsMovementViewFactory<PhysicsMovementView> movementViewFactory
+            )
+        {
+            _torqueViewFactory = torqueViewFactory ?? throw new ArgumentNullException(nameof(torqueViewFactory));
+            _movementViewFactory = movementViewFactory ?? throw new ArgumentNullException(nameof(movementViewFactory));
+        }
 
-		public BulletView Create()
-		{
-			BulletView bulletView = Object.Instantiate(_bulletAssetProvider.View);
+        public BulletView Create(Bullet model , BulletView view)
+        {
+            BulletPresenter presenter = new BulletPresenter(model, view);
+            view.Construct(presenter);
+            
+            _torqueViewFactory.Create(model.Torque, view.TorqueView);
+            _movementViewFactory.Create(model.Movement, view.MovementView);
 
-			BulletPresenter bulletPresenter = new BulletPresenter(_viewObjectPool, bulletView);
+            return view;
+        }
+    }
 
-			bulletView.Construct(bulletPresenter);
-
-			return bulletView;
-		}
-	}
-
-	public interface IViewFactory<T> where T : View
-	{
-		T Create();
-	}
+    public interface IViewFactory<T> where T : View
+    {
+        T Create();
+    }
 }
