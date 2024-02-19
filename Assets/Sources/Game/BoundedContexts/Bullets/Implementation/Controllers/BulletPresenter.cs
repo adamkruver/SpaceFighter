@@ -8,19 +8,24 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Controllers
 {
 	public class BulletPresenter : PresenterBase
 	{
-		private readonly Bullet _bullet;
-		private readonly IBulletView _bulletView;
+		private readonly Bullet _model;
+		private readonly IBulletView _view;
 
-		public BulletPresenter(Bullet bullet, IBulletView bulletView)
+		public BulletPresenter(Bullet model, IBulletView view)
 		{
-			_bullet = bullet ?? throw new ArgumentNullException(nameof(bullet));
-			_bulletView = bulletView ?? throw new ArgumentNullException(nameof(bulletView));
+			_model = model ?? throw new ArgumentNullException(nameof(model));
+			_view = view ?? throw new ArgumentNullException(nameof(view));
 		}
 
 		public override void Enable()
 		{
 			OnVelocityChanged();
-			_bullet.PropertyChanged += OnModelChanged;
+			_model.PropertyChanged += OnModelChanged;
+		}
+
+		public override void Disable()
+		{
+			_model.PropertyChanged -= OnModelChanged;
 		}
 
 		private void OnModelChanged(object sender, PropertyChangedEventArgs e)
@@ -29,24 +34,9 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Controllers
 				OnVelocityChanged();
 		}
 
-		public override void Disable()
-		{
-			_bullet.PropertyChanged -= OnModelChanged;
-		}
-
 		private void OnVelocityChanged() => 
-			_bulletView.SetVelocity(_bullet.Velocity);
+			_view.SetVelocity(_model.Velocity);
 
-		//Todo: public void OnTriggered(Collider collider) тут этого быть не должно 
-		// public void OnTriggered(Collider collider)
-		// {
-		// 	Debug.Log("Столкновение");
-		// 	_viewObjectPool.ObjectPool.Release(_bulletView); 
-		// }
-		//
-		// public void UpdateFixed(float deltaTime)
-		// {
-		// 	
-		// }
+		//Todo: public void OnTriggered(Collider collider) 
 	}
 }

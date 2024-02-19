@@ -16,7 +16,10 @@ namespace Sources.BoundedContexts.Overlaps.Implementation.Services.Decorators
             _layerMask = layerMask;
         }
 
-        public IEnumerable<T> SphereOverlap<T>(Vector3 position, float radius, int layerMask = Physics.DefaultRaycastLayers) => 
+        public IEnumerable<T> SphereOverlap<T>(Vector3 position, float radius, int layerMask) => 
             _overlapService.SphereOverlap<T>(position, radius, _layerMask);
+
+        public IEnumerable<T> SphereOverlap<T>(Vector3 position, float radius) =>
+            SphereOverlap<T>(position, radius, Physics.DefaultRaycastLayers);
     }
 }

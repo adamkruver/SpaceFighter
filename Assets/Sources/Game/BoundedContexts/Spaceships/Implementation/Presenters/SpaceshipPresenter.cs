@@ -51,8 +51,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Presenters
             if (e.PropertyName == nameof(IPhysicsMovement.Speed))
                 CalculateVelocity();
         }
-
-
+        
         private void OnTorquePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (sender is not IPhysicsTorque torque)

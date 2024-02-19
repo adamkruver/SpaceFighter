@@ -23,7 +23,7 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Factories
             _movementViewFactory = movementViewFactory ?? throw new ArgumentNullException(nameof(movementViewFactory));
         }
 
-        public BulletView Create(Bullet model , BulletView view)
+        public BulletView Create(Bullet model, BulletView view)
         {
             BulletPresenter presenter = new BulletPresenter(model, view);
             view.Construct(presenter);
@@ -33,10 +33,5 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 
             return view;
         }
-    }
-
-    public interface IViewFactory<T> where T : View
-    {
-        T Create();
     }
 }

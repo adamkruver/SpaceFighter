@@ -8,7 +8,5 @@ namespace Sources.BoundedContexts.Weapons.Interfaces.Weapons
 		Vector3 GetPosition();
 
 		Quaternion GetRotation();
-
-		Vector3 GetForward();
 	}
 }

@@ -3,7 +3,11 @@ using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
 using Sources.BoundedContexts.Spaceships.Interfaces.States;
 using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Models;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
+using Sources.BoundedContexts.Weapons.Implementation.Controllers;
+using Sources.BoundedContexts.Weapons.Implementation.Domain.Models;
+using Sources.BoundedContexts.Weapons.Interfaces.Domain.Models;
 using Sources.Common.Mvp.Implememntation.Models;
+using Sources.Common.Mvp.Interfaces.Views;
 using Sources.Interfaces.Domain;
 using UnityEngine;
 
@@ -23,8 +27,11 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Domain.Models
         {
             Torque = new PhysicsTorque();
             Movement = new PhysicsMovement(Acceleration, Deceleration, MaxSpeed, MinSpeed);
+            Weapon = new Weapon();
         }
-        
+
+        public IWeapon Weapon { get; }
+
         public IPhysicsMovement Movement { get; }
 
         public IPhysicsTorque Torque { get; }

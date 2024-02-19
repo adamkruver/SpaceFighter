@@ -50,7 +50,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 
 			_physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
 			_physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
-			_weaponViewFactory.Create(view.WeaponView);
+			_weaponViewFactory.Create(spaceship.Weapon, view.WeaponView);
 
 			return view;
 		}

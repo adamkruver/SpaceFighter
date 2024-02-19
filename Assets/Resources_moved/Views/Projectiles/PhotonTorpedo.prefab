@@ -4820,6 +4820,8 @@ GameObject:
   - component: {fileID: 5118866698141666665}
   - component: {fileID: -5977474471056523588}
   - component: {fileID: 8988817082911644183}
+  - component: {fileID: 8473212902857594231}
+  - component: {fileID: -7874211479936337826}
   m_Layer: 0
   m_Name: PhotonTorpedo
   m_TagString: Untagged
@@ -9654,6 +9656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: -5977474471056523588}
+  <MovementView>k__BackingField: {fileID: 8473212902857594231}
+  <TorqueView>k__BackingField: {fileID: -7874211479936337826}
 --- !u!54 &-5977474471056523588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9702,6 +9706,31 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.6350771
   m_Center: {x: 0, y: -0.41, z: 0}
+--- !u!114 &8473212902857594231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420558e3d6c24cdb865ff31d5c699e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: -5977474471056523588}
+--- !u!114 &-7874211479936337826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707b2e71388841e49bd4f134cda8f703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6880316418072128155
 GameObject:
   m_ObjectHideFlags: 0

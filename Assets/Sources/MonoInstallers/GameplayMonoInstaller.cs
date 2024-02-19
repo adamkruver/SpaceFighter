@@ -14,8 +14,8 @@ using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Factories;
 using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Services;
 using Sources.BoundedContexts.Weapons.Implementation.Domain.Services;
 using Sources.BoundedContexts.Weapons.Implementation.Factories;
+using Sources.BoundedContexts.Weapons.Interfaces.Domain.Services;
 using Sources.BoundedContexts.Weapons.Interfaces.Factories;
-using Sources.BoundedContexts.Weapons.Interfaces.Services;
 using Sources.Common.StateMachines.Implementation.Services;
 using Sources.Common.StateMachines.Interfaces.Handlers;
 using Sources.Common.StateMachines.Interfaces.Services;
@@ -47,7 +47,7 @@ namespace Sources.MonoInstallers
                 .RegisterAsScoped<IPhysicsTorqueViewFactory<PhysicsTorqueView>,
                     SpaceshipPhysicsTorqueViewFactory<PhysicsTorqueView>>()
                 .RegisterAsScoped<IWeaponViewFactory, WeaponViewFactory>()
-                .RegisterAsScoped<IWeaponShootService, WeaponShootService>()
+                .RegisterAsScoped<IShootService, ShootService>()
                 .RegisterAsScoped<IAssetService>
                 (
                     serviceProvider =>

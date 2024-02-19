@@ -7,7 +7,6 @@ namespace Sources.BoundedContexts.Players.Implementation.Views
 {
     public class PlayerView : PresentableView<PlayerPresenter>, IPlayerView
     {
-        // TODO 2 объекта на сцене
         public ISpaceshipView Spaceship { get; set; }
     }
 }

@@ -11,9 +11,6 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Presentation.Weapons
 			transform.position;
 
 		public Quaternion GetRotation() =>
-			transform.rotation;
-
-		public Vector3 GetForward() =>
-			transform.forward;
+			transform.localRotation;
 	}
 }

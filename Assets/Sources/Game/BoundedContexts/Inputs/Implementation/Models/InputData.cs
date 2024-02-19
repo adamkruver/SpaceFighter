@@ -14,9 +14,7 @@ namespace Sources.BoundedContexts.Inputs.Implementation.Models
         
         public Vector2 MoveDirection { get; }
         public Vector2 CursorPosition { get; }
-
         public bool IsAlternativeCameraMode { get; }
-
         public bool IsFire { get; }
     }
 }
