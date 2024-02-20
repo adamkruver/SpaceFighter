@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Sources.BoundedContexts.Players.Implementation.Models;
 using Sources.BoundedContexts.Players.Interfaces.Views;
-using Sources.Common.Mvp.Implememntation.Presenters;
+using Sources.Common.Mvp.Implementation.Presenters;
 using Sources.Common.StateMachines.Implementation.Contexts;
 using Sources.Common.StateMachines.Interfaces.Contexts;
 using Sources.Common.StateMachines.Interfaces.Handlers;

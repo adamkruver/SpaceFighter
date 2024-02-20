@@ -1,11 +1,11 @@
 ﻿using System;
 using Sources.BoundedContexts.Assets.Implementation;
-using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
-using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Factories;
+using Sources.BoundedContexts.Movements.Implementation.Views;
+using Sources.BoundedContexts.Movements.Interfaces.Factories;
 using Sources.BoundedContexts.Spaceships.Implementation.Domain.Models;
 using Sources.BoundedContexts.Spaceships.Implementation.Views;
-using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Views;
-using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Factories;
+using Sources.BoundedContexts.Torques.Implementation.Views;
+using Sources.BoundedContexts.Torques.Interfaces.Factories;
 using Sources.BoundedContexts.Weapons.Interfaces.Factories;
 using UniCtor.Builders;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
@@ -48,9 +48,9 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 			var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
 			view.Construct(presenter);
 
-			_physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
-			_physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
-			_weaponViewFactory.Create(view.WeaponView);
+		//	_physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
+		//	_physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
+		//	_weaponViewFactory.Create(view.WeaponView);
 
 			return view;
 		}

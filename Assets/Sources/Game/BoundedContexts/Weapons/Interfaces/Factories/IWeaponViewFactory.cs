@@ -1,5 +1,5 @@
-﻿using Sources.BoundedContexts.Weapons.Implementation.Controllers;
-using Sources.BoundedContexts.Weapons.Interfaces.Weapons;
+﻿using Sources.BoundedContexts.Weapons.Implementation.Presenters;
+using Sources.BoundedContexts.Weapons.Interfaces.Views;
 using Sources.Common.Mvp.Interfaces.Views;
 
 namespace Sources.BoundedContexts.Weapons.Interfaces.Factories

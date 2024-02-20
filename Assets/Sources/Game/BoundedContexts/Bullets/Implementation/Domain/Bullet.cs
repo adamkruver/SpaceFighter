@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Sources.BoundedContexts.Bullets.Interfaces.Domain;
-using Sources.BoundedContexts.MoveWithPhysics.Interfaces.Domain;
-using Sources.BoundedContexts.TorqueWithPhysics.Interfaces.Domain;
+using Sources.BoundedContexts.Movements.Interfaces.Domain;
+using Sources.BoundedContexts.Torques.Interfaces.Domain;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Domain
@@ -12,9 +12,9 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Domain
     {
         private readonly List<PropertyChangedEventHandler> _listeners = new List<PropertyChangedEventHandler>();
 
-        public Bullet(IPhysicsMovement physicsMovement, IPhysicsTorque physicsTorque)
+        public Bullet(IMovement movement, IPhysicsTorque physicsTorque)
         {
-            Movement = physicsMovement ?? throw new ArgumentNullException(nameof(physicsMovement));
+            Movement = movement ?? throw new ArgumentNullException(nameof(movement));
             Torque = physicsTorque ?? throw new ArgumentNullException(nameof(physicsTorque));
         }
 
@@ -42,7 +42,7 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Domain
             }
         }
 
-        public IPhysicsMovement Movement { get; }
+        public IMovement Movement { get; }
 
         public IPhysicsTorque Torque { get; }
 
@@ -52,8 +52,8 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Domain
         {
             switch (e.PropertyName)
             {
-                case nameof(IPhysicsMovement.Position):
-                case nameof(IPhysicsMovement.Speed):
+                case nameof(IMovement.Position):
+                case nameof(IMovement.Speed):
                 case nameof(IPhysicsTorque.Rotation):
                     NotifyVelocityChanged();
                     break;

@@ -1,10 +1,10 @@
-﻿using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
+﻿using Sources.BoundedContexts.Movements.Implementation.Views;
 using Sources.BoundedContexts.Radars.Implementation.Presentation;
 using Sources.BoundedContexts.Spaceships.Implementation.Presenters;
 using Sources.BoundedContexts.Spaceships.Interfaces.Views;
-using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Views;
-using Sources.BoundedContexts.Weapons.Implementation.Presentation.Weapons;
-using Sources.Common.Mvp.Implememntation.Views;
+using Sources.BoundedContexts.Torques.Implementation.Views;
+using Sources.BoundedContexts.Weapons.Implementation.Views;
+using Sources.Common.Mvp.Implementation.Views;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Spaceships.Implementation.Views

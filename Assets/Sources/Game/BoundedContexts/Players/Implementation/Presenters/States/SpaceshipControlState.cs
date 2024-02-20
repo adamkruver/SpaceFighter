@@ -1,9 +1,9 @@
 ﻿using System;
 using Sources.BoundedContexts.Inputs.Implementation.Models;
 using Sources.BoundedContexts.Inputs.Interfaces.Services;
-using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Services;
+using Sources.BoundedContexts.Movements.Implementation.Domain.Services;
 using Sources.BoundedContexts.Players.Implementation.Models;
-using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Services;
+using Sources.BoundedContexts.Torques.Implementation.Domain.Services;
 using Sources.Common.StateMachines.Implementation.Contexts.States;
 using Sources.Common.StateMachines.Interfaces.Handlers;
 
@@ -38,7 +38,7 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
         }
 
         private void Move(InputData inputData, float deltaTime) =>
-            _movementService.AddForce(_player.Spaceship.Movement, inputData.MoveDirection.y, deltaTime);
+            _movementService.AddForce(_player.Spaceship, inputData.MoveDirection.y,_player.Spaceship.Acceleration, deltaTime);
 
         private void Torque(InputData inputData)
         {
@@ -46,7 +46,7 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
             float destinationX = cursorPosition.x * MouseSensitivity;
             float destinationY = cursorPosition.y * MouseSensitivity;
 
-            _torqueService.AddTorque(_player.Spaceship.Torque, destinationX, destinationY);
+            _torqueService.AddTorque(_player.Spaceship, destinationX, destinationY);
         }
     }
 }

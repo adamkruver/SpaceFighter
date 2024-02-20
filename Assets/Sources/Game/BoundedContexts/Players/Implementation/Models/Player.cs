@@ -1,6 +1,6 @@
 ﻿using Sources.BoundedContexts.Players.Interfaces.Models;
 using Sources.BoundedContexts.Spaceships.Implementation.Domain.Models;
-using Sources.Common.Mvp.Implememntation.Models;
+using Sources.Common.Mvp.Implementation.Models;
 
 namespace Sources.BoundedContexts.Players.Implementation.Models
 {

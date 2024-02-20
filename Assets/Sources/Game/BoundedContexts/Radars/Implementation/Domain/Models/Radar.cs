@@ -1,4 +1,4 @@
-﻿using Sources.Common.Mvp.Implememntation.Models;
+﻿using Sources.Common.Mvp.Implementation.Models;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Radars.Implementation.Domain.Models

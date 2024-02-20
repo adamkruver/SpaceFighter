@@ -1,13 +1,14 @@
-﻿using Sources.Common.Mvp.Implememntation.Models;
+﻿using System;
+using Sources.BoundedContexts.Movements.Interfaces.Domain;
+using Sources.Common.Mvp.Implementation.Models;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Domain.Models
 {
     public class Weapon : ObservableModel
     {
-        private float _lastShootTime;
 
-        public float Sped { get; private set; } = 3f;
+        private float _lastShootTime;
 
         public float LastShootTime
         {
@@ -15,9 +16,7 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Domain.Models
             private set => TrySetField(ref _lastShootTime, value);
         }
 
-        public void Shoot()
-        {
+        public void Shoot() => 
             LastShootTime = Time.time;
-        }
     }
 }

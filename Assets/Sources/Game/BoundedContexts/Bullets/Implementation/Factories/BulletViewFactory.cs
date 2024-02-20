@@ -2,10 +2,10 @@
 using Sources.BoundedContexts.Bullets.Implementation.Controllers;
 using Sources.BoundedContexts.Bullets.Implementation.Domain;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
-using Sources.BoundedContexts.MoveWithPhysics.Implementation.Factories;
-using Sources.BoundedContexts.MoveWithPhysics.Implementation.Views;
-using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Factories;
-using Sources.Common.Mvp.Implememntation.Views;
+using Sources.BoundedContexts.Movements.Implementation.Factories;
+using Sources.BoundedContexts.Movements.Implementation.Views;
+using Sources.BoundedContexts.Torques.Implementation.Factories;
+using Sources.Common.Mvp.Implementation.Views;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {

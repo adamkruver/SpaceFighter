@@ -2,7 +2,7 @@
 using Sources.BoundedContexts.Overlaps.Interfaces.Services;
 using Sources.BoundedContexts.Radars.Implementation.Domain.Models;
 using Sources.BoundedContexts.Radars.Interfaces;
-using Sources.Common.Mvp.Implememntation.Presenters;
+using Sources.Common.Mvp.Implementation.Presenters;
 
 namespace Sources.BoundedContexts.Radars.Implementation.Presenter
 {

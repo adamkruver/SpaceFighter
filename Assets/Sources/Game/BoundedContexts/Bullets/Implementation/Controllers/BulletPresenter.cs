@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Sources.BoundedContexts.Bullets.Implementation.Domain;
 using Sources.BoundedContexts.Bullets.Interfaces.Presentation;
-using Sources.Common.Mvp.Implememntation.Presenters;
+using Sources.Common.Mvp.Implementation.Presenters;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Controllers
 {

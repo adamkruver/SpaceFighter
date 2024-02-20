@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Presenters;
+using Sources.BoundedContexts.Torques.Implementation.Presenters;
 using Sources.Common.StateMachines.Interfaces;
 using Sources.Common.StateMachines.Interfaces.Contexts;
 using Sources.Common.StateMachines.Interfaces.Contexts.States;

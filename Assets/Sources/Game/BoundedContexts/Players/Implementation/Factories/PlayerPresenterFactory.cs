@@ -1,13 +1,12 @@
 ﻿using System;
 using Sources.BoundedContexts.Inputs.Interfaces.Services;
-using Sources.BoundedContexts.MoveWithPhysics.Implementation.Domain.Services;
+using Sources.BoundedContexts.Movements.Implementation.Domain.Services;
 using Sources.BoundedContexts.Players.Implementation.Models;
 using Sources.BoundedContexts.Players.Implementation.Presenters;
 using Sources.BoundedContexts.Players.Implementation.Presenters.States;
 using Sources.BoundedContexts.Players.Implementation.Presenters.Transitions;
 using Sources.BoundedContexts.Players.Interfaces.Views;
-using Sources.BoundedContexts.Spaceships.Implementation.Domain.Services;
-using Sources.BoundedContexts.TorqueWithPhysics.Implementation.Domain.Services;
+using Sources.BoundedContexts.Torques.Implementation.Domain.Services;
 using Sources.Common.StateMachines.Implementation.Contexts;
 using Sources.Common.StateMachines.Implementation.Decorators;
 using Sources.Common.StateMachines.Interfaces.Contexts.States;
@@ -21,7 +20,6 @@ namespace Sources.BoundedContexts.Players.Implementation.Factories
         private readonly IUpdateService _updateService;
         private readonly PhysicsMovementService _movementService;
         private readonly PhysicsTorqueService _torqueService;
-        private readonly SpaceshipMovementService _spaceshipMovementService;
 
         public PlayerPresenterFactory(
             IInputService inputService,
