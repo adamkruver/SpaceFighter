@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿using Sources.Common.Observables.Rigidbodies.Interfaces.Views;
 
 namespace Sources.BoundedContexts.Bullets.Interfaces.Presentation
 {
-	public interface IBulletView
+	public interface IBulletView : IRigidbodyView
 	{
-		void SetVelocity(Vector3 velocity);
 	}
 }

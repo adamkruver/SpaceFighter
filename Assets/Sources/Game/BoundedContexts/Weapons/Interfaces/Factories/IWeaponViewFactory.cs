@@ -1,11 +1,12 @@
-﻿using Sources.BoundedContexts.Weapons.Implementation.Presenters;
+﻿using Sources.BoundedContexts.Spaceships.Implementation.Services;
+using Sources.BoundedContexts.Weapons.Implementation.Domain.Models;
+using Sources.BoundedContexts.Weapons.Implementation.Views;
 using Sources.BoundedContexts.Weapons.Interfaces.Views;
-using Sources.Common.Mvp.Interfaces.Views;
 
 namespace Sources.BoundedContexts.Weapons.Interfaces.Factories
 {
 	public interface IWeaponViewFactory
 	{
-		IWeaponView Create<T>(T view) where T : IPresentableView<WeaponPresenter>, IWeaponView;
+		IWeaponView Create(Weapon model, WeaponView view, SpaceshipService spaceshipService);
 	}
 }

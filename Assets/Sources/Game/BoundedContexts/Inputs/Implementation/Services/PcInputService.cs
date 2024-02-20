@@ -14,9 +14,9 @@ namespace Sources.BoundedContexts.Inputs.Implementation.Services
 				new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
 				new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")),
 				Input.GetMouseButton(1),
-				Input.GetKeyUp(KeyCode.Space)
+				Input.GetKeyDown(KeyCode.Space)
 				);
-
+ 
 			InputData = inputData;
 		}
 	}

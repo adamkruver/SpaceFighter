@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿using Sources.Common.Observables.Rigidbodies.Interfaces.Views;
 
 namespace Sources.BoundedContexts.Spaceships.Interfaces.Views
 {
-    public interface ISpaceshipView
+    public interface ISpaceshipView : IRigidbodyView
     {
-        void SetVelocity(Vector3 velocity);
     }
 }

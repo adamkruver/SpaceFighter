@@ -1,42 +1,22 @@
 ﻿using System;
-using Sources.BoundedContexts.Bullets.Implementation.Controllers;
-using Sources.BoundedContexts.Bullets.Implementation.Domain;
+using Sources.BoundedContexts.Bullets.Implementation.Models;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
-using Sources.BoundedContexts.Movements.Implementation.Factories;
-using Sources.BoundedContexts.Movements.Implementation.Views;
-using Sources.BoundedContexts.Torques.Implementation.Factories;
-using Sources.Common.Mvp.Implementation.Views;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {
-    public class BulletViewFactory
-    {
-        private readonly PhysicsTorqueViewFactory _torqueViewFactory;
-        private readonly PhysicsMovementViewFactory<PhysicsMovementView> _movementViewFactory;
+	public class BulletViewFactory
+	{
+		private readonly BulletPresenterFactory _presenterFactory;
 
-        public BulletViewFactory(
-            PhysicsTorqueViewFactory torqueViewFactory,
-            PhysicsMovementViewFactory<PhysicsMovementView> movementViewFactory
-            )
-        {
-            _torqueViewFactory = torqueViewFactory ?? throw new ArgumentNullException(nameof(torqueViewFactory));
-            _movementViewFactory = movementViewFactory ?? throw new ArgumentNullException(nameof(movementViewFactory));
-        }
+		public BulletViewFactory(BulletPresenterFactory presenterFactory) =>
+			_presenterFactory = presenterFactory ?? throw new ArgumentNullException(nameof(presenterFactory));
 
-        public BulletView Create(Bullet model , BulletView view)
-        {
-            BulletPresenter presenter = new BulletPresenter(model, view);
-            view.Construct(presenter);
-            
-            _torqueViewFactory.Create(model.Torque, view.TorqueView);
-            _movementViewFactory.Create(model.Movement, view.MovementView);
+		public BulletView Create(Bullet model, BulletView view)
+		{
+			var presenter = _presenterFactory.Create(model, view);
+			view.Construct(presenter);
 
-            return view;
-        }
-    }
-
-    public interface IViewFactory<T> where T : View
-    {
-        T Create();
-    }
+			return view;
+		}
+	}
 }

@@ -59,7 +59,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             var player = _playerFactory.Create();
             _playerViewFactory.Create(player);
 
-            _cameraFollower.Follow(player.Spaceship);
+             _cameraFollower.Follow(player.Spaceship);
 
             AddListeners();
         }

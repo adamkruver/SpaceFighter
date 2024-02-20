@@ -1,37 +1,38 @@
-﻿using Sources.Common.Observables.Interfaces.Rigidbodies;
+﻿using Sources.BoundedContexts.Spaceships.Implementation.Domain.Models;
+using Sources.Common.Observables.Interfaces.Rigidbodies;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Movements.Implementation.Domain.Services
 {
-    public class PhysicsMovementService
-    {
-        private const float MinForce = 0.01f;
+	public class PhysicsMovementService
+	{
+		private const float MinForce = 0.01f;
 
-        public void AddForce(IObservableRigidbody rigidbody, float force, float acceleration, float deltaTime)
-        {
-            switch (force)
-            {
-                case < -MinForce:
-                    MoveTowards(rigidbody, rigidbody.MinSpeed, acceleration, deltaTime);
-                    break;
+		public void CalculateSpeed(IObservableRigidbody rigidbody, float acceleration, float deltaTime) =>
+			rigidbody.Speed = Mathf.MoveTowards(rigidbody.Speed, rigidbody.Speed + acceleration, deltaTime);
 
-                case > MinForce:
-                    MoveTowards(rigidbody, rigidbody.MaxSpeed, acceleration, deltaTime);
-                    break;
-            }
-        }
+		public void AddForce(Spaceship spaceship, float force, float deltaTime)
+		{
+			switch (force)
+			{
+				case < -MinForce:
+					spaceship.Acceleration = Spaceship.MinAcceleration;
+					//MoveTowards(spaceship, Spaceship.MinAcceleration, deltaTime);
+					break;
 
-        private void MoveTowards(
-            IObservableRigidbody movement,
-            float destination,
-            float acceleration,
-            float deltaTime
-        ) =>
-            movement.Speed =
-                Mathf.MoveTowards(
-                    movement.Speed,
-                    destination,
-                    deltaTime * acceleration
-                );
-    }
+				case > MinForce:
+					spaceship.Acceleration = Spaceship.MaxAcceleration;
+					//MoveTowards(spaceship, Spaceship.MaxAcceleration, deltaTime);
+					break;
+			}
+		}
+
+		private void MoveTowards(Spaceship spaceship,
+			float target,
+			float deltaTime) =>
+			spaceship.Acceleration =
+				Mathf.MoveTowards(spaceship.Acceleration,
+					target,
+					deltaTime );
+	}
 }

@@ -6,8 +6,6 @@ namespace Sources.BoundedContexts.Bullets.Interfaces.Domain
 {
 	public interface IBullet : INotifyPropertyChanged
 	{
-		IMovement Movement { get; }
-
-		IPhysicsTorque Torque { get; }
+		float Damage { get; }
 	}
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using Sources.BoundedContexts.Movements.Interfaces.Domain;
-using Sources.Common.Mvp.Implementation.Models;
+﻿using Sources.Common.Mvp.Implementation.Models;
+using Sources.Common.Observables.Transforms.Implementation.Models;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Weapons.Implementation.Domain.Models
 {
-    public class Weapon : ObservableModel
+    public class Weapon : ObservableTransform
     {
-
         private float _lastShootTime;
 
         public float LastShootTime
@@ -17,6 +15,6 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Domain.Models
         }
 
         public void Shoot() => 
-            LastShootTime = Time.time;
+            LastShootTime = Time.time; // TODO Time.time get as parameter outside
     }
 }

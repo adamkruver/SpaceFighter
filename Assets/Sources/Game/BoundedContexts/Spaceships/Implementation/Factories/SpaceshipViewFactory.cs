@@ -3,6 +3,7 @@ using Sources.BoundedContexts.Assets.Implementation;
 using Sources.BoundedContexts.Movements.Implementation.Views;
 using Sources.BoundedContexts.Movements.Interfaces.Factories;
 using Sources.BoundedContexts.Spaceships.Implementation.Domain.Models;
+using Sources.BoundedContexts.Spaceships.Implementation.Services;
 using Sources.BoundedContexts.Spaceships.Implementation.Views;
 using Sources.BoundedContexts.Torques.Implementation.Views;
 using Sources.BoundedContexts.Torques.Interfaces.Factories;
@@ -20,7 +21,6 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 		private readonly IPhysicsTorqueViewFactory<PhysicsTorqueView> _physicsTorqueViewFactory;
 		private readonly IWeaponViewFactory _weaponViewFactory;
 		private readonly AssetService<PlayerAssetProvider> _service;
-		//private readonly PlayerAssetProvider _playerAssetProvider;
 		private SpaceshipView _spaceshipViewPrefab;
 
 		public SpaceshipViewFactory(SpaceshipPresenterFactory spaceshipPresenterFactory,
@@ -39,7 +39,6 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 			_physicsTorqueViewFactory = physicsTorqueViewFactory ?? throw new ArgumentNullException(nameof(physicsTorqueViewFactory));
 			_weaponViewFactory = weaponViewFactory ?? throw new ArgumentNullException(nameof(weaponViewFactory));
 			_service = service ?? throw new ArgumentNullException(nameof(service));
-			//_playerAssetProvider = service?.Provider ?? throw new ArgumentNullException(nameof(service));
 		}
 		
 		public SpaceshipView Create(Spaceship spaceship)
@@ -48,9 +47,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 			var presenter = _spaceshipPresenterFactory.Create(spaceship, view);
 			view.Construct(presenter);
 
-		//	_physicsMovementViewFactory.Create(spaceship.Movement, view.PhysicsMovementView);
-		//	_physicsTorqueViewFactory.Create(spaceship.Torque, view.PhysicsTorqueView);
-		//	_weaponViewFactory.Create(view.WeaponView);
+			_weaponViewFactory.Create(spaceship.Weapon, view.WeaponView, new SpaceshipService(spaceship));
 
 			return view;
 		}
