@@ -6,7 +6,7 @@ using Sources.BoundedContexts.Players.Implementation.Presenters;
 using Sources.BoundedContexts.Players.Implementation.Presenters.States;
 using Sources.BoundedContexts.Players.Implementation.Presenters.Transitions;
 using Sources.BoundedContexts.Players.Interfaces.Views;
-using Sources.BoundedContexts.Torques.Implementation.Domain.Services;
+using Sources.Common.Observables.Rigidbodies.Implementation.Domain.Services;
 using Sources.Common.StateMachines.Implementation.Contexts;
 using Sources.Common.StateMachines.Implementation.Decorators;
 using Sources.Common.StateMachines.Interfaces.Contexts.States;
@@ -18,20 +18,20 @@ namespace Sources.BoundedContexts.Players.Implementation.Factories
     {
         private readonly IInputService _inputService;
         private readonly IUpdateService _updateService;
-        private readonly PhysicsMovementService _movementService;
-        private readonly PhysicsTorqueService _torqueService;
+        private readonly MovementService _movementService;
+        private readonly RigidbodyMovementService _rigidbodyMovementService;
 
         public PlayerPresenterFactory(
             IInputService inputService,
             IUpdateService updateService,
-            PhysicsMovementService movementService,
-            PhysicsTorqueService torqueService
+            MovementService movementService,
+            RigidbodyMovementService rigidbodyMovementService
         )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
             _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
             _movementService = movementService ?? throw new ArgumentNullException(nameof(movementService));
-            _torqueService = torqueService ?? throw new ArgumentNullException(nameof(torqueService));
+            _rigidbodyMovementService = rigidbodyMovementService ?? throw new ArgumentNullException(nameof(rigidbodyMovementService));
         }
 
         public PlayerPresenter Create(Player model, IPlayerView view)
@@ -43,7 +43,7 @@ namespace Sources.BoundedContexts.Players.Implementation.Factories
                 model,
                 _inputService,
                 _movementService,
-                _torqueService
+                _rigidbodyMovementService
             );
 
             var toCameraControlState = new ToCameraControlState(cameraControlState);

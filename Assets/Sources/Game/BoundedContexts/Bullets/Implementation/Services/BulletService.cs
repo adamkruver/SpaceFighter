@@ -3,6 +3,7 @@ using Sources.BoundedContexts.Assets.Implementation;
 using Sources.BoundedContexts.Bullets.Implementation.Factories;
 using Sources.BoundedContexts.Bullets.Implementation.Models;
 using Sources.BoundedContexts.Bullets.Implementation.Presentation;
+using Sources.Common;
 using UnityEngine;
 using UnityEngine.Pool;
 using Object = UnityEngine.Object;
@@ -29,10 +30,5 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Services
 			// TODO магический урон
 			BulletView view = _bulletViewFactory.Create(model, _viewObjectPool.Get());
 		}
-	}
-
-	public class Config
-	{
-		public const float BulletSpeed = 100f;
 	}
 }

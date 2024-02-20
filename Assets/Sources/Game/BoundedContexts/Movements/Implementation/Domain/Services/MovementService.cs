@@ -1,17 +1,19 @@
 ﻿using Sources.BoundedContexts.Spaceships.Implementation.Domain.Models;
-using Sources.Common.Observables.Interfaces.Rigidbodies;
 using UnityEngine;
 
 namespace Sources.BoundedContexts.Movements.Implementation.Domain.Services
 {
-	public class PhysicsMovementService
+	public class MovementService
 	{
+		// TODO MinForce вынести в конфиг
 		private const float MinForce = 0.01f;
 
-		public void CalculateSpeed(IObservableRigidbody rigidbody, float acceleration, float deltaTime) =>
-			rigidbody.Speed = Mathf.MoveTowards(rigidbody.Speed, rigidbody.Speed + acceleration, deltaTime);
+		public void AddTorque(Spaceship spaceship, float rotationX, float rotationY) =>
+			spaceship.Destination += new Vector3(-rotationY, rotationX, 0);
 
-		public void AddForce(Spaceship spaceship, float force, float deltaTime)
+		
+		
+		public void AddForce(Spaceship spaceship, float force)
 		{
 			switch (force)
 			{
@@ -33,6 +35,6 @@ namespace Sources.BoundedContexts.Movements.Implementation.Domain.Services
 			spaceship.Acceleration =
 				Mathf.MoveTowards(spaceship.Acceleration,
 					target,
-					deltaTime );
+					deltaTime);
 	}
 }
