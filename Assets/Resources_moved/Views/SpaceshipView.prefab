@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5871381fd97044719bed1d2474656520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spaceshipView: {fileID: 3233010182057845823}
 --- !u!1001 &5695513604334084345
 PrefabInstance:
   m_ObjectHideFlags: 0

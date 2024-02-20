@@ -20,7 +20,6 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 		private readonly IPhysicsTorqueViewFactory<PhysicsTorqueView> _physicsTorqueViewFactory;
 		private readonly IWeaponViewFactory _weaponViewFactory;
 		private readonly AssetService<PlayerAssetProvider> _service;
-		//private readonly PlayerAssetProvider _playerAssetProvider;
 		private SpaceshipView _spaceshipViewPrefab;
 
 		public SpaceshipViewFactory(SpaceshipPresenterFactory spaceshipPresenterFactory,
@@ -39,7 +38,6 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 			_physicsTorqueViewFactory = physicsTorqueViewFactory ?? throw new ArgumentNullException(nameof(physicsTorqueViewFactory));
 			_weaponViewFactory = weaponViewFactory ?? throw new ArgumentNullException(nameof(weaponViewFactory));
 			_service = service ?? throw new ArgumentNullException(nameof(service));
-			//_playerAssetProvider = service?.Provider ?? throw new ArgumentNullException(nameof(service));
 		}
 		
 		public SpaceshipView Create(Spaceship spaceship)

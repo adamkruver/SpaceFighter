@@ -34,8 +34,11 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Controllers
 				OnVelocityChanged();
 		}
 
-		private void OnVelocityChanged() => 
-			_view.SetVelocity(_model.Velocity);
+		private void OnVelocityChanged()
+		{
+			//TODO;
+		}
+		//_view.SetVelocity(_model.Velocity);
 
 		//Todo: public void OnTriggered(Collider collider) 
 	}

@@ -64,7 +64,7 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Domain
             OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Velocity)));
 
         private Vector3 CalculateVelocity() =>
-            Torque.Rotation * Movement.Position * Movement.Speed;
+            Movement.Position * Movement.Speed;
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e) =>
             _listeners.ForEach(listener => listener.Invoke(sender, e));
