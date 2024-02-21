@@ -9,9 +9,7 @@ namespace Sources.BoundedContexts.Movements.Implementation.Domain.Services
 		private const float MinForce = 0.01f;
 
 		public void AddTorque(Spaceship spaceship, float rotationX, float rotationY) =>
-			spaceship.Destination += new Vector3(-rotationY, rotationX, 0);
-
-		
+			spaceship.Destination = spaceship.Rotation * Quaternion.Euler(-rotationY, rotationX, 0);
 		
 		public void AddForce(Spaceship spaceship, float force)
 		{

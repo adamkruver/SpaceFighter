@@ -1,5 +1,4 @@
 ﻿using System;
-using Sources.BoundedContexts.Bullets.Implementation.Services;
 using Sources.BoundedContexts.Inputs.Implementation.Models;
 using Sources.BoundedContexts.Inputs.Interfaces.Services;
 using Sources.BoundedContexts.Movements.Implementation.Domain.Services;
@@ -8,14 +7,12 @@ using Sources.Common;
 using Sources.Common.Observables.Rigidbodies.Implementation.Domain.Services;
 using Sources.Common.StateMachines.Implementation.Contexts.States;
 using Sources.Common.StateMachines.Interfaces.Handlers;
-using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 {
 	public class SpaceshipControlState : ContextStateBase, IUpdateHandler
 	{
-		private const int MouseSensitivity = 5; // TODO: Move to config
+		private const int MouseSensitivity = 50; // TODO: Move to config
 
 		private readonly Player _player;
 		private readonly IInputService _inputService;
@@ -35,9 +32,9 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 
 		public void Update(float deltaTime)
 		{
-			Move(_inputService.InputData, deltaTime);
-			Torque(_inputService.InputData, deltaTime);
 			Fire(_inputService.InputData);
+			HandleInput(_inputService.InputData);
+			UpdateModels(deltaTime);
 		}
 
 		private void Fire(InputData inputService)
@@ -46,28 +43,29 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 				_player.Spaceship.Weapon.Shoot();
 		}
 
-		private void Move(InputData inputData, float deltaTime)
-		{
-			_movementService.AddForce(_player.Spaceship,
-				inputData.MoveDirection.y);
-			
-			_rigidbodyMovementService.CalculateSpeed(_player.Spaceship,
-				_player.Spaceship.Acceleration,
-				deltaTime);
-		}
-
-		private void Torque(InputData inputData, float deltaTime)
+		private void HandleInput(InputData inputData)
 		{
 			var cursorPosition = inputData.CursorPosition;
 			float destinationX = cursorPosition.x * MouseSensitivity;
 			float destinationY = cursorPosition.y * MouseSensitivity;
-
+		
 			_movementService.AddTorque(_player.Spaceship, destinationX, destinationY);
 			
+			_movementService.AddForce(_player.Spaceship,
+				_inputService.InputData.MoveDirection.y);
+		}
+
+		private void UpdateModels(float deltaTime)
+		{
 			_rigidbodyMovementService.Rotate(
 				_player.Spaceship,
 				_player.Spaceship.Destination, 
 				deltaTime * Config.SpaceshipRotationSpeed);
+
+			_rigidbodyMovementService.CalculateSpeed(_player.Spaceship,
+				_player.Spaceship.Acceleration,
+				deltaTime);
+			
 		}
 	}
 }

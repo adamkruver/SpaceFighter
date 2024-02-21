@@ -4,6 +4,7 @@ using Sources.Common.Observables.Rigidbodies.Implementation.Models;
 using Sources.Common.Observables.Rigidbodies.Interfaces.Views;
 using Sources.Common.Observables.Transforms.Implementation.Presenters;
 using Sources.Common.StateMachines.Interfaces.Services;
+using UnityEngine;
 
 namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 {
@@ -12,8 +13,8 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 		private readonly ObservableRigidbody _model;
 		private readonly IRigidbodyView _view;
 
-		public RigidbodyPresenter(ObservableRigidbody model, IRigidbodyView view, IUpdateService updateService)
-			: base(model, view, updateService)
+		public RigidbodyPresenter(ObservableRigidbody model, IRigidbodyView view, ILateUpdateService lateUpdateService)
+			: base(model, view, lateUpdateService)
 		{
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 			_view = view ?? throw new ArgumentNullException(nameof(view));
@@ -41,7 +42,10 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 				OnVelocityChanged();
 		}
 
-		private void OnVelocityChanged() =>
+		private void OnVelocityChanged()
+		{
+			Debug.Log(_model.Velocity);
 			_view.Velocity = _model.Velocity;
+		}
 	}
 }

@@ -8,10 +8,10 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Domain.Services
 		public void CalculateSpeed(IObservableRigidbody rigidbody, float acceleration, float deltaTime) =>
 			rigidbody.Speed = Mathf.MoveTowards(rigidbody.Speed, rigidbody.Speed + acceleration, deltaTime);
 		
-		public void Rotate(IObservableRigidbody rigidbody, Vector3 destination, float deltaTime)
+		public void Rotate(IObservableRigidbody rigidbody, Quaternion destination, float deltaTime)
 		{
 			rigidbody.Rotation = Quaternion.Lerp(rigidbody.Rotation,
-				Quaternion.Euler(destination),
+				destination,
 				deltaTime);
 		}
 	}

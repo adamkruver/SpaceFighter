@@ -11,15 +11,15 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Factories
 	public class WeaponPresenterFactory
 	{
 		private readonly BulletService _bulletService;
-		private readonly IUpdateService _updateService;
+		private readonly ILateUpdateService _lateUpdateService;
 
-		public WeaponPresenterFactory(BulletService bulletService, IUpdateService updateService)
+		public WeaponPresenterFactory(BulletService bulletService, ILateUpdateService lateUpdateService)
 		{
 			_bulletService = bulletService ?? throw new ArgumentNullException(nameof(bulletService));
-			_updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
+			_lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
 		}
 
 		public WeaponPresenter Create(Weapon weapon, IWeaponView view, SpaceshipService service) =>
-			new WeaponPresenter(weapon, view, _updateService, _bulletService, service);
+			new WeaponPresenter(weapon, view, _lateUpdateService, _bulletService, service);
 	}
 }

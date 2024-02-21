@@ -19,10 +19,10 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Presenters
 
 		public WeaponPresenter(Weapon model,
 			IWeaponView view,
-			IUpdateService updateService,
+			ILateUpdateService lateUpdateService,
 			BulletService bulletService,
 			SpaceshipService shipService)
-			: base(model, view, updateService)
+			: base(model, view, lateUpdateService)
 		{
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 			_view = view ?? throw new ArgumentNullException(nameof(view));

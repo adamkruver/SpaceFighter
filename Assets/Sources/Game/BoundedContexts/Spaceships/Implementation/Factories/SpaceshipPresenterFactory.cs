@@ -8,12 +8,12 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Factories
 {
     public class SpaceshipPresenterFactory
     {
-        private readonly IUpdateService _updateService;
+        private readonly ILateUpdateService _lateUpdateService;
 
-        public SpaceshipPresenterFactory(IUpdateService updateService) =>
-            _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
+        public SpaceshipPresenterFactory(ILateUpdateService lateUpdateService) =>
+            _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
 
         public SpaceshipPresenter Create(Spaceship model, ISpaceshipView view) =>
-            new SpaceshipPresenter(model, view, _updateService);
+            new SpaceshipPresenter(model, view, _lateUpdateService);
     }
 }

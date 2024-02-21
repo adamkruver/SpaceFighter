@@ -6,14 +6,15 @@ using Sources.Common.StateMachines.Interfaces.Services;
 
 namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {
-	public class BulletPresenterFactory
-	{
-		private readonly IUpdateService _updateService;
+    public class BulletPresenterFactory
+    {
+        private readonly ILateUpdateService _lateUpdateService;
 
-		public BulletPresenterFactory(IUpdateService updateService) =>
-			_updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
+        public BulletPresenterFactory(ILateUpdateService lateUpdateService) =>
+            _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
 
-		
-		public BulletPresenter Create(Bullet model, IBulletView view) =>
-			new BulletPresenter(model, view, _updateService);	}
+
+        public BulletPresenter Create(Bullet model, IBulletView view) =>
+            new BulletPresenter(model, view, _lateUpdateService);
+    }
 }

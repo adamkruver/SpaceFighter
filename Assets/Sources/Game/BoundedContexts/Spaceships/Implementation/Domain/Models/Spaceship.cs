@@ -12,7 +12,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Domain.Models
         public const float MinAcceleration = -2f;
 
         private ISpaceshipState _state;
-        private Vector3 _destination;
+        private Quaternion _destination;
         private float _acceleration;
         private Weapon _weapon;
         
@@ -34,7 +34,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Domain.Models
             set => TrySetField(ref _state, value);
         }
         
-        public Vector3 Destination
+        public Quaternion Destination
         {
             get => _destination;
             set => TrySetField(ref _destination, value);
