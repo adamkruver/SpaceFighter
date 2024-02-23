@@ -6,6 +6,7 @@ using Sources.BoundedContexts.Scenes.Interfaces;
 using Sources.Common.StateMachines.Interfaces.Handlers;
 using Sources.Common.StateMachines.Interfaces.Services;
 using Sources.Interfaces.Services;
+using UnityEngine;
 
 namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
 {
@@ -22,6 +23,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
         private readonly IAssetService _assetService;
         private readonly PlayerFactory _playerFactory;
         private readonly PlayerViewFactory _playerViewFactory;
+        private readonly CameraController _cameraController;
 
         public GameplayScene(
             IInputService inputService,
@@ -34,7 +36,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             ICameraLateUpdateHandler cameraLateUpdateHandler,
             IAssetService assetService,
             PlayerFactory playerFactory,
-            PlayerViewFactory playerViewFactory
+            PlayerViewFactory playerViewFactory,
+            CameraController cameraController
         )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
@@ -49,7 +52,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
             _playerViewFactory = playerViewFactory ?? throw new ArgumentNullException(nameof(playerViewFactory));
-            
+            _cameraController = cameraController ? cameraController : throw new ArgumentNullException(nameof(cameraController));
         }
 
         public async void Enter()
@@ -59,7 +62,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             var player = _playerFactory.Create();
             _playerViewFactory.Create(player);
 
-             _cameraFollower.Follow(player.Spaceship);
+            _cameraController.Construct(player.Spaceship);
+             // _cameraFollower.Follow(player.Spaceship);
 
             AddListeners();
         }

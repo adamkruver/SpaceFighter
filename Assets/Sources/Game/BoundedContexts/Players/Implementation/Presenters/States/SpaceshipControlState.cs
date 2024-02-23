@@ -32,9 +32,9 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 
 		public void Update(float deltaTime)
 		{
-			Fire(_inputService.InputData);
-			HandleInput(_inputService.InputData);
-			UpdateModels(deltaTime);
+			// Fire(_inputService.InputData);
+			// HandleInput(_inputService.InputData);
+			// UpdateModels(deltaTime);
 		}
 
 		private void Fire(InputData inputService)

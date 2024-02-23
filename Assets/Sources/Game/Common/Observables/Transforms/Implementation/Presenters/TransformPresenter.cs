@@ -10,13 +10,13 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 	public class TransformPresenter : PresenterBase
 	{
 		private readonly ITransformView _view;
-		private readonly ILateUpdateService _updateService;
+		private readonly IUpdateService _updateService;
 		private readonly ObservableTransform _model;
 
-		public TransformPresenter(ObservableTransform model, ITransformView view, ILateUpdateService lateUpdateService)
+		public TransformPresenter(ObservableTransform model, ITransformView view, IUpdateService updateService)
 		{
 			_view = view ?? throw new ArgumentNullException(nameof(view));
-			_updateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+			_updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 		}
 
@@ -24,21 +24,23 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 		{
 			OnRotationChanged();
 			OnPositionChanged();
-			_updateService.LateUpdated += OnUpdate;
+			_updateService.Updated += OnUpdatePosition;
+			_updateService.Updated += OnUpdateRotation;
 			_model.PropertyChanged += OnModelChanged;
 		}
 
 		public override void Disable()
 		{
-			_updateService.LateUpdated -= OnUpdate;
 			_model.PropertyChanged -= OnModelChanged;
+			_updateService.Updated -= OnUpdateRotation;
+			_updateService.Updated -= OnUpdatePosition;
 		}
 
-		private void OnUpdate(float deltaTime)
-		{
+		protected virtual void OnUpdatePosition(float deltaTime) => 
 			_model.Position = _view.Position;
+
+		protected virtual void OnUpdateRotation(float deltaTime) => 
 			_model.Rotation = _view.Rotation;
-		}
 
 		private void OnModelChanged(object sender, PropertyChangedEventArgs e)
 		{

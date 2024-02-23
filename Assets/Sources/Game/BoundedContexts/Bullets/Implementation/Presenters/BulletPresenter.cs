@@ -11,8 +11,8 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Controllers
 		private readonly Bullet _model;
 		private readonly IBulletView _view;
 
-		public BulletPresenter(Bullet model, IBulletView view, ILateUpdateService lateUpdateService)
-			: base(model, view, lateUpdateService)
+		public BulletPresenter(Bullet model, IBulletView view, IUpdateService updateService)
+			: base(model, view, updateService)
 		{
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 			_view = view ?? throw new ArgumentNullException(nameof(view));

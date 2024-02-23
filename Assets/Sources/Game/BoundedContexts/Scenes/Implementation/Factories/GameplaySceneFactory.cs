@@ -24,6 +24,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
         private readonly IAssetService _assetService;
         private readonly PlayerFactory _playerFactory;
         private readonly PlayerViewFactory _playerViewFactory;
+        private readonly CameraController _cameraController;
 
         public GameplaySceneFactory(
             IInputService inputService,
@@ -36,8 +37,9 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
             ICameraLateUpdateHandler cameraLateUpdateHandler,
             IAssetService assetService,
             PlayerFactory playerFactory,
-            PlayerViewFactory playerViewFactory
-            )
+            PlayerViewFactory playerViewFactory,
+            CameraController cameraController
+        )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
             _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
@@ -51,6 +53,9 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
             _playerViewFactory = playerViewFactory ?? throw new ArgumentNullException(nameof(playerViewFactory));
+            _cameraController = cameraController
+                ? cameraController
+                : throw new ArgumentNullException(nameof(cameraController));
         }
 
         public IScene Create(ISceneSwitcher sceneSwitcher) =>
@@ -65,7 +70,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
                 _cameraLateUpdateHandler,
                 _assetService,
                 _playerFactory,
-                _playerViewFactory
+                _playerViewFactory,
+                _cameraController
             );
     }
 }

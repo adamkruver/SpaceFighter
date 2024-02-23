@@ -8,13 +8,13 @@ namespace Sources.BoundedContexts.Bullets.Implementation.Factories
 {
     public class BulletPresenterFactory
     {
-        private readonly ILateUpdateService _lateUpdateService;
+        private readonly IUpdateService _updateService;
 
-        public BulletPresenterFactory(ILateUpdateService lateUpdateService) =>
-            _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+        public BulletPresenterFactory(IUpdateService lateUpdateService) =>
+            _updateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
 
 
         public BulletPresenter Create(Bullet model, IBulletView view) =>
-            new BulletPresenter(model, view, _lateUpdateService);
+            new BulletPresenter(model, view, _updateService);
     }
 }

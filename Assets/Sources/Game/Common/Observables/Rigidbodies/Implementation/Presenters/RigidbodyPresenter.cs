@@ -13,8 +13,8 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 		private readonly ObservableRigidbody _model;
 		private readonly IRigidbodyView _view;
 
-		public RigidbodyPresenter(ObservableRigidbody model, IRigidbodyView view, ILateUpdateService lateUpdateService)
-			: base(model, view, lateUpdateService)
+		public RigidbodyPresenter(ObservableRigidbody model, IRigidbodyView view, IUpdateService updateService)
+			: base(model, view, updateService)
 		{
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 			_view = view ?? throw new ArgumentNullException(nameof(view));
@@ -23,14 +23,14 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 		public override void Enable()
 		{
 			OnVelocityChanged();
-			base.Enable();
 			_model.PropertyChanged += OnModelChanged;
+			base.Enable();
 		}
 
 		public override void Disable()
 		{
-			_model.PropertyChanged -= OnModelChanged;
 			base.Disable();
+			_model.PropertyChanged -= OnModelChanged;
 		}
 		
 		private void OnModelChanged(object sender, PropertyChangedEventArgs e)
@@ -42,10 +42,7 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 				OnVelocityChanged();
 		}
 
-		private void OnVelocityChanged()
-		{
-			Debug.Log(_model.Velocity);
+		protected virtual void OnVelocityChanged() => 
 			_view.Velocity = _model.Velocity;
-		}
 	}
 }
