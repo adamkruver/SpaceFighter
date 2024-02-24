@@ -39,8 +39,10 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 		protected virtual void OnUpdatePosition(float deltaTime) => 
 			_model.Position = _view.Position;
 
-		protected virtual void OnUpdateRotation(float deltaTime) => 
-			_model.Rotation = _view.Rotation;
+		protected virtual void OnUpdateRotation(float deltaTime)
+		{
+			//_model.Rotation = _view.Rotation;
+		}
 
 		private void OnModelChanged(object sender, PropertyChangedEventArgs e)
 		{
@@ -57,8 +59,10 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 			action?.Invoke();
 		}
 
-		private void OnRotationChanged() =>
+		private void OnRotationChanged()
+		{
 			_view.Rotation = _model.Rotation;
+		}
 
 		private void OnPositionChanged() =>
 			_view.Position = _model.Position;

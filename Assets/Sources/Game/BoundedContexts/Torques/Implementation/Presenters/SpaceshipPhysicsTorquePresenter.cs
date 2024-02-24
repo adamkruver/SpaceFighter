@@ -40,8 +40,10 @@ namespace Sources.BoundedContexts.Torques.Implementation.Presenters
             _updateService.Updated -= OnUpdate;
         }
 
-        private void OnUpdate(float deltaTime) =>
-            _torqueService.UpdateTorqueWithSlerp(_model, deltaTime);
+        private void OnUpdate(float deltaTime)
+        {
+            //_torqueService.UpdateTorqueWithSlerp(_model, deltaTime);
+        }
 
         private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -56,6 +58,8 @@ namespace Sources.BoundedContexts.Torques.Implementation.Presenters
 
             action?.Invoke();
         }
+        
+        
 
         private void OnRotationChanged() =>
             _view.SetRotation(_model.Rotation);

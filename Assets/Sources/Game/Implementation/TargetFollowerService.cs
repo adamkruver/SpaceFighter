@@ -19,19 +19,19 @@ namespace Sources.Implementation
 
         public void Follow(ITarget target)
         {
-            // _target = target;
-            // TargetChanged?.Invoke(target);
+            _target = target;
+            TargetChanged?.Invoke(target);
         }
 
         public void UpdateLate(float deltaTime)
         {
-            // if(_target == null)
-            //     return;
-            //
-            // _transform.position = _target.Position;
-            //
-            // Quaternion toRotation = Quaternion.LookRotation(_target.Forward, _target.Upward);
-            // _transform.rotation = Quaternion.Lerp( _transform.rotation, toRotation, CameraRotateSpeed * Time.deltaTime );
+            if(_target == null)
+                return;
+            
+            _transform.position = _target.Position;
+            
+            Quaternion toRotation = Quaternion.LookRotation(_target.Forward, _target.Upward);
+            _transform.rotation = Quaternion.Lerp( _transform.rotation, toRotation, CameraRotateSpeed * Time.deltaTime );
         }
     }
 }

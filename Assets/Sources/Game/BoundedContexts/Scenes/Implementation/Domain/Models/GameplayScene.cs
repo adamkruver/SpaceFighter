@@ -62,8 +62,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             var player = _playerFactory.Create();
             _playerViewFactory.Create(player);
 
-            _cameraController.Construct(player.Spaceship);
-             // _cameraFollower.Follow(player.Spaceship);
+            _cameraController.Construct(player.Spaceship, _updateService, _lateUpdateService);
+              //_cameraFollower.Follow(player.Spaceship);
 
             AddListeners();
         }

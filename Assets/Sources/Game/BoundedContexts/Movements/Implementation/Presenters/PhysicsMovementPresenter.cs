@@ -11,12 +11,12 @@ namespace Sources.BoundedContexts.Movements.Implementation.Presenters
     {
         private readonly IMovement _model;
         private readonly IPhysicsMovementView _view;
-        private readonly ILateUpdateService _lateUpdateService;
+        private readonly IUpdateService _lateUpdateService;
 
         public PhysicsMovementPresenter(
             IMovement movement,
             IPhysicsMovementView view,
-            ILateUpdateService lateUpdateService
+            IUpdateService lateUpdateService
         )
         {
             _model = movement ?? throw new ArgumentNullException(nameof(movement));
@@ -25,10 +25,10 @@ namespace Sources.BoundedContexts.Movements.Implementation.Presenters
         }
 
         public override void Enable() => 
-            _lateUpdateService.LateUpdated += _view.UpdateLate;
+            _lateUpdateService.Updated += _view.UpdateLate;
 
         public override void Disable() => 
-            _lateUpdateService.LateUpdated -= _view.UpdateLate;
+            _lateUpdateService.Updated -= _view.UpdateLate;
 
         public void SetPosition(Vector3 position) =>
             _model.Position = position;

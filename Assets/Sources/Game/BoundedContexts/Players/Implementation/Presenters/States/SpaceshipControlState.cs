@@ -33,8 +33,8 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 		public void Update(float deltaTime)
 		{
 			// Fire(_inputService.InputData);
-			// HandleInput(_inputService.InputData);
-			// UpdateModels(deltaTime);
+			 HandleInput(_inputService.InputData);
+			 UpdateModels(deltaTime);
 		}
 
 		private void Fire(InputData inputService)
@@ -49,7 +49,7 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 			float destinationX = cursorPosition.x * MouseSensitivity;
 			float destinationY = cursorPosition.y * MouseSensitivity;
 		
-			_movementService.AddTorque(_player.Spaceship, destinationX, destinationY);
+			// _movementService.AddTorque(_player.Spaceship, destinationX, destinationY);
 			
 			_movementService.AddForce(_player.Spaceship,
 				_inputService.InputData.MoveDirection.y);
@@ -57,10 +57,10 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 
 		private void UpdateModels(float deltaTime)
 		{
-			_rigidbodyMovementService.Rotate(
-				_player.Spaceship,
-				_player.Spaceship.Destination, 
-				deltaTime * Config.SpaceshipRotationSpeed);
+			// _rigidbodyMovementService.Rotate(
+			// 	_player.Spaceship,
+			// 	_player.Spaceship.Destination, 
+			// 	deltaTime * Config.SpaceshipRotationSpeed);
 
 			_rigidbodyMovementService.CalculateSpeed(_player.Spaceship,
 				_player.Spaceship.Acceleration,
