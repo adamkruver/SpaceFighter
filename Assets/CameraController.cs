@@ -29,12 +29,12 @@ public class CameraController : MonoBehaviour
         _updateService.Updated += OnUpdated;
         _lateUpdateService.LateUpdated += OnLateUpdated;
         _fixedUpdateService.FixedUpdated += FixedUpdated;
+        
+        
     }
 
     private void OnLateUpdated(float delta)
     {
-        _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _rotation, delta); 
-        _camera.transform.position = Vector3.Lerp(_camera.transform.position, _nextPosition, delta);
     }
     
     private void OnUpdated(float delta)
@@ -61,5 +61,7 @@ public class CameraController : MonoBehaviour
         _rotation = _camera.transform.rotation;
         _rotation.eulerAngles = new Vector3(clampedMousePosition.y, clampedMousePosition.x, 0);
         
+        _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, _rotation, delta); 
+        _camera.transform.position = Vector3.Lerp(_camera.transform.position, _nextPosition, delta);
      }
 }
