@@ -7,6 +7,8 @@ using Sources.Common;
 using Sources.Common.Observables.Rigidbodies.Implementation.Domain.Services;
 using Sources.Common.StateMachines.Implementation.Contexts.States;
 using Sources.Common.StateMachines.Interfaces.Handlers;
+using Sources.Common.StateMachines.Interfaces.Services;
+using UnityEngine;
 
 namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 {
@@ -18,23 +20,31 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 		private readonly IInputService _inputService;
 		private readonly MovementService _movementService;
 		private readonly RigidbodyMovementService _rigidbodyMovementService;
+		private readonly IFixedUpdateService _fixedUpdateService;
 
 		public SpaceshipControlState(Player player,
 			IInputService inputService,
 			MovementService movementService,
-			RigidbodyMovementService rigidbodyMovementService)
+			RigidbodyMovementService rigidbodyMovementService,
+			IFixedUpdateService fixedUpdateService)
 		{
 			_player = player ?? throw new ArgumentNullException(nameof(player));
 			_inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
 			_movementService = movementService ?? throw new ArgumentNullException(nameof(movementService));
 			_rigidbodyMovementService = rigidbodyMovementService ?? throw new ArgumentNullException(nameof(rigidbodyMovementService));
+			_fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
+			_fixedUpdateService.FixedUpdated += FixedUpdate;
+		}
+
+		private void FixedUpdate(float deltaTime)
+		{
+			HandleInput(_inputService.InputData);
+			UpdateModels(deltaTime);
 		}
 
 		public void Update(float deltaTime)
 		{
 			// Fire(_inputService.InputData);
-			 HandleInput(_inputService.InputData);
-			 UpdateModels(deltaTime);
 		}
 
 		private void Fire(InputData inputService)
@@ -65,7 +75,6 @@ namespace Sources.BoundedContexts.Players.Implementation.Presenters.States
 			_rigidbodyMovementService.CalculateSpeed(_player.Spaceship,
 				_player.Spaceship.Acceleration,
 				deltaTime);
-			
 		}
 	}
 }

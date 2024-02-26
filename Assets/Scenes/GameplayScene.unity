@@ -1574,6 +1574,8 @@ MonoBehaviour:
   _camera: {fileID: 963194227}
   _shipDistance: 25
   _yOffset: 9
+  _smoothRotation: 0.5
+  _smoothPosition: 0.5
 --- !u!4 &974675554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4579553980399578, guid: f603e71ddc270d54192200e95673e2a6, type: 3}

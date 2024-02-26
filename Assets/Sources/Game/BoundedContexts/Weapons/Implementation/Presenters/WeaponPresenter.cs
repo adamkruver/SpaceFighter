@@ -21,8 +21,8 @@ namespace Sources.BoundedContexts.Weapons.Implementation.Presenters
 			IWeaponView view,
 			IUpdateService updateService,
 			BulletService bulletService,
-			SpaceshipService shipService)
-			: base(model, view, updateService)
+			SpaceshipService shipService, IFixedUpdateService fixedUpdateService)
+			: base(model, view, updateService, fixedUpdateService)
 		{
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 			_view = view ?? throw new ArgumentNullException(nameof(view));

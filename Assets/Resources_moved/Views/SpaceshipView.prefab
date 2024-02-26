@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3318854463188514355}
   - component: {fileID: 3233010182057845823}
-  - component: {fileID: 1634121973060747417}
   - component: {fileID: 8625710227992696528}
-  - component: {fileID: 6920724332254948398}
   m_Layer: 3
   m_Name: SpaceshipView
   m_TagString: Untagged
@@ -51,19 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponView>k__BackingField: {fileID: 1547645928882092915}
   <RadarView>k__BackingField: {fileID: 0}
---- !u!114 &1634121973060747417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494175282427738631}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 420558e3d6c24cdb865ff31d5c699e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 8625710227992696528}
 --- !u!54 &8625710227992696528
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88,21 +73,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6920724332254948398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494175282427738631}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707b2e71388841e49bd4f134cda8f703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3098060498004092616
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ namespace Sources.Common.Observables.Transforms.Implementation.Models
         public Vector3 Forward
         {
             get => _forward;
-            private set => TrySetField(ref _forward, value);
+            set => TrySetField(ref _forward, value);
         }
 
         public Vector3 Upward

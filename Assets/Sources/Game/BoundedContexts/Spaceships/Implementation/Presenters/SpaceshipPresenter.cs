@@ -7,8 +7,8 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Presenters
 {
     public class SpaceshipPresenter : RigidbodyPresenter
     {
-        public SpaceshipPresenter(Spaceship model, ISpaceshipView view, IUpdateService updateService) 
-            : base(model, view, updateService)
+        public SpaceshipPresenter(Spaceship model, ISpaceshipView view, IUpdateService updateService, IFixedUpdateService fixedUpdateService) 
+            : base(model, view, updateService, fixedUpdateService)
         {
         }
 

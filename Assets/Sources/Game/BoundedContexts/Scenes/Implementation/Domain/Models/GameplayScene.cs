@@ -23,6 +23,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
         private readonly IAssetService _assetService;
         private readonly PlayerFactory _playerFactory;
         private readonly PlayerViewFactory _playerViewFactory;
+        private readonly IFixedUpdateService _fixedUpdateService;
         private readonly CameraController _cameraController;
 
         public GameplayScene(
@@ -37,7 +38,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             IAssetService assetService,
             PlayerFactory playerFactory,
             PlayerViewFactory playerViewFactory,
-            CameraController cameraController
+            CameraController cameraController,
+            IFixedUpdateService fixedUpdateService
         )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
@@ -52,6 +54,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
             _playerViewFactory = playerViewFactory ?? throw new ArgumentNullException(nameof(playerViewFactory));
+            _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _cameraController = cameraController ? cameraController : throw new ArgumentNullException(nameof(cameraController));
         }
 
@@ -62,7 +65,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Domain.Models
             var player = _playerFactory.Create();
             _playerViewFactory.Create(player);
 
-            _cameraController.Construct(player.Spaceship, _updateService, _lateUpdateService);
+            _cameraController.Construct(player.Spaceship, _updateService, _lateUpdateService, _fixedUpdateService);
               //_cameraFollower.Follow(player.Spaceship);
 
             AddListeners();

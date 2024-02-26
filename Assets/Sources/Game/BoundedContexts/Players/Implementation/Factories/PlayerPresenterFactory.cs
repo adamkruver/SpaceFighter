@@ -20,18 +20,21 @@ namespace Sources.BoundedContexts.Players.Implementation.Factories
         private readonly IUpdateService _updateService;
         private readonly MovementService _movementService;
         private readonly RigidbodyMovementService _rigidbodyMovementService;
+        private readonly IFixedUpdateService _fixedUpdateService;
 
         public PlayerPresenterFactory(
             IInputService inputService,
             IUpdateService updateService,
             MovementService movementService,
-            RigidbodyMovementService rigidbodyMovementService
+            RigidbodyMovementService rigidbodyMovementService,
+            IFixedUpdateService fixedUpdateService
         )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
             _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
             _movementService = movementService ?? throw new ArgumentNullException(nameof(movementService));
             _rigidbodyMovementService = rigidbodyMovementService ?? throw new ArgumentNullException(nameof(rigidbodyMovementService));
+            _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
         }
 
         public PlayerPresenter Create(Player model, IPlayerView view)
@@ -43,7 +46,8 @@ namespace Sources.BoundedContexts.Players.Implementation.Factories
                 model,
                 _inputService,
                 _movementService,
-                _rigidbodyMovementService
+                _rigidbodyMovementService,
+                _fixedUpdateService
             );
 
             var toCameraControlState = new ToCameraControlState(cameraControlState);

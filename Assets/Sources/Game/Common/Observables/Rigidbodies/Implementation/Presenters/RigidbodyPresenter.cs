@@ -13,8 +13,8 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 		private readonly ObservableRigidbody _model;
 		private readonly IRigidbodyView _view;
 
-		public RigidbodyPresenter(ObservableRigidbody model, IRigidbodyView view, IUpdateService updateService)
-			: base(model, view, updateService)
+		public RigidbodyPresenter(ObservableRigidbody model, IRigidbodyView view, IUpdateService updateService, IFixedUpdateService fixedUpdateService)
+			: base(model, view, updateService, fixedUpdateService)
 		{
 			_model = model ?? throw new ArgumentNullException(nameof(model));
 			_view = view ?? throw new ArgumentNullException(nameof(view));
@@ -43,6 +43,6 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Presenters
 		}
 
 		protected virtual void OnVelocityChanged() => 
-			_view.Velocity = _model.Velocity;
+			_view.Velocity = _model.Velocity * 200 * Time.fixedDeltaTime;
 	}
 }

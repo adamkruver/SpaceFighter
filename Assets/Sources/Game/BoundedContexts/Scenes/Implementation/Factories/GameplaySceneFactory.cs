@@ -25,6 +25,7 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
         private readonly PlayerFactory _playerFactory;
         private readonly PlayerViewFactory _playerViewFactory;
         private readonly CameraController _cameraController;
+        private readonly IFixedUpdateService _fixedUpdateService;
 
         public GameplaySceneFactory(
             IInputService inputService,
@@ -38,7 +39,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
             IAssetService assetService,
             PlayerFactory playerFactory,
             PlayerViewFactory playerViewFactory,
-            CameraController cameraController
+            CameraController cameraController,
+            IFixedUpdateService fixedUpdateService
         )
         {
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
@@ -53,9 +55,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
             _playerViewFactory = playerViewFactory ?? throw new ArgumentNullException(nameof(playerViewFactory));
-            _cameraController = cameraController
-                ? cameraController
-                : throw new ArgumentNullException(nameof(cameraController));
+            _cameraController = cameraController ?? throw new ArgumentNullException(nameof(cameraController));
+            _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
         }
 
         public IScene Create(ISceneSwitcher sceneSwitcher) =>
@@ -71,7 +72,8 @@ namespace Sources.BoundedContexts.Scenes.Implementation.Factories
                 _assetService,
                 _playerFactory,
                 _playerViewFactory,
-                _cameraController
+                _cameraController,
+                _fixedUpdateService
             );
     }
 }

@@ -53,13 +53,13 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Models
 			private set => TrySetField(ref _velocity, value);
 		}
 
-		protected override void OnRotationChanged() =>
-			CalculateVelocity();
+		// protected override void OnRotationChanged() =>
+		// 	CalculateVelocity();
 
-		protected override void OnPositionChanged() =>
-			CalculateVelocity();
+		// protected override void OnPositionChanged() =>
+		// 	CalculateVelocity();
 
 		private void CalculateVelocity() =>
-			Velocity = Rotation * Vector3.forward * Speed;
+			Velocity = Forward * 500 * Time.fixedDeltaTime;
 	}
 }
