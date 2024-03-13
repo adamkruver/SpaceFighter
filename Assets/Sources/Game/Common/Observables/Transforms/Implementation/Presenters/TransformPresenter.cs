@@ -30,7 +30,6 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 		public override void Enable()
 		{
 			OnRotationChanged();
-			//OnPositionChanged();
 			_updateService.Updated += OnUpdatePosition;
 			_updateService.Updated += OnUpdateRotation;
 			_fixedUpdateService.FixedUpdated += FixedUpdate;
@@ -55,6 +54,10 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 			//_model.Rotation = _view.Rotation;
 		}
 
+		/// <summary>
+		/// TODO Удрать отсюда
+		/// </summary>
+		/// <param name="delta"></param>
 		private void FixedUpdate(float delta)
 		{
 			float halfScreenWidth = Screen.width / 2;
@@ -89,7 +92,6 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 
 			Action action = e.PropertyName switch
 			{
-				//nameof(ObservableTransform.Position) => OnPositionChanged,
 				nameof(ObservableTransform.Rotation) => OnRotationChanged,
 				_ => default
 			};
@@ -101,8 +103,5 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 		{
 			_view.Rotation = _model.Rotation;
 		}
-
-		// private void OnPositionChanged() =>
-		// 	_view.Position = _model.Position;
 	}
 }

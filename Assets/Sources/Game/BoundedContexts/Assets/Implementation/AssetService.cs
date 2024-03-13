@@ -13,9 +13,4 @@ namespace Sources.BoundedContexts.Assets.Implementation
 		public void Release() =>
 			Provider.Release();
 	}
-	
-	public interface IAssetProviderFactory<T> where T :  IAssetProvider
-	{
-		T Create();
-	}
 }
