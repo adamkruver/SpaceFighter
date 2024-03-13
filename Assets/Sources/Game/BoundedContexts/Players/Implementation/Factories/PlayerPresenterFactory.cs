@@ -47,7 +47,8 @@ namespace Sources.BoundedContexts.Players.Implementation.Factories
                 _inputService,
                 _movementService,
                 _rigidbodyMovementService,
-                _fixedUpdateService
+                _fixedUpdateService,
+                _updateService
             );
 
             var toCameraControlState = new ToCameraControlState(cameraControlState);

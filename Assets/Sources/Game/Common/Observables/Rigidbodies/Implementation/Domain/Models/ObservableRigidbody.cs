@@ -11,6 +11,7 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Models
 		private float _minSpeed = 0f;
 		private float _maxSpeed = float.MaxValue;
 
+		public Vector3 Position { get; set; }
 		public float MaxSpeed
 		{
 			get => _maxSpeed;
@@ -42,7 +43,7 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Models
 				if (TrySetField(ref _speed, Mathf.Clamp(value, MinSpeed, MaxSpeed)) == false)
 					return;
 
-				CalculateVelocity();
+				CalculateVelocity(_speed);
 			}
 		}
 
@@ -53,13 +54,7 @@ namespace Sources.Common.Observables.Rigidbodies.Implementation.Models
 			private set => TrySetField(ref _velocity, value);
 		}
 
-		// protected override void OnRotationChanged() =>
-		// 	CalculateVelocity();
-
-		// protected override void OnPositionChanged() =>
-		// 	CalculateVelocity();
-
-		private void CalculateVelocity() =>
-			Velocity = Forward * 500 * Time.fixedDeltaTime;
+		private void CalculateVelocity(float speed) =>
+			Velocity = Forward * (speed * Time.fixedDeltaTime);
 	}
 }

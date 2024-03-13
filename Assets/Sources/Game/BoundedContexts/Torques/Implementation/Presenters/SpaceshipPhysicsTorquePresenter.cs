@@ -47,19 +47,17 @@ namespace Sources.BoundedContexts.Torques.Implementation.Presenters
 
         private void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (sender is not IPhysicsTorque torque)
-                return;
-
-            Action action = e.PropertyName switch
-            {
-                nameof(IPhysicsTorque.Rotation) => OnRotationChanged,
-                _ => null
-            };
-
-            action?.Invoke();
+            // if (sender is not IPhysicsTorque torque)
+            //     return;
+            //
+            // Action action = e.PropertyName switch
+            // {
+            //     nameof(IPhysicsTorque.Rotation) => OnRotationChanged,
+            //     _ => null
+            // };
+            //
+            // action?.Invoke();
         }
-        
-        
 
         private void OnRotationChanged() =>
             _view.SetRotation(_model.Rotation);

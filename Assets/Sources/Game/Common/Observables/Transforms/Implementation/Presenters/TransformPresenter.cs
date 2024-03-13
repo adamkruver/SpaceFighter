@@ -15,7 +15,6 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 		private readonly IUpdateService _updateService;
 		private readonly IFixedUpdateService _fixedUpdateService;
 		private readonly ObservableTransform _model;
-		private Vector3 _direction;
 
 		public TransformPresenter(ObservableTransform model, ITransformView view, 
 			IUpdateService updateService,
@@ -33,6 +32,7 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 			_updateService.Updated += OnUpdatePosition;
 			_updateService.Updated += OnUpdateRotation;
 			_fixedUpdateService.FixedUpdated += FixedUpdate;
+			_updateService.Updated += OnUpdate;
 			_model.PropertyChanged += OnModelChanged;
 		}
 
@@ -41,12 +41,18 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 			_model.PropertyChanged -= OnModelChanged;
 			_updateService.Updated -= OnUpdateRotation;
 			_updateService.Updated -= OnUpdatePosition;
+			_updateService.Updated -= OnUpdate;
 			_fixedUpdateService.FixedUpdated -= FixedUpdate;
+		}
+
+		private void OnUpdate(float delta)
+		{
+			
 		}
 
 		protected virtual void OnUpdatePosition(float deltaTime)
 		{
-			_model.Position = _view.Position;
+			//_model.Position = _view.Position;
 		}
 
 		protected virtual void OnUpdateRotation(float deltaTime)
@@ -60,29 +66,7 @@ namespace Sources.Common.Observables.Transforms.Implementation.Presenters
 		/// <param name="delta"></param>
 		private void FixedUpdate(float delta)
 		{
-			float halfScreenWidth = Screen.width / 2;
-			float halfScreenHeight = Screen.height / 2;
-
-
-			var ray = Camera.main.ScreenPointToRay(new Vector3(halfScreenWidth, halfScreenHeight));
-			Physics.Raycast(ray, out RaycastHit hit);
-        
-			var lookPoint = ray.GetPoint(1000);
-        
-			if (hit.distance < 1)
-				_direction = lookPoint - _model.Position;
-			else
-				_direction = hit.point - _model.Position;
-        
-			_model.Rotation = Quaternion.Lerp(
-				_model.Rotation,
-				Quaternion.LookRotation(_direction),
-				delta *20
-			);
-
-			_model.Forward = _view.Forward;
 			
-			_model.Position = _view.Position;
 		}
 
 		private void OnModelChanged(object sender, PropertyChangedEventArgs e)

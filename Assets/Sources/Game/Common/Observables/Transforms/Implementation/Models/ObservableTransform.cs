@@ -14,22 +14,22 @@ namespace Sources.Common.Observables.Transforms.Implementation.Models
 
         public ObservableTransform()
         {
-            Position = default;
+            //Position = default;
             Rotation = Quaternion.identity;
         }
         
-        public Vector3 Position
-        {
-            get => _position;
-
-            set
-            {
-                if (TrySetField(ref _position, value) == false)
-                    return;
-
-                OnPositionChanged();
-            }
-        }
+        // public Vector3 Position
+        // {
+        //     get => _position;
+        //
+        //     set
+        //     {
+        //         if (TrySetField(ref _position, value) == false)
+        //             return;
+        //
+        //         OnPositionChanged();
+        //     }
+        // }
 
         public Vector3 Forward
         {

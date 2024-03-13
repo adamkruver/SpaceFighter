@@ -1,7 +1,6 @@
 ﻿using Sources.Common.Mvp.Implementation.Views;
 using Sources.Common.Mvp.Interfaces;
 using Sources.Common.Observables.Transforms.Interfaces.Views;
-using Sources.Common.StateMachines.Interfaces.Handlers;
 using UnityEngine;
 
 namespace Sources.Common.Observables.Transforms.Implementation.Views

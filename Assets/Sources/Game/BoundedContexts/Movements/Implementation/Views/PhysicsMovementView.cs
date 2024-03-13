@@ -17,9 +17,9 @@ namespace Sources.BoundedContexts.Movements.Implementation.Views
 
         public void UpdateLate(float deltaTime)
         {
-            Presenter.SetPosition(Position);
-            Presenter.SetForward(Forward);
-            Presenter.SetUpward(Upward);
+            // Presenter.SetPosition(Position);
+            // Presenter.SetForward(Forward);
+            // Presenter.SetUpward(Upward);
         }
     }
 }

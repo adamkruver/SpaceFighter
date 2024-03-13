@@ -8,8 +8,8 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Domain.Models
 {
     public class Spaceship : ObservableRigidbody, ITarget
     {
-        public const float MaxAcceleration = 5f;
-        public const float MinAcceleration = -2f;
+        public const float MaxAcceleration = 700f;
+        public const float MinAcceleration = -200f;
 
         private ISpaceshipState _state;
         private Quaternion _destination;
@@ -18,7 +18,7 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Domain.Models
         
         public Spaceship()
         {
-            MaxSpeed = 50f;
+            MaxSpeed = 700f;
             MinSpeed = 0f;
         }
 

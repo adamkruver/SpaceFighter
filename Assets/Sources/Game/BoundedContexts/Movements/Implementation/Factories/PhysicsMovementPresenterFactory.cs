@@ -8,13 +8,13 @@ namespace Sources.BoundedContexts.Movements.Implementation.Factories
 {
 	public class PhysicsMovementPresenterFactory
 	{
-		private readonly IUpdateService _lateUpdateService;
+		private readonly IUpdateService _updateService;
 
 
-		public PhysicsMovementPresenterFactory(IUpdateService lateUpdateService) => 
-			_lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+		public PhysicsMovementPresenterFactory(IUpdateService updateService) => 
+			_updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
 
 		public PhysicsMovementPresenter Create(IMovement movement, IPhysicsMovementView view) =>
-			new PhysicsMovementPresenter(movement, view, _lateUpdateService);
+			new PhysicsMovementPresenter(movement, view, _updateService);
 	}
 }

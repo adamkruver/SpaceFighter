@@ -5,6 +5,6 @@ namespace Sources.Common.Observables.Transforms.Interfaces.Models
 {
     public interface IObservablePosition : IReadOnlyObservablePosition
     {
-        Vector3 Position { get; set; }
+        //Vector3 Position { get; set; }
     }
 }

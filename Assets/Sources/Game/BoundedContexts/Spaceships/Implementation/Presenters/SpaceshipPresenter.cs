@@ -11,6 +11,5 @@ namespace Sources.BoundedContexts.Spaceships.Implementation.Presenters
             : base(model, view, updateService, fixedUpdateService)
         {
         }
-
     }
 }
